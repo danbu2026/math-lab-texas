@@ -3,11 +3,16 @@
 ## 使用
 双击 启动数学实验室.cmd，在浏览器打开 http://localhost:4185/。需要已安装 Node.js。
 正式发布网址由交付消息提供。首次联网使用后核心内容可缓存离线。
+### 在 iPad 上安装
+1. 用 Safari 打开正式网址。
+2. 点页面右上方“安装到 iPad”，查看图示步骤。
+3. 在 Safari 点“分享”→“添加到主屏幕”→“添加”。
+4. 以后直接点主屏幕上的 Math Lab 图标进入。全屏模式、触控操作、横竖屏和安全区域均已适配。
 ## 第一版
-六主题、18小任务，中文指导、中文/英文题目。支持操作模型、独立题、挑战、六题综合练习、两位学习者独立记录和确认清除。
+六主题、18小任务，完整中文和英文界面。支持操作模型、独立题、挑战、六题综合练习、两位学习者独立记录和确认清除。
 范围为 K–5 部分主题，不是完整 TEKS 教材或官方 STAAR 模拟器。详见 dist/guide.html。
 ## 文件
-dist/content.js 内容与题目生成；dist/app.js 学习流程、模型、三维积木与本地记录；dist/style.css 响应式界面；dist/sw.js 离线缓存；tests 内容验证；.openai/hosting.json 发布配置。
+dist/content.js 内容与题目生成；dist/app.js 学习流程、模型、三维积木与本地记录；dist/pwa.js iPad 安装体验；dist/style.css 与 dist/ipad.css 响应式及触控界面；dist/sw.js 离线缓存；tests 内容与安装验证；.openai/hosting.json 发布配置。
 ## 检查
 node validate.mjs
 npm test

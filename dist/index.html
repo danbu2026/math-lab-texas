@@ -1,1 +1,52 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#123f45"><title>小小数学实验室 · Texas Math Lab</title><link rel="icon" href="icon.svg"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css"></head><body><header><a class="brand" href="./"><span class="brandmark">m<span>＋</span></span><span>小小数学实验室<small>TEXAS MATH LAB</small></span></a><div class="header-tools"><label>学习者 <select id="learner"><option value="a">探索者 A</option><option value="b">探索者 B</option></select></label><button id="records">学习足迹</button><button id="parents">家长指南</button></div></header><div class="layout"><aside><p class="overline">今天，发现一个规律</p><h1>数学可以<br>亲手看懂。</h1><p class="aside-note">选一个实验。先动手，再自己解决。</p><nav id="topics" aria-label="学习主题"></nav><div class="aside-bottom"><span class="pill">K–5 知识主题</span><p>从会的地方出发。<br>不计时，不比速度。</p><button id="mixed">独立综合练习 ↗</button></div></aside><main><div class="heading"><div><p id="eyebrow" class="overline"></p><h2 id="title"></h2><p id="intro"></p></div><span id="number" class="unit-number"></span></div><div class="settings-row"><label>选择小任务 <select id="lesson"></select></label><button id="newProblem">换一组数字 ↻</button><button id="language" aria-pressed="false">题目：中文 / English</button></div><div class="steps" role="tablist" aria-label="学习步骤"><button data-stage="explore" role="tab">01 动手发现</button><button data-stage="practice" role="tab">02 独立试试</button><button data-stage="challenge" role="tab">03 想深一点</button></div><section id="activity" aria-label="数学实验"></section><div id="feedback" role="status" aria-live="polite"></div><section class="reflection"><span>说说你的发现</span><p id="reflect"></p><label for="note" class="sr-only">我的发现</label><textarea id="note" rows="2" placeholder="可以写下来，也可以讲给家长听。"></textarea></section><footer><span id="storageStatus">学习记录保存在这台设备</span><a href="guide.html">课程范围与使用说明</a></footer></main></div><dialog id="dialog"><div class="dialog-top"><h2 id="dialogTitle"></h2><button id="closeDialog" aria-label="关闭">✕</button></div><div id="dialogBody"></div></dialog><script type="module" src="app.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#123f45">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Math Lab">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <title>小小数学实验室 · Texas Math Lab</title>
+  <link rel="icon" href="icon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ipad.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="./"><span class="brandmark">m<span>＋</span></span><span>小小数学实验室<small>TEXAS MATH LAB</small></span></a>
+    <div class="header-tools">
+      <label>学习者 <select id="learner"><option value="a">探索者 A</option><option value="b">探索者 B</option></select></label>
+      <button id="records">学习足迹</button>
+      <button id="parents">家长指南</button>
+      <button id="installApp" class="install-app" type="button">安装到 iPad</button>
+    </div>
+  </header>
+  <div class="layout">
+    <aside>
+      <p class="overline">今天，发现一个规律</p>
+      <h1>数学可以<br>亲手看懂。</h1>
+      <p class="aside-note">选一个实验。先动手，再自己解决。</p>
+      <nav id="topics" aria-label="学习主题"></nav>
+      <div class="aside-bottom"><span class="pill">K–5 知识主题</span><p>从会的地方出发。<br>不计时，不比速度。</p><button id="mixed">独立综合练习 ↗</button></div>
+    </aside>
+    <main>
+      <div class="heading"><div><p id="eyebrow" class="overline"></p><h2 id="title"></h2><p id="intro"></p></div><span id="number" class="unit-number"></span></div>
+      <div class="settings-row"><label>选择小任务 <select id="lesson"></select></label><button id="newProblem">换一组数字 ↻</button><button id="language" aria-pressed="false">题目：中文 / English</button></div>
+      <div class="steps" role="tablist" aria-label="学习步骤"><button data-stage="explore" role="tab">01 动手发现</button><button data-stage="practice" role="tab">02 独立试试</button><button data-stage="challenge" role="tab">03 想深一点</button></div>
+      <section id="activity" aria-label="数学实验"></section>
+      <div id="feedback" role="status" aria-live="polite"></div>
+      <section class="reflection"><span>说说你的发现</span><p id="reflect"></p><label for="note" class="sr-only">我的发现</label><textarea id="note" rows="2" placeholder="可以写下来，也可以讲给家长听。"></textarea></section>
+      <footer><span id="storageStatus">学习记录保存在这台设备</span><a href="guide.html">课程范围与使用说明</a></footer>
+    </main>
+  </div>
+  <dialog id="dialog"><div class="dialog-top"><h2 id="dialogTitle"></h2><button id="closeDialog" aria-label="关闭">✕</button></div><div id="dialogBody"></div></dialog>
+  <dialog id="installDialog" class="install-dialog"><div class="dialog-top"><h2 id="installTitle">安装到 iPad 主屏幕</h2><button id="closeInstall" aria-label="关闭">✕</button></div><div id="installBody"></div></dialog>
+  <script type="module" src="app.js"></script>
+  <script type="module" src="pwa.js"></script>
+</body>
+</html>
