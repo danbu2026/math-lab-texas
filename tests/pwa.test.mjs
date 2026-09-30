@@ -20,4 +20,13 @@ test('iPad install metadata and icons are complete',()=>{
 test('offline cache includes iPad assets',()=>{
   const sw=fs.readFileSync('dist/sw.js','utf8');
   for(const name of ['ipad.css','pwa.js','apple-touch-icon.png','icon-192.png','icon-512.png','icon-maskable-512.png']) assert.match(sw,new RegExp(name.replace('.','\\.')));
+  assert.match(sw,/response\.ok/);
+  assert.match(sw,/!response\.redirected/);
+  assert.match(sw,/cached\|\|response/);
+});
+
+test('install language follows the restored app language when URL has no override',()=>{
+  const pwa=fs.readFileSync('dist/pwa.js','utf8');
+  assert.match(pwa,/document\.documentElement\.lang\.toLowerCase\(\)\.startsWith\('en'\)/);
+  assert.match(pwa,/requested === 'en' \|\| requested === 'zh'/);
 });
