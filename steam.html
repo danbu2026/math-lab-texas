@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#123f45">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Little STEAM Lab · Texas</title>
+  <link rel="icon" href="icon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="steam.css">
+  <link rel="stylesheet" href="steam-rewards.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="platform-brand" href="steam.html"><span class="platform-mark">s<span>＋</span></span><span><strong>Little STEAM Lab</strong><small>TEXAS K–5 LEARNING SYSTEM</small></span></a>
+    <div class="top-tools">
+      <label><span data-t="grade">年级</span><select id="gradeSelect" aria-label="选择年级"></select></label>
+      <button id="languageButton" type="button">English</button>
+      <a class="math-link" href="./" data-t="openMath">打开 Little Math Lab</a>
+    </div>
+  </header>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <p class="side-label" data-t="learn">学习</p>
+      <nav id="mainNav" aria-label="平台导航">
+        <button class="active" data-view="today"><span>◉</span><span data-t="today">今天的10分钟</span></button>
+        <button data-view="journey"><span>⌁</span><span data-t="journey">我的360天路径</span></button>
+        <button data-view="labs"><span>⌘</span><span data-t="labs">六个学习实验室</span></button>
+        <button data-view="rewards"><span>☆</span><span data-t="rewards">我的阶段奖励</span></button>
+        <button data-view="map"><span>▦</span><span data-t="map">全年任务地图</span></button>
+      </nav>
+      <p class="side-label" data-t="family">家庭</p>
+      <nav>
+        <button data-view="parents"><span>♡</span><span data-t="parents">家长陪伴</span></button>
+        <button data-view="status"><span>✓</span><span data-t="status">建设进度</span></button>
+      </nav>
+      <div class="side-note"><strong data-t="tenMinutes">每天10分钟</strong><span data-t="noPressure">不计时排名，不制造连续签到压力。</span></div>
+    </aside>
+    <main id="workspace">
+      <section class="view active" data-page="today">
+        <div class="page-intro"><div><p class="eyebrow" data-t="prototype">可点击的产品蓝图</p><h1 data-t="headline">今天，只学懂一件事。</h1><p data-t="headlineSub">短时间、深理解。孩子完成后可以安心停下。</p></div><div class="day-chip"><span data-t="sampleDay">示例任务</span><strong id="sampleDayNumber">01</strong></div></div>
+        <div class="today-grid">
+          <article class="mission-card">
+            <div class="mission-meta"><span id="missionLab" class="lab-pill"></span><span>10 MIN</span></div>
+            <h2 id="missionTitle"></h2><p id="missionQuestion" class="mission-question"></p>
+            <div class="mission-material"><span data-t="need">需要</span><strong id="missionMaterial"></strong></div>
+            <button id="openMission" class="primary" data-t="previewMission">预览今天的任务</button>
+            <p class="sample-warning" data-t="sampleWarning">这是框架示例，不会计入孩子的正式学习记录。</p>
+          </article>
+          <article class="ten-card"><p class="eyebrow" data-t="oneMission">一个任务 · 四个动作</p><h2 data-t="tenFlow">10分钟学习节奏</h2><div class="time-flow"><div><strong>1</strong><span data-t="wonder">好奇</span><small data-t="wonderSub">提出一个问题</small></div><div><strong>4</strong><span data-t="explore">探索</span><small data-t="exploreSub">动手、观察、测试</small></div><div><strong>3</strong><span data-t="solve">解决</span><small data-t="solveSub">独立完成新问题</small></div><div><strong>2</strong><span data-t="explain">解释</span><small data-t="explainSub">说清楚为什么</small></div></div><p class="time-note" data-t="stopNote">10分钟到了就可以停止。没有为了凑数量而安排的机械重复。</p></article>
+        </div>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow" data-t="yearDesign">全年设计</p><h2 data-t="twelveJourneys">12段旅程 × 每段30个独特任务</h2></div><button class="text-button" data-go="journey" data-t="viewJourney">查看完整路径 →</button></div><div id="journeyPreview" class="journey-preview"></div></section>
+        <section class="panel build-snapshot"><div><p class="eyebrow" data-t="honestStatus">诚实的建设状态</p><h2 data-t="frameworkReady">框架已经可以浏览，完整课程尚待逐步填充。</h2><p data-t="frameworkSub">现有18项数学活动将作为可复用原型；只有完成TEKS对齐、独立审核和儿童试用后，任务才标记为“可正式学习”。</p></div><div class="snapshot-numbers"><div><strong>2,160</strong><span data-t="slots">K–5任务位置</span></div><div><strong>18</strong><span data-t="prototypes">现有数学原型</span></div><div><strong>0</strong><span data-t="approved">已完成最终标准审核</span></div></div></section>
+      </section>
+
+      <section class="view" data-page="journey"><div class="page-intro"><div><p class="eyebrow" data-t="yearPath">全年学习路径</p><h1 id="journeyHeading"></h1><p data-t="journeyIntro">每30个任务组成一段完整旅程；复习只在需要时出现，并换一种情境使用知识。</p></div></div><div class="mission-mix" id="missionMix"></div><div id="journeyGrid" class="journey-grid"></div></section>
+
+      <section class="view" data-page="labs"><div class="page-intro"><div><p class="eyebrow" data-t="connected">相互连接的学习</p><h1 data-t="sixLabs">六个实验室，共用一套思考方法。</h1><p data-t="labsIntro">学科有自己的基础，综合任务帮助孩子把知识用于真实问题。</p></div></div><div id="labsGrid" class="labs-grid"></div></section>
+
+      <section class="view" data-page="map"><div class="page-intro"><div><p class="eyebrow" data-t="mapLabel">360天结构图</p><h1 id="mapHeading"></h1><p data-t="mapIntro">每个圆点是一个10分钟任务位置。颜色表示任务类型，不表示孩子好坏。</p></div></div><div class="map-legend" id="mapLegend"></div><div id="yearMap" class="year-map"></div></section>
+
+      <section class="view" data-page="rewards"><div class="page-intro"><div><p class="eyebrow" data-t="rewardSetup">注册时共同设置</p><h1 data-t="rewardHeadline">努力完成一个阶段，解锁自己期待的奖励。</h1><p data-t="rewardIntro">孩子和家长一起决定。奖励认可坚持、解释和成长，不只奖励答对。</p></div></div><div class="reward-principles"><article><strong data-t="earnWhen">什么时候获得</strong><p data-t="earnWhenText">完成30个独特任务，并完成阶段展示。漏掉一天不影响奖励。</p></article><article><strong data-t="whoChooses">谁来决定</strong><p data-t="whoChoosesText">孩子提出想法，家长确认。任何奖励都可以以后修改。</p></article><article><strong data-t="healthyRewards">什么是好奖励</strong><p data-t="healthyRewardsText">优先选择共同时间、选择权、体验和创造机会。</p></article></div><div class="reward-toolbar"><div><p class="eyebrow" data-t="rewardPlan">本年级12阶段奖励计划</p><h2 id="rewardPlanHeading"></h2></div><button id="saveRewards" class="primary" data-t="saveRewards">保存奖励计划</button></div><div id="rewardGrid" class="reward-grid"></div><p id="rewardSaved" class="saved-message" role="status" aria-live="polite"></p></section>
+
+      <section class="view" data-page="parents"><div class="page-intro"><div><p class="eyebrow" data-t="parentRole">家长的角色</p><h1 data-t="parentHeadline">少讲一点，多问一个好问题。</h1><p data-t="parentIntro">家长不需要备课，也不需要代替孩子完成。</p></div></div><div class="parent-grid"><article><span>01</span><h2 data-t="before">开始前</h2><p data-t="beforeText">问：“你觉得今天会发现什么？”让孩子自己点开始。</p></article><article><span>02</span><h2 data-t="during">卡住时</h2><p data-t="duringText">问：“哪里和你想的不一样？”不要马上演示答案。</p></article><article><span>03</span><h2 data-t="after">结束后</h2><p data-t="afterText">问：“你能用自己的话讲一遍吗？”讲得清楚比做得快更重要。</p></article></div><section class="panel"><h2 data-t="weeklyReport">未来的家庭周报</h2><div class="report-mock"><div><strong data-t="understood">理解得比较稳</strong><p data-t="understoodText">能独立解释，并在新情境中使用。</p></div><div><strong data-t="needsPractice">需要换一种方式再试</strong><p data-t="needsPracticeText">知道步骤，但仍依赖模型或提示。</p></div><div><strong data-t="nextWeek">下周建议</strong><p data-t="nextWeekText">三个10分钟任务和一个家庭小实验。</p></div></div></section></section>
+
+      <section class="view" data-page="status"><div class="page-intro"><div><p class="eyebrow" data-t="transparent">透明建设</p><h1 data-t="statusHeadline">每次新增内容，都能看到它处于什么状态。</h1><p data-t="statusIntro">“页面存在”不等于“课程完成”。只有通过内容、技术和儿童体验检查后才会上线。</p></div></div><div class="status-legend"><span class="state live" data-t="live">已上线体验</span><span class="state review" data-t="review">正在设计/审核</span><span class="state planned" data-t="planned">已规划</span></div><div id="statusTable" class="status-table"></div><section class="panel gates"><h2 data-t="releaseGates">每项任务的六道发布检查</h2><ol><li data-t="gate1">对应明确的TEKS和前置技能</li><li data-t="gate2">10分钟内有一个清楚的学习目标</li><li data-t="gate3">答案、模型和解释经过独立检查</li><li data-t="gate4">孩子可以独立操作，且错误反馈有帮助</li><li data-t="gate5">中英文表达准确、自然并适合年龄</li><li data-t="gate6">真实儿童试用后没有明显理解或操作障碍</li></ol></section></section>
+    </main>
+  </div>
+  <dialog id="missionDialog"><div class="dialog-top"><div><p class="eyebrow" data-t="sampleMission">10分钟任务样板</p><h2 id="dialogMissionTitle"></h2></div><button id="closeMission" aria-label="关闭">✕</button></div><div id="missionSteps" class="mission-steps"></div><div class="dialog-note" data-t="dialogNote">这个样板展示最终体验结构；正式内容需要完成TEKS映射和儿童试用。</div></dialog>
+  <script type="module" src="steam.js"></script>
+</body>
+</html>

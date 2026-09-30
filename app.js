@@ -75,7 +75,7 @@ const pairs=[
 ['.header-tools label','学习者 ','Learner '],
 ['#learner option[value="a"]','探索者 A','Explorer A'],
 ['#learner option[value="b"]','探索者 B','Explorer B'],
-['#records','学习足迹','Learning record'],['#parents','家长指南','Parent guide'],
+['#records','学习足迹','Learning record'],['#parents','家长指南','Parent guide'],['.steam-link','STEAM 总蓝图','STEAM Roadmap'],
 ['aside>.overline','今天，发现一个规律','Discover a pattern today'],
 ['aside h1','数学可以亲手看懂。','Math you can explore.'],
 ['.aside-note','选一个实验。先动手，再自己解决。','Choose a lab. Explore, then solve on your own.'],
@@ -100,4 +100,5 @@ $('#topics').setAttribute('aria-label',english?'Learning topics':'学习主题')
 $('.steps').setAttribute('aria-label',english?'Learning steps':'学习步骤');
 $('#activity').setAttribute('aria-label',english?'Math lab':'数学实验');
 $('footer a').href=english?'guide-en.html':'guide.html';
+$('.steam-link').href='steam.html?lang='+(english?'en':'zh');
 }
