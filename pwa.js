@@ -8,7 +8,9 @@ const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
 let installPrompt;
 
 function isEnglish() {
-  return new URLSearchParams(location.search).get('lang') === 'en';
+  const requested = new URLSearchParams(location.search).get('lang');
+  if (requested === 'en' || requested === 'zh') return requested === 'en';
+  return document.documentElement.lang.toLowerCase().startsWith('en');
 }
 
 function copy() {
