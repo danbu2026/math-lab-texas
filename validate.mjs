@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 
 for(const file of fs.readdirSync('dist').filter(file=>file.endsWith('.js'))) execFileSync(process.execPath,['--check','dist/'+file]);
-for(const file of ['index.html','guide.html','guide-en.html']){
+for(const file of ['index.html','guide.html','guide-en.html','steam.html']){
   const html=fs.readFileSync('dist/'+file,'utf8');
   for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){
     const target=match[1].split(/[?#]/)[0];
