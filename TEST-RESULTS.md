@@ -1,33 +1,29 @@
-# 测试结果 · 更新至 2026-09-30
+# Test Results · Updated October 3, 2026
 
-## 自动检查
+## Automated checks
 
-- JavaScript 语法、本地链接、安装图标和 manifest：通过。
-- 数学内容：18 个任务模板、8,100 个题目实例、分数输入、非法输入、凑十守恒和三维积木数量核算：通过。
-- iPad 安装与离线缓存保护：通过。
-- STEAM 七个主要页面、12×30 年度结构、12 阶段奖励、本地保存、iPad 导航可达性和新文件离线缓存：通过。
-- 显式中英文网址优先、本地存储异常保护、奖励草稿自动保存、“30 任务包含展示”文案、存储失败提示与会话内保留：通过。
-- 自动测试：15/15 通过。
+- JavaScript syntax, local links, install icons, and the PWA manifest: PASS.
+- Math content generation, fraction input, invalid input, make-ten conservation, and cube counting: PASS.
+- iPad install metadata and offline asset coverage: PASS.
+- Seven STEAM views, 12 × 30 annual structure, 12 editable rewards, local persistence, and iPad navigation reachability: PASS.
+- English-only shell, static fallback, old guide redirect, query-safe offline navigation, and modal background focus protection: PASS.
+- Automated test suite: **16/16 PASS**.
 
-## 实际浏览器操作
+## Actual browser checks
 
-- 中文与英文页面均实际打开；年级切换到五年级后，今日任务和奖励计划同步变化。
-- 12 张奖励卡全部显示；填写奖励后保存，刷新页面仍保留。
-- 未点保存时填写奖励，切换页面再返回，草稿仍保留。
-- 在已经保存英文偏好的情况下打开 `?lang=zh`，页面正确显示中文。
-- iPad 竖屏 768×1024：7 个导航入口均可到达；滚动后导航保持可见且不被顶部栏遮挡；页面无横向溢出。
-- iPad 横屏 1024×768：左右布局正常，页面无横向溢出。
-- 浏览器控制台没有错误或警告。
+- English Little Math Lab and STEAM Roadmap opened successfully.
+- **View mission sample** opened and closed correctly.
+- **Start interactive math** navigated from the roadmap to the math activities.
+- No user-facing language switch remains.
 
-## 独立审核
+## Independent review
 
-独立 agent 首轮发现语言优先、奖励草稿、iPad 固定导航、本地存储容错、STEAM 首次离线注册和文案问题。以上问题已修复并重新测试；最终复核结论见本次交付消息。
+An independent agent reviewed the English-only implementation, the old guide path, offline query handling, parent copy, and modal focus behavior. The final review passed all five areas and independently confirmed the validation and 16/16 test result.
 
-## 当前限制
+## Current limits
 
-- 浏览器测试使用 Codex 内置 Chromium，尚未在实体 iPad Safari、Android 或其他独立浏览器上测试。
-- 当前 18 个数学活动仍是原型，尚未完成逐条 TEKS 审核。
-- 2,160 是 K–5 任务位置总数，不是已经完成的课程数量；当前正式审核完成数为 0。
-- 奖励和进度保存在本机，不跨设备同步。
-- 学习效果尚未经儿童实测，不承诺提高考试分数。
-- 私有托管的登录层可能影响离线启动；本地离线验证不代表所有托管登录场景。
+- Browser checks used Chromium; a physical iPad/Safari test is still required.
+- The current 18 math activities remain prototypes and have not completed item-by-item TEKS review.
+- The 2,160 figure is the total planned K–5 mission-slot count, not completed curriculum content.
+- Rewards and progress are stored locally and do not sync across devices.
+- Learning outcomes have not been established through a child study.

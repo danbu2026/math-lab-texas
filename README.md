@@ -1,45 +1,38 @@
 # Little STEAM Lab · Texas
 
-项目根目录：E:\MathLabTexas。原创、无付费依赖、静态网页。
+An original, dependency-free, installable web app for hands-on K–5 learning. The current product is English-only.
 
-## 两个可用入口
+## Working experiences
 
-- Little Math Lab：`/`，已有 6 个数学主题、18 个互动任务原型。
-- Little STEAM Lab 总蓝图：`/steam.html?lang=zh`，可查看 K–5 全年架构、六个学习实验室、360 个任务位置、家长支持、建设状态和阶段奖励计划。
+- **Little Math Lab** at `/`: six math themes and 18 interactive activity prototypes.
+- **Little STEAM Lab Roadmap** at `/steam.html`: the K–5 product framework, six learning labs, 360 annual mission slots per grade, parent support, transparent build status, and family-set stage rewards.
 
-## 使用
+## Try it locally
 
-双击 `启动数学实验室.cmd`，在浏览器打开 `http://localhost:4185/`。需要已安装 Node.js。正式网址由交付消息提供。首次联网使用后，核心页面可以缓存离线。
+Run `npm start`, then open `http://localhost:4185/`. Core pages are cached after the first online visit.
 
-### 在 iPad 上安装
+## Install on iPad
 
-1. 用 Safari 打开正式网址。
-2. 在 Safari 点“分享”。
-3. 选择“添加到主屏幕”，再点“添加”。
-4. 以后从主屏幕图标进入，体验接近普通 App。
+1. Open the live site in Safari.
+2. Tap Safari’s **Share** button.
+3. Choose **Add to Home Screen**, then tap **Add**.
+4. Open the Little Math Lab icon like any other app.
 
-## STEAM 蓝图
+## Learning design
 
-K–5 每个年级规划 12 个阶段，每阶段 30 个不同任务，共 360 个 10 分钟任务位置。每阶段包含概念发现、迁移、探究、工程、创意、个性复习和 1 个阶段展示。当前页面展示产品结构和样板，不代表 2,160 个正式任务已经完成。
+Each K–5 grade is planned as 12 journeys with 30 distinct ten-minute mission slots per journey. A journey combines discovery, transfer, inquiry, engineering, creative expression, useful review, and one showcase. The roadmap shows the product structure; it does not claim that all 2,160 formal missions are complete.
 
-阶段奖励页允许孩子和家长为 12 个阶段分别选择奖励类型并写下具体奖励。奖励保存在当前设备，按年级分开；漏学一天不会取消奖励，也不设置排行榜或连续签到压力。未来会员系统完成后再同步到家庭账户。
+Children and parents can choose a meaningful reward for each journey. Reward plans stay on the device, are separate by grade, and do not use rankings or streak pressure.
 
-## 当前范围
+## Current scope
 
-Little Math Lab 的 18 个任务是可运行原型；完整 K–5 STEAM 课程仍需逐步完成 TEKS 映射、内容审核、中英文审核、儿童试用和技术测试。它不是官方教材、官方 STAAR 模拟器，也不承诺仅靠本工具提高考试成绩。
+The 18 Little Math Lab activities are working prototypes. The full K–5 STEAM curriculum still requires detailed TEKS mapping, content review, child testing, and technical testing. This is not an official curriculum or STAAR simulator, and it does not promise score gains by itself.
 
-## 主要文件
-
-- `dist/steam.html`、`steam.js`、`steam.css`、`steam-rewards.css`：STEAM 蓝图和奖励设置。
-- `dist/content.js`、`app.js`、`style.css`：现有数学活动。
-- `dist/sw.js`、`manifest.webmanifest`：离线和安装能力。
-- `tests/`：内容、PWA、STEAM 结构和奖励验证。
-
-## 检查
+## Validation
 
 - `node validate.mjs`
 - `npm test`
 
-## 已知限制
+## Known limits
 
-尚未在实体 iPad Safari 上完成触控实测；儿童学习效果尚未做正式试验；本地奖励和学习记录不会跨设备同步；会员、账户、付款与家长后台仍属于后续阶段。
+The current build has not yet been tested on a physical iPad with Safari or in a formal child learning study. Rewards and progress are local to one device. Membership, accounts, payments, and the parent dashboard are future work.
