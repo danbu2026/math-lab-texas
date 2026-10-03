@@ -6,7 +6,7 @@ export const topics=[
 {id:'story',title:'故事解题室',en:'WORD PROBLEMS',icon:'☷',intro:'把故事画出来，找到数量之间的关系。',reflect:'题目求的是一共、相差，还是每一组？你怎样知道？',lessons:[['谁多几个','1–2','把两条数量条从同一起点排齐，多出来的一段就是相差的数量。'],['相同的几组','3','每盒一样多，先求全部有几个，再考虑拿走或增加的部分。'],['两步解决','4–5','把大问题拆成小问题。先算总量，再减去已经用掉的数量。']]},
 {id:'logic',title:'数学侦探社',en:'THINK DEEPER',icon:'⌘',intro:'找规律、倒着想，用证据解释答案。',reflect:'你怎样确定答案成立？还能用另一种方法检查吗？',lessons:[['找变化规律','K–2','先比较相邻两个数的差，再检查每一步是否都按同一个规则变化。'],['有序列举','3–4','按从小到大的顺序尝试，记录每一种可能，避免重复或遗漏。'],['反向推理','4–5','从结果倒着想。加法用减法还原，乘法用除法还原，顺序也要反过来。']]}
 ];
-export function rng(seed){let s=seed>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+export function rng(seed){let s=seed>>>0;s=Math.imul(s^(s>>>16),0x21f0aaad);s=Math.imul(s^(s>>>15),0x735a2d97);s=(s^(s>>>15))>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
 const n=(r,a,b)=>a+Math.floor(r()*(b-a+1));
 export function parameters(id,level,seed){let r=rng(seed);switch(id){
 case 'number':return{a:n(r,6,9),b:n(r,4,9),tens:level===1?n(r,1,5)*10:0,unit:level===2?.1:1};
@@ -38,3 +38,10 @@ default:if(level===0)return Q(`按每次加同一个数的规则：${p.start}，
 }}
 export function parseAnswer(raw){let s=String(raw).trim();if(!s)return NaN;if(/^[+-]?\d+(?:\.\d+)?\s*\/\s*[+-]?\d+(?:\.\d+)?$/.test(s)){let[a,b]=s.split('/').map(Number);return b===0?NaN:a/b}return /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(s)?Number(s):NaN}
 export function correct(raw,answer){let a=parseAnswer(raw);return Number.isFinite(a)&&Math.abs(a-Number(answer))<0.0006}
+
+export function nextProblemSeed(id,level,seed){
+  const previous=parameters(id,level,seed);
+  let next=seed+1;
+  if(id==='number') while(parameters(id,level,next).a===previous.a) next++;
+  return next;
+}
