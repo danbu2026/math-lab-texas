@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -17,9 +17,9 @@
   <header class="topbar">
     <a class="platform-brand" href="steam.html"><span class="platform-mark">s<span>＋</span></span><span><strong>Little STEAM Lab</strong><small>TEXAS K–5 LEARNING SYSTEM</small></span></a>
     <div class="top-tools">
-      <label><span data-t="grade">年级</span><select id="gradeSelect" aria-label="选择年级"></select></label>
-      <button id="languageButton" type="button">English</button>
-      <a class="math-link" href="./" data-t="openMath">打开 Little Math Lab</a>
+      <label><span data-t="grade">Grade</span><select id="gradeSelect" aria-label="Choose grade"></select></label>
+      <button id="languageButton" type="button" hidden aria-hidden="true" tabindex="-1">English</button>
+      <a class="math-link" href="./" data-t="openMath">Open Little Math Lab</a>
     </div>
   </header>
   <div class="app-shell">
@@ -47,7 +47,7 @@
             <div class="mission-meta"><span id="missionLab" class="lab-pill"></span><span>10 MIN</span></div>
             <h2 id="missionTitle"></h2><p id="missionQuestion" class="mission-question"></p>
             <div class="mission-material"><span data-t="need">需要</span><strong id="missionMaterial"></strong></div>
-            <button id="openMission" class="primary" data-t="previewMission">预览今天的任务</button>
+            <div class="mission-actions"><a id="startMath" class="primary start-math" href="./" data-t="startMath">Start interactive math</a><button id="openMission" class="secondary" type="button" data-t="previewMission">View mission sample</button></div>
             <p class="sample-warning" data-t="sampleWarning">这是框架示例，不会计入孩子的正式学习记录。</p>
           </article>
           <article class="ten-card"><p class="eyebrow" data-t="oneMission">一个任务 · 四个动作</p><h2 data-t="tenFlow">10分钟学习节奏</h2><div class="time-flow"><div><strong>1</strong><span data-t="wonder">好奇</span><small data-t="wonderSub">提出一个问题</small></div><div><strong>4</strong><span data-t="explore">探索</span><small data-t="exploreSub">动手、观察、测试</small></div><div><strong>3</strong><span data-t="solve">解决</span><small data-t="solveSub">独立完成新问题</small></div><div><strong>2</strong><span data-t="explain">解释</span><small data-t="explainSub">说清楚为什么</small></div></div><p class="time-note" data-t="stopNote">10分钟到了就可以停止。没有为了凑数量而安排的机械重复。</p></article>
@@ -69,7 +69,7 @@
       <section class="view" data-page="status"><div class="page-intro"><div><p class="eyebrow" data-t="transparent">透明建设</p><h1 data-t="statusHeadline">每次新增内容，都能看到它处于什么状态。</h1><p data-t="statusIntro">“页面存在”不等于“课程完成”。只有通过内容、技术和儿童体验检查后才会上线。</p></div></div><div class="status-legend"><span class="state live" data-t="live">已上线体验</span><span class="state review" data-t="review">正在设计/审核</span><span class="state planned" data-t="planned">已规划</span></div><div id="statusTable" class="status-table"></div><section class="panel gates"><h2 data-t="releaseGates">每项任务的六道发布检查</h2><ol><li data-t="gate1">对应明确的TEKS和前置技能</li><li data-t="gate2">10分钟内有一个清楚的学习目标</li><li data-t="gate3">答案、模型和解释经过独立检查</li><li data-t="gate4">孩子可以独立操作，且错误反馈有帮助</li><li data-t="gate5">中英文表达准确、自然并适合年龄</li><li data-t="gate6">真实儿童试用后没有明显理解或操作障碍</li></ol></section></section>
     </main>
   </div>
-  <dialog id="missionDialog"><div class="dialog-top"><div><p class="eyebrow" data-t="sampleMission">10分钟任务样板</p><h2 id="dialogMissionTitle"></h2></div><button id="closeMission" aria-label="关闭">✕</button></div><div id="missionSteps" class="mission-steps"></div><div class="dialog-note" data-t="dialogNote">这个样板展示最终体验结构；正式内容需要完成TEKS映射和儿童试用。</div></dialog>
+  <div id="missionDialog" class="mission-overlay" hidden><section class="mission-dialog" role="dialog" aria-modal="true" aria-labelledby="dialogMissionTitle"><div class="dialog-top"><div><p class="eyebrow" data-t="sampleMission">10分钟任务样板</p><h2 id="dialogMissionTitle"></h2></div><button id="closeMission" type="button" aria-label="关闭">✕</button></div><div id="missionSteps" class="mission-steps"></div><div class="dialog-note" data-t="dialogNote">这个样板展示最终体验结构；正式内容需要完成TEKS映射和儿童试用。</div></section></div>
   <script type="module" src="steam.js"></script>
 </body>
 </html>
