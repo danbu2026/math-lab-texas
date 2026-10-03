@@ -49,6 +49,7 @@ test('STEAM is English-only and can prepare offline on first visit',()=>{
   assert.match(html,/id="languageButton"[^>]+hidden/);
   assert.match(js,/let lang='en'/);
   assert.doesNotMatch(js,/requestedLang/);
+  assert.doesNotMatch(html,/[\u3400-\u9fff]/);
   assert.match(js,/navigator\.serviceWorker\.register\('sw\.js'\)/);
   assert.match(js,/function readLocal\(key,fallback\)/);
 });
@@ -75,4 +76,6 @@ test('child start link works without JavaScript and mission preview avoids dialo
   assert.doesNotMatch(js,/\.close\(\)/);
   assert.match(js,/modal\.hidden=false/);
   assert.match(js,/modal\.hidden=true/);
+  assert.match(js,/setPageInert\(true\)/);
+  assert.match(js,/setPageInert\(false\)/);
 });

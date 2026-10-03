@@ -98,6 +98,6 @@ $('#language').setAttribute('aria-label',english?'Switch to Chinese':'切换到�
 $('#topics').setAttribute('aria-label',english?'Learning topics':'学习主题');
 $('.steps').setAttribute('aria-label',english?'Learning steps':'学习步骤');
 $('#activity').setAttribute('aria-label',english?'Math lab':'数学实验');
-$('footer a').href=english?'guide-en.html':'guide.html';
+$('footer a').href='guide-en.html';
 $('.steam-link').href='steam.html';
 }

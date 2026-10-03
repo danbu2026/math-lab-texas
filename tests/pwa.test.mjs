@@ -23,6 +23,8 @@ test('offline cache includes iPad assets',()=>{
   assert.match(sw,/response\.ok/);
   assert.match(sw,/!response\.redirected/);
   assert.match(sw,/cached\|\|response/);
+  assert.match(sw,/url\.pathname\.split\('\/'\)\.pop\(\)/);
+  assert.match(sw,/caches\.match\(file\)/);
 });
 
 test('app metadata and install instructions are English-only',()=>{
