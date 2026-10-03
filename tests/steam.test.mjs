@@ -44,8 +44,11 @@ test('offline cache contains the complete STEAM shell',()=>{
   for(const file of ['steam.html','steam.css','steam-rewards.css','steam.js']) assert.match(sw,new RegExp(file.replace('.','\\.')));
 });
 
-test('explicit URL language wins and STEAM can prepare offline on first visit',()=>{
-  assert.match(js,/requestedLang==='en'\|\|requestedLang==='zh'/);
+test('STEAM is English-only and can prepare offline on first visit',()=>{
+  assert.match(html,/<html lang="en">/);
+  assert.match(html,/id="languageButton"[^>]+hidden/);
+  assert.match(js,/let lang='en'/);
+  assert.doesNotMatch(js,/requestedLang/);
   assert.match(js,/navigator\.serviceWorker\.register\('sw\.js'\)/);
   assert.match(js,/function readLocal\(key,fallback\)/);
 });
@@ -63,4 +66,13 @@ test('storage failure is reported honestly and keeps an in-page fallback',()=>{
   assert.match(js,/function writeLocal\(key,value\).*return true.*return false/);
   assert.match(js,/Device storage is unavailable/);
   assert.match(js,/设备存储暂不可用/);
+});
+
+test('child start link works without JavaScript and mission preview avoids dialog API',()=>{
+  assert.match(html,/id="startMath"[^>]+href="\.\/"/);
+  assert.match(html,/id="missionDialog" class="mission-overlay" hidden/);
+  assert.doesNotMatch(js,/showModal\(/);
+  assert.doesNotMatch(js,/\.close\(\)/);
+  assert.match(js,/modal\.hidden=false/);
+  assert.match(js,/modal\.hidden=true/);
 });

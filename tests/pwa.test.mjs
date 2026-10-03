@@ -25,8 +25,13 @@ test('offline cache includes iPad assets',()=>{
   assert.match(sw,/cached\|\|response/);
 });
 
-test('install language follows the restored app language when URL has no override',()=>{
+test('app metadata and install instructions are English-only',()=>{
+  const html=fs.readFileSync('dist/index.html','utf8');
+  const manifest=JSON.parse(fs.readFileSync('dist/manifest.webmanifest','utf8'));
   const pwa=fs.readFileSync('dist/pwa.js','utf8');
-  assert.match(pwa,/document\.documentElement\.lang\.toLowerCase\(\)\.startsWith\('en'\)/);
-  assert.match(pwa,/requested === 'en' \|\| requested === 'zh'/);
+  assert.match(html,/<html lang="en">/);
+  assert.match(html,/id="language"[^>]+hidden/);
+  assert.equal(manifest.lang,'en');
+  assert.match(pwa,/Put Math Lab on the Home Screen/);
+  assert.doesNotMatch(pwa,/requested === 'en'/);
 });

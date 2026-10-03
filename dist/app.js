@@ -3,12 +3,12 @@ import {question,englishTopics} from './english.js';
 import {uiEnglish} from './ui-en.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],KEY='texas-math-lab-v1';
 let store={learner:'a',profiles:{a:{},b:{}}},storageOK=true;try{let v=JSON.parse(localStorage.getItem(KEY));if(v&&v.profiles?.a&&v.profiles?.b&&['a','b'].includes(v.learner))store=v}catch{storageOK=false}
-let id='number',level=0,stage='explore',seed=481,english=false,model={},quizIndex=0,quiz=[],help=false,attempts=0,answered=false,mixed=false,results=[],yaw=-.65,pitch=.55;
+let id='number',level=0,stage='explore',seed=481,english=true,model={},quizIndex=0,quiz=[],help=false,attempts=0,answered=false,mixed=false,results=[],yaw=-.65,pitch=.55;
 const L=text=>english?(uiEnglish[text]??text):text;
 const qText=(q,key)=>english?q['en'+key[0].toUpperCase()+key.slice(1)]:q[key];
 function profile(){return store.profiles[store.learner]}function allTopics(){return english?englishTopics:topics}function topic(){return allTopics().find(t=>t.id===id)}function entry(){let key=id+'-'+level;return profile()[key]??={attempts:0,independent:0,supported:0,errors:0,sessions:0,note:'',last:0}}
 function save(){try{store.current={id,level,stage,seed,english};localStorage.setItem(KEY,JSON.stringify(store));storageOK=true}catch{storageOK=false}$('#storageStatus').textContent=storageOK?L('学习记录保存在这台设备'):L('浏览器未允许保存；本次仍可练习')}
-try{let c=store.current;if(c&&topics.some(t=>t.id===c.id)&&[0,1,2].includes(c.level)){id=c.id;level=c.level;seed=Number.isSafeInteger(c.seed)?c.seed:481;english=!!c.english}}catch{}
+try{let c=store.current;if(c&&topics.some(t=>t.id===c.id)&&[0,1,2].includes(c.level)){id=c.id;level=c.level;seed=Number.isSafeInteger(c.seed)?c.seed:481}}catch{}
 function message(text,error=false){$('#feedback').textContent=text;$('#feedback').className=error?'error':''}
 function initModel(){let p=parameters(id,level,seed);model={...p,moved:0,shaded:p.a||0,split:false,showBars:false};yaw=-.65;pitch=.55}
 function setTopic(next){id=next;level=0;stage='explore';mixed=false;initModel();render()}
@@ -56,7 +56,6 @@ $('#topics').onclick=e=>{let b=e.target.closest('[data-topic]');if(b)setTopic(b.
 $('#lesson').onchange=e=>{level=Number(e.target.value);stage='explore';mixed=false;initModel();render()};
 $$('[data-stage]').forEach(b=>b.onclick=()=>{if(b.dataset.stage==='explore'){stage='explore';mixed=false;render()}else startQuiz(b.dataset.stage==='challenge')});
 $('#newProblem').onclick=()=>{seed++;initModel();if(stage==='explore')render();else startQuiz(stage==='challenge',mixed)};
-$('#language').onclick=()=>{const raw=$('#answer')?.value;english=!english;const url=new URL(location.href);url.searchParams.set('lang',english?'en':'zh');history.replaceState(null,'',url);render();if(raw!==undefined&&$('#answer'))$('#answer').value=raw;if(answered&&quizIndex<quiz.length)message(L('答案已记录。')+qText(quiz[quizIndex].q,'why'));};
 $('#learner').onchange=e=>{store.learner=e.target.value;quiz=[];stage='explore';initModel();render()};
 $('#note').oninput=e=>{entry().note=e.target.value;save()};
 $('#mixed').onclick=()=>startQuiz(false,true);
@@ -64,7 +63,7 @@ function dialog(title,html){$('#dialogTitle').textContent=title;$('#dialogBody')
 $('#closeDialog').onclick=()=>$('#dialog').close();
 $('#parents').onclick=()=>dialog(L('陪孩子发现，而不是代替作答'),L('<p>先问“你准备怎么试？”再给孩子时间。每次完成一个小任务即可休息。</p><ol><li>动手发现：观察模型，改变条件。</li><li>独立试试：收起模型，解答不同形式的问题。</li><li>想深一点：用有序列举、逆向思考解释原因。</li><li>隔天再练：检查离开提示后是否仍然会。</li></ol><p>题目可切换英文，帮助连接学校数学语言。两个学习者的记录分开保存在设备上。</p><p>当前是 18 个主题任务的起步版，覆盖部分 K–5 知识。综合练习是原创练习，不是官方 STAAR 试卷，也不预测考试分数。</p><a href="guide.html">查看已覆盖内容、官方资料与安装说明 →</a>'));
 $('#records').onclick=()=>{let rows=Object.entries(profile()).filter(([k])=>/^[a-z]+-[012]$/.test(k));dialog(L('学习足迹 · ')+(store.learner==='a'?L('探索者 A'):L('探索者 B')),L('<p>独立＝首次答对且未使用提示。练习表现不等于长期掌握；建议隔天换题再试。</p><table><thead><tr><th>任务</th><th>独立</th><th>有帮助</th><th>错误尝试</th></tr></thead><tbody>')+rows.map(([k,e])=>{let[t,l]=k.split('-');return '<tr><td>'+allTopics().find(x=>x.id===t).lessons[Number(l)][0]+'</td><td>'+e.independent+'</td><td>'+e.supported+'</td><td>'+e.errors+'</td></tr>'}).join('')+'</tbody></table>'+(rows.length?'':L('<p>完成一道练习后，这里就会留下足迹。</p>'))+L('<button id="clearRecords" class="danger">清除本学习者记录</button>'));$('#clearRecords').onclick=()=>{if(confirm(L('确认清除当前学习者的练习记录与笔记？不能撤销，另一位学习者不受影响。'))){store.profiles[store.learner]={};save();$('#dialog').close();render()}}};
-const requested=new URLSearchParams(location.search).get('lang');if(requested==='en'||requested==='zh')english=requested==='en';
+english=true;
 initModel();render();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{$('#storageStatus').textContent+=L(' · 离线缓存尚未就绪')});
 
 function localizeShell(){
@@ -100,5 +99,5 @@ $('#topics').setAttribute('aria-label',english?'Learning topics':'学习主题')
 $('.steps').setAttribute('aria-label',english?'Learning steps':'学习步骤');
 $('#activity').setAttribute('aria-label',english?'Math lab':'数学实验');
 $('footer a').href=english?'guide-en.html':'guide.html';
-$('.steam-link').href='steam.html?lang='+(english?'en':'zh');
+$('.steam-link').href='steam.html';
 }

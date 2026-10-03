@@ -1,9 +1,9 @@
 {
   "id": "./",
-  "name": "小小数学实验室 · Little Math Lab",
+  "name": "Little Math Lab · Texas",
   "short_name": "Math Lab",
-  "description": "适合孩子在 iPad 上动手探索的中英双语小学数学实验室。",
-  "lang": "zh-CN",
+  "description": "A hands-on elementary math lab for children to explore on iPad.",
+  "lang": "en",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
