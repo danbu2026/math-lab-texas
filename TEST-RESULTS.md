@@ -1,29 +1,38 @@
-# Test Results · Updated October 3, 2026
+# Test Results · Updated October 4, 2026
 
 ## Automated checks
 
 - JavaScript syntax, local links, install icons, and the PWA manifest: PASS.
 - Math content generation, fraction input, invalid input, make-ten conservation, and cube counting: PASS.
 - iPad install metadata and offline asset coverage: PASS.
-- Seven STEAM views, 12 × 30 annual structure, 12 editable rewards, local persistence, and iPad navigation reachability: PASS.
+- Seven complete-system views, all 287 indexed K–5 TEKS expectations, gray unpublished states, 12 editable reward ideas, local persistence, and iPad navigation reachability: PASS.
+- Pilot Path 01 structure checks: five-mission order, three depth choices, separated evidence, distinct preview/fresh numbers, persisted attempt state, and two local learner records: PASS.
 - English-only shell, static fallback, old guide redirect, query-safe offline navigation, and modal background focus protection: PASS.
-- Automated test suite: **16/16 PASS**.
+- Automated test suite: **18/18 PASS**.
 
 ## Actual browser checks
 
-- English Little Math Lab and STEAM Roadmap opened successfully.
-- **View mission sample** opened and closed correctly.
-- **Start interactive math** navigated from the roadmap to the math activities.
-- No user-facing language switch remains.
+- Complete System Blueprint opened successfully in a narrow iPad-like viewport.
+- K–5 Curriculum displayed all 287 expectations and clearly separated 12 pilot-connected rows from 275 gray unpublished rows.
+- Curriculum filters, production-board views, personal paths, evidence rules, parent rewards, and build-status navigation opened successfully.
+- Pilot Path 01 opened and completed its three-question starting diagnostic.
+- A rapid second tap was blocked instead of skipping a diagnostic question.
+- A used hint remained visible after page refresh, so helped work could not return as independent work.
+- A used hint and a wrong attempt remained attached to Mission 3 after navigating to Mission 2 and back; the accidental-tap correction worked once and could not be repeated.
+- Switching learners during the short completion animation saved the result to the original learner and did not move the other learner.
+- Rapidly switching away and back during the completion animation still reloaded the latest saved learner state and advanced the correct learner exactly once.
+- Changing learning depth clearly restarts the full learning chain while preserving the completed starting diagnostic, so evidence from different depths cannot mix.
+- The production board colors only the specific Pilot 01 pieces that exist; every other Check, Learn, Apply, or Fresh Check piece remains gray and labeled not published.
 
 ## Independent review
 
-An independent agent reviewed the English-only implementation, the old guide path, offline query handling, parent copy, and modal focus behavior. The final review passed all five areas and independently confirmed the validation and 16/16 test result.
+An independent agent reviewed the complete framework, standards extraction, piece-level publication states, Pilot Path 01 evidence behavior, rapid learner switching, documentation, and automated checks. After the required fixes, the final result was **PASS**. The reviewer independently confirmed **18/18 tests PASS** and `node validate.mjs` PASS.
 
 ## Current limits
 
 - Browser checks used Chromium; a physical iPad/Safari test is still required.
-- The current 18 math activities remain prototypes and have not completed item-by-item TEKS review.
-- The 2,160 figure is the total planned K–5 mission-slot count, not completed curriculum content.
+- The current 18 math activities remain prototypes. They are not complete learning chains by themselves.
+- Of 287 official K–5 expectations, 12 are connected to the first pilot plan and 275 remain gray and unpublished.
+- The framework is complete enough to show scope, but most ten-minute sessions still need authoring, review, and family testing.
 - Rewards and progress are stored locally and do not sync across devices.
 - Learning outcomes have not been established through a child study.

@@ -6,70 +6,86 @@
   <meta name="theme-color" content="#123f45">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Little STEAM Lab · Texas</title>
+  <title>Little Math Lab · Complete System Blueprint</title>
   <link rel="icon" href="icon.svg">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="steam.css">
-  <link rel="stylesheet" href="steam-rewards.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="platform-brand" href="steam.html"><span class="platform-mark">s<span>＋</span></span><span><strong>Little STEAM Lab</strong><small>TEXAS K–5 LEARNING SYSTEM</small></span></a>
-    <div class="top-tools">
-      <label><span data-t="grade">Grade</span><select id="gradeSelect" aria-label="Choose grade"></select></label>
-      <button id="languageButton" type="button" hidden aria-hidden="true" tabindex="-1">English</button>
-      <a class="math-link" href="./" data-t="openMath">Open Little Math Lab</a>
-    </div>
+    <a class="platform-brand" href="steam.html"><span class="platform-mark">m<span>＋</span></span><span><strong>Little Math Lab</strong><small>COMPLETE K–5 SYSTEM BLUEPRINT</small></span></a>
+    <div class="top-tools"><a class="pilot-link" href="pilot.html">Try Pilot Path 01</a><a class="math-link" href="./">Open 18 Math Prototypes</a></div>
   </header>
+
   <div class="app-shell">
     <aside class="sidebar">
-      <p class="side-label" data-t="learn">LEARN</p>
-      <nav id="mainNav" aria-label="Platform navigation">
-        <button class="active" data-view="today"><span>◉</span><span data-t="today">Today’s 10 Minutes</span></button>
-        <button data-view="journey"><span>⌁</span><span data-t="journey">My 360-Day Path</span></button>
-        <button data-view="labs"><span>⌘</span><span data-t="labs">Six Learning Labs</span></button>
-        <button data-view="rewards"><span>☆</span><span data-t="rewards">My Stage Rewards</span></button>
-        <button data-view="map"><span>▦</span><span data-t="map">Year Mission Map</span></button>
+      <p class="side-label">THE WHOLE SYSTEM</p>
+      <nav id="mainNav" aria-label="System blueprint navigation">
+        <button class="active" data-view="overview"><span>◎</span><span>Big Picture</span></button>
+        <button data-view="curriculum"><span>▦</span><span>K–5 Curriculum</span></button>
+        <button data-view="sessions"><span>◫</span><span>Session Library</span></button>
+        <button data-view="path"><span>⌁</span><span>Personal Paths</span></button>
+        <button data-view="evidence"><span>✓</span><span>Evidence &amp; Review</span></button>
+        <button data-view="parents"><span>♡</span><span>Parent &amp; Rewards</span></button>
+        <button data-view="status"><span>◌</span><span>Build Status</span></button>
       </nav>
-      <p class="side-label" data-t="family">FAMILY</p>
-      <nav>
-        <button data-view="parents"><span>♡</span><span data-t="parents">Parent Support</span></button>
-        <button data-view="status"><span>✓</span><span data-t="status">Build Status</span></button>
-      </nav>
-      <div class="side-note"><strong data-t="tenMinutes">10 minutes a day</strong><span data-t="noPressure">No ranking, timers, or streak pressure.</span></div>
+      <div class="side-note"><strong>Framework first</strong><span>Every required part is visible. Gray means planned and not published.</span></div>
     </aside>
+
     <main id="workspace">
-      <section class="view active" data-page="today">
-        <div class="page-intro"><div><p class="eyebrow" data-t="prototype">INTERACTIVE PRODUCT BLUEPRINT</p><h1 data-t="headline">Understand one thing today.</h1><p data-t="headlineSub">Short time, deep understanding. Stop with confidence when the mission is done.</p></div><div class="day-chip"><span data-t="sampleDay">SAMPLE MISSION</span><strong id="sampleDayNumber">01</strong></div></div>
-        <div class="today-grid">
-          <article class="mission-card">
-            <div class="mission-meta"><span id="missionLab" class="lab-pill"></span><span>10 MIN</span></div>
-            <h2 id="missionTitle"></h2><p id="missionQuestion" class="mission-question"></p>
-            <div class="mission-material"><span data-t="need">YOU NEED</span><strong id="missionMaterial"></strong></div>
-            <div class="mission-actions"><a id="startMath" class="primary start-math" href="./" data-t="startMath">Start interactive math</a><button id="openMission" class="secondary" type="button" data-t="previewMission">View mission sample</button></div>
-            <p class="sample-warning" data-t="sampleWarning">This is a framework sample. It does not count toward a learner record.</p>
-          </article>
-          <article class="ten-card"><p class="eyebrow" data-t="oneMission">ONE MISSION · FOUR MOVES</p><h2 data-t="tenFlow">The 10-minute learning rhythm</h2><div class="time-flow"><div><strong>1</strong><span data-t="wonder">Wonder</span><small data-t="wonderSub">Ask one question</small></div><div><strong>4</strong><span data-t="explore">Explore</span><small data-t="exploreSub">Build, observe, test</small></div><div><strong>3</strong><span data-t="solve">Solve</span><small data-t="solveSub">Try a new problem alone</small></div><div><strong>2</strong><span data-t="explain">Explain</span><small data-t="explainSub">Say why it works</small></div></div><p class="time-note" data-t="stopNote">Stop at 10 minutes. There is no filler practice just to increase the count.</p></article>
-        </div>
-        <section class="panel"><div class="section-head"><div><p class="eyebrow" data-t="yearDesign">YEAR DESIGN</p><h2 data-t="twelveJourneys">12 journeys × 30 distinct missions</h2></div><button class="text-button" data-go="journey" data-t="viewJourney">View the complete path →</button></div><div id="journeyPreview" class="journey-preview"></div></section>
-        <section class="panel build-snapshot"><div><p class="eyebrow" data-t="honestStatus">HONEST BUILD STATUS</p><h2 data-t="frameworkReady">The framework is ready to review. The full curriculum will be filled in carefully.</h2><p data-t="frameworkSub">The 18 current math activities are reusable prototypes. Missions become ready only after TEKS alignment, independent review, and child testing.</p></div><div class="snapshot-numbers"><div><strong>2,160</strong><span data-t="slots">K–5 mission slots</span></div><div><strong>18</strong><span data-t="prototypes">math prototypes</span></div><div><strong>0</strong><span data-t="approved">final standards-approved</span></div></div></section>
+      <section class="view active" data-page="overview">
+        <div class="page-intro"><div><p class="eyebrow">PRODUCT BLUEPRINT · VERSION 1.1</p><h1>Build the whole system first.<br>Then fill it carefully.</h1><p>One complete K–5 map, personalized for advanced learners who may still have hidden gaps. Each ten-minute session moves from understanding to independent transfer.</p></div><div class="blueprint-stamp"><span>OFFICIAL TEKS INDEX</span><strong id="totalStandards">287</strong><small>student expectations</small></div></div>
+        <div class="truth-banner"><strong>What is ready today?</strong><span>The system framework and official standards index are visible. The 18 math activities remain prototypes. Pilot Path 01 is ready for family testing. Most formal sessions are gray because they are not built or published yet.</span></div>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">ONE SYSTEM · THREE PURPOSES</p><h2>Complete knowledge, stable application, deeper reasoning</h2></div></div><div class="three-layer-grid"><article><span>01</span><h3>TEKS + Carroll ISD</h3><p>Defines what K–5 mathematics must cover. Every official expectation remains visible until evidence-backed content is ready.</p></article><article><span>02</span><h3>Independent application</h3><p>Builds the reading, calculation, data, and multi-step problem-solving strength reflected in Iowa/ITBS achievement testing.</p></article><article><span>03</span><h3>Reasoning &amp; transfer</h3><p>Develops quantitative, visual, spatial, and language reasoning related to the kinds of thinking organized by CogAT.</p></article></div></section>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">THE COMPLETE LEARNING LOOP</p><h2>Every ability needs five connected pieces</h2></div></div><div class="loop-grid"><article><strong>1</strong><h3>Check</h3><p>Start near the child’s current level and look backward only when evidence points to a gap.</p></article><article><strong>2</strong><h3>Understand</h3><p>Manipulate a model and notice what changes and what stays the same.</p></article><article><strong>3</strong><h3>Apply</h3><p>Solve a changed problem independently without relying on the model.</p></article><article><strong>4</strong><h3>Explain</h3><p>Defend a method, compare strategies, or diagnose an error.</p></article><article><strong>5</strong><h3>Fresh check</h3><p>Return later with a new context before calling the ability stable.</p></article></div></section>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">HOW TO READ THIS WEBSITE</p><h2>Nothing is hidden behind a “coming soon” promise.</h2></div></div><div class="legend-row"><span class="state ready">Indexed / framework ready</span><span class="state pilot">Pilot planned or family test</span><span class="state prototype">Prototype</span><span class="state planned">Planned · not published</span><span class="state validated">Family validated</span></div><p class="plain-note">A gray item is part of the approved system architecture, but children should not treat it as a lesson yet. A green item requires recorded family evidence; currently none are marked green.</p></section>
       </section>
 
-      <section class="view" data-page="journey"><div class="page-intro"><div><p class="eyebrow" data-t="yearPath">YEAR LEARNING PATH</p><h1 id="journeyHeading"></h1><p data-t="journeyIntro">Each 30-mission journey has a clear purpose. Review appears only when useful and in a new context.</p></div></div><div class="mission-mix" id="missionMix"></div><div id="journeyGrid" class="journey-grid"></div></section>
+      <section class="view" data-page="curriculum">
+        <div class="page-intro"><div><p class="eyebrow">COMPLETE K–5 INDEX</p><h1>Every official requirement stays visible.</h1><p>The source wording is preserved. Coverage status shows product readiness, not whether a child has mastered the skill.</p></div></div>
+        <div class="filter-bar"><label>Grade<select id="gradeFilter"><option value="all">All K–5</option></select></label><label>Strand<select id="strandFilter"><option value="all">All strands</option></select></label><label>Status<select id="statusFilter"><option value="all">All statuses</option><option value="pilot planned">Pilot planned</option><option value="unmapped">Planned · not published</option></select></label><label class="search-label">Search<input id="curriculumSearch" type="search" placeholder="Try fractions, area, data…"></label></div>
+        <div class="coverage-strip" id="coverageStrip"></div>
+        <div id="curriculumList" class="curriculum-list"></div>
+      </section>
 
-      <section class="view" data-page="labs"><div class="page-intro"><div><p class="eyebrow" data-t="connected">CONNECTED LEARNING</p><h1 data-t="sixLabs">Six labs, one way of thinking deeply.</h1><p data-t="labsIntro">Each subject keeps its foundations. Integrated missions help learners use knowledge on real problems.</p></div></div><div id="labsGrid" class="labs-grid"></div></section>
+      <section class="view" data-page="sessions">
+        <div class="page-intro"><div><p class="eyebrow">PRODUCTION BOARD</p><h1>Every ability needs sessions—not just a title.</h1><p>Use the filters to see every standard and the four production pieces still needed. Gray pieces are not published.</p></div></div>
+        <div class="filter-bar"><label>Grade<select id="sessionGrade"></select></label><label>Strand<select id="sessionStrand"><option value="all">All strands</option></select></label><label class="search-label">Search<input id="sessionSearch" type="search" placeholder="Search the production board"></label></div>
+        <div class="session-summary"><strong id="sessionCount"></strong><span>Each content ability receives Check, Learn, Apply, and Fresh Check. Mathematical process standards are woven through content missions.</span></div>
+        <div id="sessionBoard" class="session-board"></div>
+      </section>
 
-      <section class="view" data-page="map"><div class="page-intro"><div><p class="eyebrow" data-t="mapLabel">360-DAY STRUCTURE</p><h1 id="mapHeading"></h1><p data-t="mapIntro">Each dot is one 10-minute mission slot. Colors show mission type, not learner quality.</p></div></div><div class="map-legend" id="mapLegend"></div><div id="yearMap" class="year-map"></div></section>
+      <section class="view" data-page="path">
+        <div class="page-intro"><div><p class="eyebrow">ABILITY-BASED · NOT AGE-LOCKED</p><h1>Two children can start in different places and still use one system.</h1><p>School grade supplies context. Evidence chooses the next task.</p></div></div>
+        <div class="learner-grid"><article><span class="learner-tag">LEARNER A · FAMILY STARTING HYPOTHESIS</span><h2>Grade 1 at school · mathematics near Grade 3</h2><ol><li>Begin near multiplication foundations and Grade 3 relationships.</li><li>Briefly scan place value, addition/subtraction, measurement, data, and reading load.</li><li>Move backward only when an error points to a specific prerequisite.</li><li>Allow drawing or spoken explanation so writing level is not mistaken for math level.</li></ol><span class="state planned">Personal diagnostic not published</span></article><article><span class="learner-tag">LEARNER B · FAMILY STARTING HYPOTHESIS</span><h2>Grade 3 at school · mathematics near Grade 5</h2><ol><li>Begin near fractions, decimals, volume, data, and multi-step reasoning.</li><li>Check whether fast calculation is supported by models and explanations.</li><li>Skip stable K–5 abilities after new-problem and delayed evidence.</li><li>Use deeper proof, open problems, and a Grade 6+ exit when K–5 is stable.</li></ol><span class="state planned">Personal diagnostic not published</span></article></div>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">DAILY SELECTOR</p><h2>How the future “Today” button chooses one useful mission</h2></div><span class="state planned">Planned · not published</span></div><div class="decision-flow"><div><strong>1</strong><span>Blocking gap?</span></div><i>→</i><div><strong>2</strong><span>Fresh check due?</span></div><i>→</i><div><strong>3</strong><span>Ready for new idea?</span></div><i>→</i><div><strong>4</strong><span>Transfer or reasoning?</span></div></div><p class="plain-note">A learner may continue new work while an earlier ability waits for a delayed check. The system does not force a child to redo an entire grade.</p></section>
+        <section class="panel pilot-callout"><div><p class="eyebrow">FIRST COMPLETE CHAIN</p><h2>Multiplication Relationships</h2><p>Five connected missions at Explorer, Strategist, and Architect depths. It tests the learning loop before we scale production.</p></div><a class="primary-link" href="pilot.html">Open Pilot Path 01 →</a></section>
+      </section>
 
-      <section class="view" data-page="rewards"><div class="page-intro"><div><p class="eyebrow" data-t="rewardSetup">SET TOGETHER WITH A PARENT</p><h1 data-t="rewardHeadline">Finish a meaningful stage and unlock a reward you care about.</h1><p data-t="rewardIntro">Child and parent decide together. Rewards recognize persistence, explanation, and growth—not only correct answers.</p></div></div><div class="reward-principles"><article><strong data-t="earnWhen">When it is earned</strong><p data-t="earnWhenText">Complete 30 distinct missions, including the stage showcase. Missing a day never removes the reward.</p></article><article><strong data-t="whoChooses">Who decides</strong><p data-t="whoChoosesText">The child suggests and the parent confirms. Rewards can be changed later.</p></article><article><strong data-t="healthyRewards">Healthy rewards</strong><p data-t="healthyRewardsText">Prefer time together, meaningful choices, experiences, and chances to create.</p></article></div><div class="reward-toolbar"><div><p class="eyebrow" data-t="rewardPlan">12 STAGE REWARDS FOR THIS GRADE</p><h2 id="rewardPlanHeading"></h2></div><button id="saveRewards" class="primary" data-t="saveRewards">Save reward plan</button></div><div id="rewardGrid" class="reward-grid"></div><p id="rewardSaved" class="saved-message" role="status" aria-live="polite"></p></section>
+      <section class="view" data-page="evidence">
+        <div class="page-intro"><div><p class="eyebrow">LEARNING EVIDENCE</p><h1>A fast correct answer is one clue—not the finish line.</h1><p>The system keeps four kinds of evidence separate and waits for a changed problem before calling learning stable.</p></div></div>
+        <div class="evidence-grid"><article><span>01</span><h2>Concept</h2><p>Can the learner show what the relationship means with a model or diagram?</p></article><article><span>02</span><h2>Procedure</h2><p>Can the learner carry out the method accurately and efficiently?</p></article><article><span>03</span><h2>Application</h2><p>Can the learner choose and use the idea in a changed situation?</p></article><article><span>04</span><h2>Explain &amp; transfer</h2><p>Can the learner justify, compare, correct, or generalize?</p></article></div>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">ABILITY STATES</p><h2>What the family will see</h2></div></div><div class="state-table"><div><span class="skill-state unknown">Unknown</span><p>No evidence yet. The system does not assume a gap.</p></div><div><span class="skill-state learning">Learning with support</span><p>A model, hint, correction, or adult question helped.</p></div><div><span class="skill-state temporary">Temporarily passed</span><p>Independent today; waiting for a fresh check later.</p></div><div><span class="skill-state stable">Stable evidence</span><p>Independent performance returned in a new context after time passed.</p></div></div></section>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">ERRORS GUIDE THE NEXT STEP</p><h2>Different errors need different help.</h2></div><span class="state pilot">Pilot rule set</span></div><div class="error-grid"><span>Concept misunderstanding</span><span>Wrong operation</span><span>Calculation slip</span><span>Missed condition or unit</span><span>Reading load</span><span>Accidental tap</span><span>Cannot explain yet</span><span>Spatial orientation</span></div></section>
+      </section>
 
-      <section class="view" data-page="parents"><div class="page-intro"><div><p class="eyebrow" data-t="parentRole">THE PARENT ROLE</p><h1 data-t="parentHeadline">Explain less. Ask one better question.</h1><p data-t="parentIntro">Parents do not need to prepare lessons or finish work for the child.</p></div></div><div class="parent-grid"><article><span>01</span><h2 data-t="before">Before</h2><p data-t="beforeText">Ask, “What do you think you will discover?” Let the child start.</p></article><article><span>02</span><h2 data-t="during">When stuck</h2><p data-t="duringText">Ask, “What was different from what you expected?” Do not demonstrate immediately.</p></article><article><span>03</span><h2 data-t="after">After</h2><p data-t="afterText">Ask, “Can you explain it in your own words?” Clarity matters more than speed.</p></article></div><section class="panel"><h2 data-t="weeklyReport">Future family weekly report</h2><div class="report-mock"><div><strong data-t="understood">Understanding looks steady</strong><p data-t="understoodText">Explains independently and uses the idea in a new context.</p></div><div><strong data-t="needsPractice">Try again in another way</strong><p data-t="needsPracticeText">Knows the steps but still relies on a model or hint.</p></div><div><strong data-t="nextWeek">Next week</strong><p data-t="nextWeekText">Three 10-minute missions and one small family investigation.</p></div></div></section></section>
+      <section class="view" data-page="parents">
+        <div class="page-intro"><div><p class="eyebrow">FAMILY EXPERIENCE</p><h1>Parents should see meaning, not a pile of scores.</h1><p>The report will explain what was learned, what help was needed, why the next task was chosen, and one useful question to ask.</p></div></div>
+        <div class="report-grid"><article><span>TODAY</span><h2>What the learner understood</h2><p>Evidence across concept, procedure, application, and explanation.</p><span class="state planned">Full report planned</span></article><article><span>NEXT</span><h2>Why this mission comes next</h2><p>A prerequisite gap, fresh check, new concept, or transfer opportunity.</p><span class="state planned">Recommendation engine planned</span></article><article><span>ASK</span><h2>One parent question</h2><p>“What stayed the same when you split the array?”</p><span class="state pilot">Included in Pilot 01</span></article></div>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">FAMILY-CHOSEN MILESTONES</p><h2>Rewards recognize meaningful progress—not task count.</h2><p>Skipping already-mastered work never removes a reward.</p></div><button id="saveRewards" class="secondary-button">Save reward ideas</button></div><div id="rewardGrid" class="reward-grid"></div><p id="rewardSaved" class="saved-message" role="status"></p></section>
+      </section>
 
-      <section class="view" data-page="status"><div class="page-intro"><div><p class="eyebrow" data-t="transparent">TRANSPARENT BUILD</p><h1 data-t="statusHeadline">See the true status of every part we add.</h1><p data-t="statusIntro">A page existing does not mean a lesson is finished. Content goes live only after content, technical, and child-experience checks.</p></div></div><div class="status-legend"><span class="state live" data-t="live">Live prototype</span><span class="state review" data-t="review">Adaptive review</span><span class="state planned" data-t="planned">Planned</span></div><div id="statusTable" class="status-table"></div><section class="panel gates"><h2 data-t="releaseGates">Six release checks for every mission</h2><ol><li data-t="gate1">Clear TEKS and prerequisite skills</li><li data-t="gate2">One clear learning goal in 10 minutes</li><li data-t="gate3">Answers, models, and explanations independently checked</li><li data-t="gate4">A child can operate it and error feedback helps</li><li data-t="gate5">Accurate, natural, age-appropriate Chinese and English</li><li data-t="gate6">No major comprehension or usability barrier in child testing</li></ol></section></section>
+      <section class="view" data-page="status">
+        <div class="page-intro"><div><p class="eyebrow">TRANSPARENT BUILD</p><h1>See every system component and its real status.</h1><p>Framework ready does not mean child-ready. Publication requires content review, technical checks, and family evidence.</p></div></div>
+        <div class="legend-row"><span class="state ready">Ready framework</span><span class="state pilot">Pilot</span><span class="state prototype">Prototype</span><span class="state planned">Planned · unpublished</span><span class="state later">Later phase</span></div>
+        <div id="componentBoard" class="component-board"></div>
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">RELEASE GATES</p><h2>Each session moves through the same quality path.</h2></div></div><div class="release-flow"><span>Planned</span><i>→</i><span>Prototype</span><i>→</i><span>Content reviewed</span><i>→</i><span>Ready for family test</span><i>→</i><span>Family validated</span></div><p class="plain-note">“Family validated” means the session worked in this family context. It is not a general effectiveness or test-score claim.</p></section>
+        <section class="panel future-panel"><p class="eyebrow">FUTURE STEAM EXTENSION</p><h2>Science, engineering, technology, and creative projects remain in the long-term architecture.</h2><p>They stay gray until the mathematics map, daily selector, evidence system, and first learning chains are stable.</p><span class="state later">Later phase</span></section>
+      </section>
     </main>
   </div>
-  <div id="missionDialog" class="mission-overlay" hidden><section class="mission-dialog" role="dialog" aria-modal="true" aria-labelledby="dialogMissionTitle"><div class="dialog-top"><div><p class="eyebrow" data-t="sampleMission">10-MINUTE MISSION SAMPLE</p><h2 id="dialogMissionTitle"></h2></div><button id="closeMission" type="button" aria-label="Close">✕</button></div><div id="missionSteps" class="mission-steps"></div><div class="dialog-note" data-t="dialogNote">This sample shows the final experience structure. Formal content still needs TEKS mapping and child testing.</div></section></div>
+
   <script type="module" src="steam.js"></script>
 </body>
 </html>
