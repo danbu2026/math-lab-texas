@@ -44,7 +44,7 @@ test('only the 16 actually built pilot pieces are bright',()=>{
 });
 
 test('portal supports two learners, one player, and unpublished states',()=>{
-  assert.match(html,/Explorer A/);assert.match(html,/Explorer B/);
+  assert.match(html,/Ella/);assert.match(html,/Mila/);
   assert.match(html,/href="pilot\.html"/);
   assert.match(html,/href="labs\.html"/);
   assert.match(js,/PILOT_PIECES/);
