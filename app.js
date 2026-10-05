@@ -72,8 +72,8 @@ document.title=english?'Little Math Lab · Texas':'小小数学实验室 · Texa
 const pairs=[
 ['.brand>span:last-child','小小数学实验室','Little Math Lab'],
 ['.header-tools label','学习者 ','Learner '],
-['#learner option[value="a"]','探索者 A','Explorer A'],
-['#learner option[value="b"]','探索者 B','Explorer B'],
+['#learner option[value="a"]','探索者 A','Ella'],
+['#learner option[value="b"]','探索者 B','Mila'],
 ['#records','学习足迹','Learning record'],['#parents','家长指南','Parent guide'],['.steam-link','STEAM 总蓝图','STEAM Roadmap'],
 ['aside>.overline','今天，发现一个规律','Discover a pattern today'],
 ['aside h1','数学可以亲手看懂。','Math you can explore.'],
