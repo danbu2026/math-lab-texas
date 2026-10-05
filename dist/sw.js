@@ -1,4 +1,4 @@
-const CACHE='mathlab-texas-v14';
+const CACHE='mathlab-texas-v16';
 const FILES=['./','index.html','portal.css','portal.js','portal-data.js','labs.html','style.css','ipad.css','app.js','pwa.js','content.js','english.js','ui-en.js','guide-en.html','guide.html','steam.html','steam.css','steam.js','teks-k5.js','pilot.html','pilot.css','pilot-data.js','pilot.js','icon.svg','apple-touch-icon.png','icon-192.png','icon-512.png','icon-maskable-512.png','manifest.webmanifest'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('mathlab-texas-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
