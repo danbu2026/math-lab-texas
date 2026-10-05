@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#123f45">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Math Lab">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <title>Little Math Lab · Texas</title>
+  <link rel="icon" href="icon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ipad.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="./"><span class="brandmark">m<span>＋</span></span><span>Little Math Lab<small>TEXAS K–5 MATH</small></span></a>
+    <div class="header-tools">
+      <label>Learner <select id="learner"><option value="a">Explorer A</option><option value="b">Explorer B</option></select></label>
+      <button id="records">Learning record</button>
+      <button id="parents">Parent guide</button>
+      <a class="steam-link" href="steam.html">Complete System Map</a>
+      <button id="installApp" class="install-app" type="button">Install on iPad</button>
+    </div>
+  </header>
+  <div class="layout">
+    <aside>
+      <p class="overline">Discover a pattern today</p>
+      <h1>Math you can<br>explore.</h1>
+      <p class="aside-note">Choose a lab. Explore, then solve on your own.</p>
+      <nav id="topics" aria-label="Learning topics"></nav>
+      <div class="aside-bottom"><span class="pill">Math foundations · 18 activities</span><p>Start where you feel ready.<br>No timer. No race.</p><button id="mixed">Mixed practice ↗</button></div>
+    </aside>
+    <main>
+      <div class="heading"><div><p id="eyebrow" class="overline"></p><h2 id="title"></h2><p id="intro"></p></div><span id="number" class="unit-number"></span></div>
+      <div class="settings-row"><label>Choose an activity <select id="lesson"></select></label><button id="newProblem">New numbers ↻</button><button id="language" hidden aria-hidden="true" tabindex="-1">English</button></div>
+      <div class="steps" role="tablist" aria-label="Learning steps"><button data-stage="explore" role="tab">01 Explore</button><button data-stage="practice" role="tab">02 Try it</button><button data-stage="challenge" role="tab">03 Think deeper</button></div>
+      <section id="activity" aria-label="Math lab"></section>
+      <div id="feedback" role="status" aria-live="polite"></div>
+      <section class="reflection"><span>Explain your discovery</span><p id="reflect"></p><label for="note" class="sr-only">My discovery</label><textarea id="note" rows="2" placeholder="Write it down, or explain it to a grown-up."></textarea></section>
+      <footer><span id="storageStatus">Learning record is saved on this device</span><a href="guide-en.html">Coverage &amp; instructions</a></footer>
+    </main>
+  </div>
+  <dialog id="dialog"><div class="dialog-top"><h2 id="dialogTitle"></h2><button id="closeDialog" aria-label="Close">✕</button></div><div id="dialogBody"></div></dialog>
+  <dialog id="installDialog" class="install-dialog"><div class="dialog-top"><h2 id="installTitle">Put Math Lab on the Home Screen</h2><button id="closeInstall" aria-label="Close">✕</button></div><div id="installBody"></div></dialog>
+  <script type="module" src="app.js"></script>
+  <script type="module" src="pwa.js"></script>
+</body>
+</html>

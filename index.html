@@ -3,51 +3,96 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#123f45">
+  <meta name="theme-color" content="#0b6763">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Math Lab">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="format-detection" content="telephone=no">
-  <title>Little Math Lab · Texas</title>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Little STEAM Lab">
+  <title>Little STEAM Lab · My Learning Adventure</title>
   <link rel="icon" href="icon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="ipad.css">
+  <link rel="stylesheet" href="portal.css">
 </head>
 <body>
-  <header>
-    <a class="brand" href="./"><span class="brandmark">m<span>＋</span></span><span>Little Math Lab<small>TEXAS K–5 MATH</small></span></a>
-    <div class="header-tools">
-      <label>Learner <select id="learner"><option value="a">Explorer A</option><option value="b">Explorer B</option></select></label>
-      <button id="records">Learning record</button>
-      <button id="parents">Parent guide</button>
-      <a class="steam-link" href="steam.html">Complete System Map</a>
-      <button id="installApp" class="install-app" type="button">Install on iPad</button>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Little STEAM Lab home"><span class="brandmark">S<sup>+</sup></span><span>Little STEAM Lab<small>TEXAS K–5 LEARNING ADVENTURE</small></span></a>
+    <div class="top-actions">
+      <label class="learner-label">Learner <select id="learner"><option value="a">Explorer A</option><option value="b">Explorer B</option></select></label>
+      <button id="installApp" class="outline" type="button">Install on iPad</button>
+      <button class="outline" data-go="parent" type="button">Parent Area</button>
     </div>
   </header>
-  <div class="layout">
-    <aside>
-      <p class="overline">Discover a pattern today</p>
-      <h1>Math you can<br>explore.</h1>
-      <p class="aside-note">Choose a lab. Explore, then solve on your own.</p>
-      <nav id="topics" aria-label="Learning topics"></nav>
-      <div class="aside-bottom"><span class="pill">Math foundations · 18 activities</span><p>Start where you feel ready.<br>No timer. No race.</p><button id="mixed">Mixed practice ↗</button></div>
-    </aside>
-    <main>
-      <div class="heading"><div><p id="eyebrow" class="overline"></p><h2 id="title"></h2><p id="intro"></p></div><span id="number" class="unit-number"></span></div>
-      <div class="settings-row"><label>Choose an activity <select id="lesson"></select></label><button id="newProblem">New numbers ↻</button><button id="language" hidden aria-hidden="true" tabindex="-1">English</button></div>
-      <div class="steps" role="tablist" aria-label="Learning steps"><button data-stage="explore" role="tab">01 Explore</button><button data-stage="practice" role="tab">02 Try it</button><button data-stage="challenge" role="tab">03 Think deeper</button></div>
-      <section id="activity" aria-label="Math lab"></section>
-      <div id="feedback" role="status" aria-live="polite"></div>
-      <section class="reflection"><span>Explain your discovery</span><p id="reflect"></p><label for="note" class="sr-only">My discovery</label><textarea id="note" rows="2" placeholder="Write it down, or explain it to a grown-up."></textarea></section>
-      <footer><span id="storageStatus">Learning record is saved on this device</span><a href="guide-en.html">Coverage &amp; instructions</a></footer>
-    </main>
-  </div>
-  <dialog id="dialog"><div class="dialog-top"><h2 id="dialogTitle"></h2><button id="closeDialog" aria-label="Close">✕</button></div><div id="dialogBody"></div></dialog>
-  <dialog id="installDialog" class="install-dialog"><div class="dialog-top"><h2 id="installTitle">Put Math Lab on the Home Screen</h2><button id="closeInstall" aria-label="Close">✕</button></div><div id="installBody"></div></dialog>
-  <script type="module" src="app.js"></script>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR LEARNING ADVENTURE</p>
+        <h1>Learn one powerful idea today.</h1>
+        <p id="heroMessage">A short mission. A real discovery. Progress that stays with you.</p>
+        <a id="startMission" class="primary" href="pilot.html">Start today’s 10-minute mission <span>→</span></a>
+      </div>
+      <div class="score-card" aria-label="Learning credits">
+        <span class="score-icon">★</span>
+        <div><strong id="creditTotal">0</strong><small>LEARNING CREDITS</small></div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-top"><span>Next family reward</span><strong id="rewardTarget">50 credits</strong></div>
+        <h2 id="rewardName">Choose a family reward</h2>
+        <div class="meter"><span id="rewardFill"></span></div>
+        <p id="rewardProgress">0 of 50 credits</p>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Learning center">
+      <button class="active" data-tab="journey">My Journey</button>
+      <button data-tab="worldmap">Adventure Map</button>
+      <button data-tab="missions">All Missions</button>
+      <button data-tab="rewards">Credits &amp; Rewards</button>
+      <button data-tab="parent">Parent Area</button>
+    </nav>
+
+    <section id="journey" class="page active" data-page>
+      <div class="section-heading"><div><p class="eyebrow">TODAY AND NEXT</p><h2>Your current learning path</h2><p>Complete one step at a time. Move ahead after you can solve, explain, and remember.</p></div><div class="legend"><i class="ready-dot"></i> Ready now <i class="planned-dot"></i> Still being built</div></div>
+      <article class="current-path">
+        <div class="path-head"><div><p class="eyebrow">READY NOW · PILOT 01</p><h2>Multiplication as Equal Groups</h2><p>Discover arrays, split them, connect multiplication and division, then prove you remember with new numbers.</p></div><a class="primary compact" href="pilot.html">Continue path →</a></div>
+        <div id="missionSteps" class="mission-steps"></div>
+      </article>
+      <section class="mission-loop"><p class="eyebrow">HOW EVERY ADVENTURE WORKS</p><h2>Five moves build lasting learning</h2><div id="missionLoop"></div></section>
+    </section>
+
+    <section id="worldmap" class="page" data-page>
+      <div class="map-hero"><div><p class="eyebrow">THE COMPLETE SYSTEM</p><h2>Six worlds. One connected adventure.</h2><p>Math is being built first. The other worlds stay visible in gray so you can see where the full system is going.</p></div><div class="map-score"><strong>6</strong><span>learning worlds</span><strong>41</strong><span>major branches</span></div></div>
+      <div class="legend map-legend"><i class="ready-dot"></i> Family-test lesson ready <i class="planned-dot"></i> Designed but not published</div>
+      <div id="worlds" class="world-grid"></div>
+      <div id="worldDetail" class="world-detail" aria-live="polite"></div>
+      <section class="grade-road"><div class="section-heading"><div><p class="eyebrow">MATH ROAD · K–5</p><h2>Grade levels are guideposts, not locks</h2><p>A child can move forward, check an earlier gap, or study above school grade when evidence supports it.</p></div></div><div id="gradePath"></div></section>
+    </section>
+
+    <section id="missions" class="page" data-page>
+      <div class="section-heading"><div><p class="eyebrow">COMPLETE MATH CURRICULUM</p><h2>All 287 K–5 math abilities</h2><p>Every Texas math expectation is represented. Gold pieces are connected to the playable pilot. Gray pieces are designed into the map but not yet published.</p></div></div>
+      <div class="filters"><label>Grade <select id="gradeFilter"><option value="all">All grades</option><option value="K">Kindergarten</option><option value="1">Grade 1</option><option value="2">Grade 2</option><option value="3">Grade 3</option><option value="4">Grade 4</option><option value="5">Grade 5</option></select></label><label>Search <input id="missionSearch" type="search" placeholder="fractions, geometry, patterns…"></label></div>
+      <p id="missionCount" class="count"></p>
+      <div id="missionLibrary" class="mission-library"></div>
+    </section>
+
+    <section id="rewards" class="page" data-page>
+      <div class="section-heading"><div><p class="eyebrow">EARN BY LEARNING</p><h2>Credits &amp; family rewards</h2><p>Each Pilot 01 mission awards its credits once after completion. Repeating clicks never creates extra credits.</p></div></div>
+      <div class="credit-rules five"><article><b>+10</b><h3>Starting Check</h3><p>Find the right learning depth.</p></article><article><b>+20</b><h3>Equal Groups</h3><p>Understand rows and groups.</p></article><article><b>+20</b><h3>Split an Array</h3><p>Change the view, keep the total.</p></article><article><b>+20</b><h3>Fact Family</h3><p>Connect multiplication and division.</p></article><article><b>+30</b><h3>Fresh Challenge</h3><p>Remember later with new numbers.</p></article></div>
+      <div class="rewards-layout"><article class="reward-ladder"><h2>My reward ladder</h2><div id="rewardLadder"></div></article><article class="why-card"><h2>What credits mean</h2><ul><li>One lesson awards its credits once.</li><li>Hints help learning, but independent work earns stronger evidence.</li><li>There is no timer, streak, ranking, or penalty.</li><li>The family chooses real rewards that fit the child.</li></ul></article></div>
+    </section>
+
+    <section id="parent" class="page" data-page>
+      <div class="section-heading"><div><p class="eyebrow">GROWN-UPS</p><h2>Parent area</h2><p>See the full plan, set rewards, and review what is ready before giving it to a child.</p></div></div>
+      <div class="parent-grid">
+        <article><h3>Set family rewards</h3><p>Write a reward for each milestone. It stays on this device.</p><form id="rewardForm"></form><button id="saveRewards" class="primary" type="button">Save rewards</button><span id="rewardSaved" role="status"></span></article>
+        <article><h3>Product &amp; curriculum</h3><p>The blueprint shows all 287 K–5 Texas expectations and the production status of each learning piece.</p><div class="parent-links"><a href="steam.html">Open complete system map →</a><a href="guide-en.html">Read coverage guide →</a><a href="labs.html">Open 18 earlier math labs →</a></div></article>
+        <article><h3>What is live today</h3><p><strong>Pilot 01</strong> is the first complete learning path. All other lessons remain visibly gray until their teaching, practice, evidence, and review are finished.</p><p class="note">Accounts, payments, memberships, and cloud sync are not published yet. Progress stays on this device.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="installDialog"><div class="dialog-head"><h2 id="installTitle">Install on iPad</h2><button id="closeInstall" aria-label="Close">×</button></div><div id="installBody"></div></dialog>
+  <script type="module" src="portal.js"></script>
   <script type="module" src="pwa.js"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Little Math Lab · Texas",
-  "short_name": "Math Lab",
-  "description": "A hands-on elementary math lab for children to explore on iPad.",
+  "name": "Little STEAM Lab · Texas",
+  "short_name": "STEAM Lab",
+  "description": "A connected K–5 learning adventure with ten-minute missions, progress, credits, and family rewards.",
   "lang": "en",
   "start_url": "./",
   "scope": "./",
