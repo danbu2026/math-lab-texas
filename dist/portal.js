@@ -1,0 +1,36 @@
+import {TEKS_ROWS} from './teks-k5.js';
+import {PILOT_CHAIN,createBlankLearner} from './pilot-data.js';
+import {LEARNING_WORLDS,GRADE_PATH,MISSION_LOOP,PILOT_PIECES} from './portal-data.js';
+
+const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
+const pilotKey='mathlab-pilot-v1',learnerKey='mathlab-portal-learner',rewardKey='mathlab-portal-rewards';
+const milestones=[50,100,200,400,700,1000];
+const defaults=['Choose a family reward','Pick the family movie','Choose Saturday breakfast','Plan a mini adventure','Choose a new book or game','Design a family celebration'];
+const creditByMission={'starting-point':10,'equal-groups':20,'split-array':20,'fact-family':20,'fresh-transfer':30};
+let learner=localStorage.getItem(learnerKey)||'a';
+
+function safeRead(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
+function pilotState(){const all=safeRead(pilotKey,{a:createBlankLearner(),b:createBlankLearner()});return all[learner]||createBlankLearner()}
+function rewards(){const saved=safeRead(rewardKey,{});return milestones.map((credits,i)=>({credits,name:saved[credits]||defaults[i]}))}
+function earned(){const state=pilotState();return Object.entries(creditByMission).reduce((sum,[id,value])=>sum+(state.missions?.[id]?.complete?value:0),0)}
+function completedCount(){return Object.values(pilotState().missions||{}).filter(x=>x.complete).length}
+
+function renderHero(){const total=earned(),list=rewards(),next=list.find(x=>x.credits>total)||list.at(-1),previous=[0,...milestones].filter(x=>x<=total).at(-1)||0;$('#creditTotal').textContent=total;$('#rewardTarget').textContent=`${next.credits} credits`;$('#rewardName').textContent=next.name;$('#rewardProgress').textContent=`${total} of ${next.credits} credits`;$('#rewardFill').style.width=`${Math.min(100,Math.max(0,(total-previous)/(next.credits-previous)*100))}%`;const count=completedCount();$('#heroMessage').textContent=count?`You completed ${count} of 5 missions in your current path. Your next step is ready.`:'A short mission. A real discovery. Progress that stays with you.';$('#startMission').innerHTML=count>=5?'Practice another math lab <span>→</span>':`${count?'Continue':'Start'} today’s 10-minute mission <span>→</span>`;$('#startMission').href=count>=5?'labs.html':'pilot.html'}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+let selectedWorld='math';
+function renderWorlds(){$('#worlds').innerHTML=LEARNING_WORLDS.map(w=>`<button class="world ${w.id===selectedWorld?'selected':''} ${w.status==='building'?'building':''}" data-world="${w.id}"><span class="state">${w.status==='building'?'BUILDING NOW':'PLANNED'}</span><span class="world-icon">${w.icon}</span><h3>${w.name}</h3><p>${w.tagline}</p><span class="branch-count">${w.branches.length} branches</span></button>`).join('');$$('[data-world]').forEach(b=>b.onclick=()=>{selectedWorld=b.dataset.world;renderWorlds();renderWorldDetail()})}
+function renderWorldDetail(){const world=LEARNING_WORLDS.find(w=>w.id===selectedWorld);$('#worldDetail').innerHTML=`<div class="detail-head"><div><p class="eyebrow">${world.status==='building'?'BUILDING NOW':'DESIGNED · NOT PUBLISHED'}</p><h2>${world.icon} ${world.name}</h2><p>${world.tagline}</p></div>${world.id==='math'?'<a class="primary compact" href="pilot.html">Open ready path →</a>':'<span class="gray-label">Future learning world</span>'}</div><div class="branch-grid">${world.branches.map(([name,skills,status])=>`<article class="branch ${status==='building'?'building':''}"><div><h3>${status==='building'?'◐ ':''}${esc(name)}</h3><span>${status==='building'?'First pilot path ready · branch still building':'Planned · not published'}</span></div><ul>${skills.map(skill=>{const item=Array.isArray(skill)?skill[0]:skill,ready=Array.isArray(skill)&&skill[1]==='ready';return `<li class="${ready?'skill-ready':''}">${ready?'★ ':''}${esc(item)}</li>`}).join('')}</ul></article>`).join('')}</div>`}
+function renderGradePath(){$('#gradePath').innerHTML=GRADE_PATH.map(([g,name])=>`<div><strong>${g}</strong><span>${name}</span><small>${g==='3'?'Pilot path currently ready':'Curriculum mapped · lessons gray'}</small></div>`).join('')}
+function renderLoop(){$('#missionLoop').innerHTML=MISSION_LOOP.map(([n,name,text])=>`<article><b>${n}</b><h3>${name}</h3><p>${text}</p></article>`).join('')}
+function renderSteps(){const state=pilotState();$('#missionSteps').innerHTML=PILOT_CHAIN.missions.map((m,i)=>{const done=Boolean(state.missions?.[m.id]?.complete),ready=i===0||Boolean(state.missions?.[PILOT_CHAIN.missions[i-1]?.id]?.complete);return `<div class="mission-step ${done?'done':ready?'ready':''}"><b>${done?'✓ ':ready?'▶ ':'○ '}${m.number}. ${m.title}</b><span>${done?'Completed':ready?'Ready to learn':'Unlocks after the previous mission'}</span></div>`}).join('')}
+function renderLibrary(){const grade=$('#gradeFilter').value,q=$('#missionSearch').value.trim().toLowerCase();const rows=TEKS_ROWS.filter(r=>(grade==='all'||r.grade===grade)&&(!q||`${r.id} ${r.knowledgeAndSkills} ${r.studentExpectation}`.toLowerCase().includes(q)));$('#missionCount').textContent=`Showing ${rows.length} of ${TEKS_ROWS.length} Texas K–5 expectations`;$('#missionLibrary').innerHTML=rows.length?rows.map(r=>`<article class="standard-card"><h3>Grade ${r.grade} · ${r.id}</h3><p>${r.studentExpectation}</p><div class="pieces">${['Check','Learn','Apply','Fresh check'].map(piece=>`<span class="piece ${(PILOT_PIECES[r.id]||[]).includes(piece)?'live':''}">${piece}</span>`).join('')}</div></article>`).join(''):'<p class="empty">No matching mission pieces yet.</p>'}
+function renderRewards(){const total=earned();$('#rewardLadder').innerHTML=rewards().map(r=>`<div class="ladder-row ${total>=r.credits?'unlocked':''}"><strong>${r.credits} ★</strong><span>${r.name}</span><span class="badge">${total>=r.credits?'Unlocked':'Locked'}</span></div>`).join('');$('#rewardForm').innerHTML=rewards().map(r=>`<label class="reward-input"><strong>${r.credits} ★</strong><input data-reward="${r.credits}" value="${r.name.replaceAll('&','&amp;').replaceAll('"','&quot;')}" maxlength="60"></label>`).join('')}
+function showPage(id){$$('[data-page]').forEach(p=>p.classList.toggle('active',p.id===id));$$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'})}
+function renderAll(){renderHero();renderSteps();renderRewards()}
+
+$('#learner').value=learner;$('#learner').onchange=e=>{learner=e.target.value;localStorage.setItem(learnerKey,learner);renderAll()};
+$$('[data-tab]').forEach(b=>b.onclick=()=>showPage(b.dataset.tab));$$('[data-go]').forEach(b=>b.onclick=()=>showPage(b.dataset.go));
+$('#gradeFilter').onchange=renderLibrary;$('#missionSearch').oninput=renderLibrary;
+$('#saveRewards').onclick=()=>{const data={};$$('[data-reward]').forEach(i=>data[i.dataset.reward]=i.value.trim()||'Family reward');localStorage.setItem(rewardKey,JSON.stringify(data));$('#rewardSaved').textContent=' Saved on this device.';renderAll()};
+renderWorlds();renderWorldDetail();renderGradePath();renderLoop();renderLibrary();renderAll();
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));

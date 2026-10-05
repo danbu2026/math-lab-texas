@@ -4,9 +4,10 @@ An original, dependency-free, installable web app for hands-on K–5 learning. T
 
 ## Current product surfaces
 
+- **Child Learning Home** at `/`: one unified entry with today's mission, accumulated learning credits, family reward progress, a six-world adventure map, 41 major branches, the complete math ability library, and clear bright/gray publication states.
 - **Complete K–5 System Blueprint** at `/steam.html`: the product map, all 287 official K–5 TEKS student expectations, the session production board, personal paths, evidence rules, parent experience, rewards, and transparent build status.
 - **Pilot Path 01** at `/pilot.html`: five connected ten-minute missions for multiplication relationships, with three learning depths and separate concept, procedure, application, and explanation evidence.
-- **Little Math Lab** at `/`: six math themes and 18 interactive activity prototypes that can be reused as parts of future learning chains.
+- **Little Math Lab prototypes** at `/labs.html`: six math themes and 18 interactive activity prototypes that can be reused as parts of future learning chains.
 
 ## Try it locally
 
@@ -29,7 +30,7 @@ Children and parents can choose meaningful milestone rewards. Reward ideas stay 
 
 ## Current scope
 
-The official TEKS index and top-to-bottom product framework are built. Pilot Path 01 is the first connected learning chain. The 18 Little Math Lab activities remain working prototypes. Most formal K–5 sessions have not yet been authored, reviewed, or family-tested and therefore appear gray. This is not an official curriculum or test simulator, and it does not promise score gains by itself.
+The complete child-facing architecture is now visible as six learning worlds: Math Expedition, Reasoning Quest, Science Discovery, Engineering Studio, Technology & Coding, and Creative Design. Their 41 major branches and subskills are written into the adventure map. The official math TEKS index and top-to-bottom math framework are built. Pilot Path 01 is the first connected learning chain. Most formal sessions have not yet been authored, reviewed, or family-tested and therefore appear gray. This is not an official curriculum or test simulator, and it does not promise score gains by itself.
 
 ## Validation
 

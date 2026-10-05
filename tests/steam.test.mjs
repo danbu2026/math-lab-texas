@@ -34,7 +34,7 @@ test('planned content is visibly gray and never presented as published',()=>{
   assert.match(css,/\.state\.planned\{background:var\(--gray\)/);
   assert.match(js,/Planned · not published/);
   assert.match(js,/not published/);
-  assert.match(js,/pilotPieces/);
+  assert.match(js,/PILOT_PIECES/);
   assert.match(js,/const exists=/);
   assert.doesNotMatch(html,/2,160/);
 });

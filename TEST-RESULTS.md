@@ -8,7 +8,8 @@
 - Seven complete-system views, all 287 indexed K–5 TEKS expectations, gray unpublished states, 12 editable reward ideas, local persistence, and iPad navigation reachability: PASS.
 - Pilot Path 01 structure checks: five-mission order, three depth choices, separated evidence, distinct preview/fresh numbers, persisted attempt state, and two local learner records: PASS.
 - English-only shell, static fallback, old guide redirect, query-safe offline navigation, and modal background focus protection: PASS.
-- Automated test suite: **18/18 PASS**.
+- Unified child portal: one entry, six learning worlds, 41 branches, current path, complete 287-ability math map, two learner records, evidence-linked credits, editable reward ladder, gray unpublished states, and offline portal assets: PASS.
+- Automated test suite: **23/23 PASS**.
 
 ## Actual browser checks
 
@@ -23,10 +24,13 @@
 - Rapidly switching away and back during the completion animation still reloaded the latest saved learner state and advanced the correct learner exactly once.
 - Changing learning depth clearly restarts the full learning chain while preserving the completed starting diagnostic, so evidence from different depths cannot mix.
 - The production board colors only the specific Pilot 01 pieces that exist; every other Check, Learn, Apply, or Fresh Check piece remains gray and labeled not published.
+- The unified child home opened successfully in a narrow iPad-like viewport. My Journey, Adventure Map, All Missions, Credits & Rewards, and Parent Area switched without leaving the site.
+- A family reward was edited, saved, and still appeared after a full page refresh.
+- Grade 3 plus “fractions” filtering reduced the complete math map from 287 entries to the six matching expectations.
 
 ## Independent review
 
-An independent agent reviewed the complete framework, standards extraction, piece-level publication states, Pilot Path 01 evidence behavior, rapid learner switching, documentation, and automated checks. After the required fixes, the final result was **PASS**. The reviewer independently confirmed **18/18 tests PASS** and `node validate.mjs` PASS.
+An independent agent reviewed the complete framework, unified child portal, standards extraction, piece-level publication states, Pilot Path 01 evidence behavior, credits, rewards, documentation, and automated checks. After the required fixes, the final result was **PASS**. The reviewer independently confirmed **23/23 tests PASS** and `node validate.mjs` PASS.
 
 ## Current limits
 
