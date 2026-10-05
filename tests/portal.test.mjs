@@ -55,4 +55,6 @@ test('portal supports two learners, one player, and unpublished states',()=>{
   assert.match(js,/scrollIntoView/);
   assert.match(js,/aria-pressed/);
   assert.match(html,/Adventure Map/);
+  assert.match(html,/portal\.css\?v=b531973/);
+  assert.match(html,/portal\.js\?v=b531973/);
 });
