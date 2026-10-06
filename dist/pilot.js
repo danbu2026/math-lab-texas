@@ -1,3 +1,4 @@
+import './cloud-sync.js';
 import {TRACKS,PILOT_CHAIN,DIAGNOSTIC,recommendTrack,product,splitParts,factFamily,nextDayDelayMs,isIndependentEvidence,createBlankLearner} from './pilot-data.js';
 
 const $=s=>document.querySelector(s);

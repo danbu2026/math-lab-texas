@@ -1,3 +1,4 @@
+import './cloud-sync.js';
 import {TEKS_ROWS} from './teks-k5.js';
 import {PILOT_CHAIN,createBlankLearner} from './pilot-data.js';
 import {LEARNING_WORLDS,GRADE_PATH,MISSION_LOOP,PILOT_PIECES} from './portal-data.js';

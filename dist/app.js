@@ -1,3 +1,4 @@
+import './cloud-sync.js';
 import {topics,parameters,correct,cubes,nextProblemSeed} from './content.js';
 import {question,englishTopics} from './english.js';
 import {uiEnglish} from './ui-en.js';

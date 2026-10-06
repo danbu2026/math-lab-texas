@@ -7,6 +7,7 @@ const html=fs.readFileSync('dist/index.html','utf8');
 const js=fs.readFileSync('dist/portal.js','utf8');
 const css=fs.readFileSync('dist/portal.css','utf8');
 const data=fs.readFileSync('dist/portal-data.js','utf8');
+const cloud=fs.readFileSync('dist/cloud-sync.js','utf8');
 
 test('one child portal contains the full learning journey',()=>{
   for(const id of ['journey','worldmap','missions','rewards','parent']) assert.match(html,new RegExp(`id="${id}"`));
@@ -14,6 +15,14 @@ test('one child portal contains the full learning journey',()=>{
   assert.match(js,/TEKS_ROWS/);
   assert.match(js,/Showing.*Texas K–5 expectations/);
   assert.match(html,/other worlds stay visible in gray/);
+});
+
+test('parent sign-in keeps progress available across devices',()=>{
+  assert.match(js,/cloud-sync\.js/);
+  assert.match(html,/Parent Google sign-in/);
+  assert.match(cloud,/signInWithPopup/);
+  assert.match(cloud,/families',user\.uid,'state','progress/);
+  assert.match(cloud,/Offline · saved here/);
 });
 
 test('the child adventure map exposes all six worlds and their branches',()=>{
@@ -55,6 +64,6 @@ test('portal supports two learners, one player, and unpublished states',()=>{
   assert.match(js,/scrollIntoView/);
   assert.match(js,/aria-pressed/);
   assert.match(html,/Adventure Map/);
-  assert.match(html,/portal\.css\?v=b531973/);
-  assert.match(html,/portal\.js\?v=b531973/);
+  assert.match(html,/portal\.css\?v=cloud1/);
+  assert.match(html,/portal\.js\?v=cloud1/);
 });
