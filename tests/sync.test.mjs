@@ -26,5 +26,6 @@ test('existing pilot and lab records receive migration timestamps',()=>{
 
 test('blank starter records are not mistaken for progress',()=>{
   assert.equal(inferTimestamp('mathlab-pilot-v1',JSON.stringify({a:{},b:{}})),0);
+  assert.equal(inferTimestamp('mathlab-fraction-v1',JSON.stringify({a:{},b:{}})),0);
   assert.equal(inferTimestamp('texas-math-lab-v1',JSON.stringify({profiles:{a:{},b:{}}})),0);
 });

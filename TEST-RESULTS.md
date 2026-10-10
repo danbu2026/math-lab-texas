@@ -1,4 +1,4 @@
-# Test Results · Updated October 4, 2026
+# Test Results · Updated October 10, 2026
 
 ## Automated checks
 
@@ -7,9 +7,11 @@
 - iPad install metadata and offline asset coverage: PASS.
 - Seven complete-system views, all 287 indexed K–5 TEKS expectations, gray unpublished states, 12 editable reward ideas, local persistence, and iPad navigation reachability: PASS.
 - Pilot Path 01 structure checks: five-mission order, three depth choices, separated evidence, distinct preview/fresh numbers, persisted attempt state, and two local learner records: PASS.
+- Fraction Path 02 structure checks: five-mission order, three depth choices, exact fraction equivalence, equal-share bounds, persisted attempt and hint state, delayed transfer, and two learner records: PASS.
+- Family cloud merge checks: newer cloud data downloads, newer device data uploads, blank devices do not replace meaningful records, and fraction records are included: PASS.
 - English-only shell, static fallback, old guide redirect, query-safe offline navigation, and modal background focus protection: PASS.
 - Unified child portal: one entry, six learning worlds, 41 branches, current path, complete 287-ability math map, two learner records, evidence-linked credits, editable reward ladder, gray unpublished states, and offline portal assets: PASS.
-- Automated test suite: **23/23 PASS**.
+- Automated test suite: **32/32 PASS**.
 
 ## Actual browser checks
 
@@ -27,10 +29,11 @@
 - The unified child home opened successfully in a narrow iPad-like viewport. My Journey, Adventure Map, All Missions, Credits & Rewards, and Parent Area switched without leaving the site.
 - A family reward was edited, saved, and still appeared after a full page refresh.
 - Grade 3 plus “fractions” filtering reduced the complete math map from 287 entries to the six matching expectations.
+- Fraction Path 02 rendered successfully at a 1024 × 768 iPad-like viewport. The gray review banner, child-sized controls, first diagnostic, all five mission controls, and parent sign-in control were present.
 
 ## Independent review
 
-An independent agent reviewed the complete framework, unified child portal, standards extraction, piece-level publication states, Pilot Path 01 evidence behavior, credits, rewards, documentation, and automated checks. After the required fixes, the final result was **PASS**. The reviewer independently confirmed **23/23 tests PASS** and `node validate.mjs` PASS.
+An independent agent previously reviewed the complete framework, unified child portal, standards extraction, piece-level publication states, Pilot Path 01 evidence behavior, credits, rewards, documentation, and automated checks. After the required fixes, that review result was **PASS**. Fraction Path 02 has passed the expanded automated and Chromium rendering checks but still awaits family review.
 
 ## Current limits
 
@@ -38,5 +41,5 @@ An independent agent reviewed the complete framework, unified child portal, stan
 - The current 18 math activities remain prototypes. They are not complete learning chains by themselves.
 - Of 287 official K–5 expectations, 12 are connected to the first pilot plan and 275 remain gray and unpublished.
 - The framework is complete enough to show scope, but most ten-minute sessions still need authoring, review, and family testing.
-- Rewards and progress are stored locally and do not sync across devices.
+- Cloud sync code, security rules, and the public login domain are deployed. A real parent login followed by a second-device recovery test remains outstanding.
 - Learning outcomes have not been established through a child study.

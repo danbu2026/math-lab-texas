@@ -25,6 +25,13 @@ test('parent sign-in keeps progress available across devices',()=>{
   assert.match(cloud,/Offline · saved here/);
 });
 
+test('next path is built for review but is not presented as published',()=>{
+  assert.match(html,/Preview Fraction Path 02/);
+  assert.match(data,/Fractions & Decimals[\s\S]*'review'/);
+  assert.match(js,/Built · waiting family review/);
+  assert.match(js,/Open parent preview/);
+});
+
 test('the child adventure map exposes all six worlds and their branches',()=>{
   for(const name of ['Math Expedition','Reasoning Quest','Science Discovery','Engineering Studio','Technology & Coding','Creative Design']) assert.match(data,new RegExp(name.replace('&','&')));
   assert.match(html,/Six worlds\. One connected adventure/);
