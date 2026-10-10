@@ -1,6 +1,6 @@
 export const LEARNING_WORLDS=[
   {id:'math',icon:'✦',name:'Math Expedition',tagline:'See patterns. Build models. Solve real problems.',status:'building',branches:[
-    ['Numbers & Place Value',['Counting and quantity','Compare and order','Compose and decompose','Place value to large numbers','Number lines','Rounding and estimation','Decimal place value']],
+    ['Numbers & Place Value',['Counting and quantity','Compare and order','Compose and decompose','Place value to large numbers','Number lines','Rounding and estimation','Decimal place value'],'review'],
     ['Addition & Subtraction',['Join, separate and compare','Make ten and mental strategies','Unknowns in any position','Regrouping with meaning','Multi-digit algorithms','Estimate and check','Multi-step situations']],
     ['Multiplication & Division',[["Equal groups",'ready'],["Arrays and area models",'ready'],'Repeated addition and skip counting',["Fact families",'ready'],'Properties and mental strategies','Multi-digit multiplication','Division and remainders','Factors, primes and composites'],'building'],
     ['Fractions & Decimals',['Equal shares and unit fractions','Fractions on number lines','Equivalent fractions','Compare with benchmarks','Add and subtract fractions','Whole number × fraction','Unit fraction division','Decimals and fraction connections'],'review'],
