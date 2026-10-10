@@ -19,7 +19,7 @@ test('iPad install metadata and icons are complete',()=>{
 
 test('offline cache includes iPad assets',()=>{
   const sw=fs.readFileSync('dist/sw.js','utf8');
-  for(const name of ['portal.css','portal.js','portal-data.js','ipad.css','pwa.js','pilot.html','pilot.css','pilot-data.js','pilot.js','fraction.html','fraction-data.js','fraction.js','place.html','place-data.js','place.js','teks-k5.js','apple-touch-icon.png','icon-192.png','icon-512.png','icon-maskable-512.png']) assert.match(sw,new RegExp(name.replace('.','\\.')));
+  for(const name of ['portal.css','portal.js','portal-data.js','ipad.css','pwa.js','pilot.html','pilot.css','pilot-data.js','pilot.js','fraction.html','fraction-data.js','fraction.js','place.html','place-data.js','place.js','addition.html','addition-data.js','addition.js','teks-k5.js','apple-touch-icon.png','icon-192.png','icon-512.png','icon-maskable-512.png']) assert.match(sw,new RegExp(name.replace('.','\\.')));
   assert.match(sw,/response\.ok/);
   assert.match(sw,/!response\.redirected/);
   assert.match(sw,/cached\|\|response/);

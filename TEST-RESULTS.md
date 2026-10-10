@@ -9,10 +9,11 @@
 - Pilot Path 01 structure checks: five-mission order, three depth choices, separated evidence, distinct preview/fresh numbers, persisted attempt state, and two local learner records: PASS.
 - Fraction Path 02 structure checks: five-mission order, three depth choices, exact fraction equivalence, equal-share bounds, persisted attempt and hint state, delayed transfer, and two learner records: PASS.
 - Place Value Path 03 structure checks: five-mission order, three depth choices, exact base-ten and decimal values, amount-preserving trades, comparison rules, persisted work state, delayed transfer, and two learner records: PASS.
-- Family cloud merge checks: newer cloud data downloads, newer device data uploads, blank devices do not replace meaningful records, and fraction and place-value records are included: PASS.
+- Addition Path 04 structure checks: five-mission Check–Learn–Apply–Fresh sequence, three depth choices, exact friendly-number transformations, balanced subtraction adjustments, number-specific strategy explanations, inverse checks, persisted session evidence, and two learner records: PASS.
+- Family cloud merge checks: newer cloud data downloads, newer device data uploads, blank devices do not replace meaningful records, all review-path records are included, and simultaneous updates for Ella and Mila merge without losing either child: PASS.
 - English-only shell, static fallback, old guide redirect, query-safe offline navigation, and modal background focus protection: PASS.
 - Unified child portal: one entry, six learning worlds, 41 branches, current path, complete 287-ability math map, two learner records, evidence-linked credits, editable reward ladder, gray unpublished states, and offline portal assets: PASS.
-- Automated test suite: **35/35 PASS**.
+- Automated test suite: **39/39 PASS**.
 
 ## Actual browser checks
 
@@ -32,10 +33,12 @@
 - Grade 3 plus “fractions” filtering reduced the complete math map from 287 entries to the six matching expectations.
 - Fraction Path 02 rendered successfully at a 1024 × 768 iPad-like viewport. The gray review banner, child-sized controls, first diagnostic, all five mission controls, and parent sign-in control were present.
 - Place Value Path 03 rendered successfully at a 1024 × 768 iPad-like viewport. The gray review banner, three-column learning layout, child-sized choices, first diagnostic, all five mission controls, and learner selector were present.
+- Addition Path 04 rendered successfully at a 1024 × 768 iPad-like viewport. The diagnostic and all child controls were readable without overlap.
+- Addition Path 04 completed a real Chromium interaction flow: three diagnostic answers selected Architect depth, Mission 2 advanced after its two number-specific steps, a Mission 3 hint survived a full refresh, and switching to Mila opened a separate untouched record.
 
 ## Independent review
 
-An independent agent previously reviewed the complete framework, unified child portal, standards extraction, piece-level publication states, Pilot Path 01 evidence behavior, credits, rewards, documentation, and automated checks. After the required fixes, that review result was **PASS**. Fraction Path 02 and Place Value Path 03 have passed the expanded automated and Chromium rendering checks but still await family review.
+An independent agent previously reviewed the complete framework, unified child portal, standards extraction, piece-level publication states, Pilot Path 01 evidence behavior, credits, rewards, documentation, and automated checks. After the required fixes, that review result was **PASS**. Addition Path 04 received a separate independent review of mathematics, learning evidence, cloud merge behavior, accessibility, offline coverage, and release status. Five issues were corrected, and the final re-review result was **PASS**. Fraction Path 02, Place Value Path 03, and Addition Path 04 still await family review.
 
 ## Current limits
 
