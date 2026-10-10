@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {inferTimestamp,mergeItems} from '../dist/sync-model.js';
+import {TRACKED_KEYS,inferTimestamp,mergeItems} from '../dist/sync-model.js';
 
 test('newer cloud record downloads to this device',()=>{
   const key='mathlab-pilot-v1';
@@ -25,7 +25,9 @@ test('existing pilot and lab records receive migration timestamps',()=>{
 });
 
 test('blank starter records are not mistaken for progress',()=>{
+  assert.ok(TRACKED_KEYS.includes('mathlab-place-v1'));
   assert.equal(inferTimestamp('mathlab-pilot-v1',JSON.stringify({a:{},b:{}})),0);
   assert.equal(inferTimestamp('mathlab-fraction-v1',JSON.stringify({a:{},b:{}})),0);
+  assert.equal(inferTimestamp('mathlab-place-v1',JSON.stringify({a:{},b:{}})),0);
   assert.equal(inferTimestamp('texas-math-lab-v1',JSON.stringify({profiles:{a:{},b:{}}})),0);
 });

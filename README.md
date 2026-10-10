@@ -8,6 +8,7 @@ An original, dependency-free, installable web app for hands-on K–5 learning. T
 - **Complete K–5 System Blueprint** at `/steam.html`: the product map, all 287 official K–5 TEKS student expectations, the session production board, personal paths, evidence rules, parent experience, rewards, and transparent build status.
 - **Pilot Path 01** at `/pilot.html`: five connected ten-minute missions for multiplication relationships, with three learning depths and separate concept, procedure, application, and explanation evidence.
 - **Family Review Path 02** at `/fraction.html`: five connected fraction missions covering equal shares, number-line position, equivalence, and delayed transfer. It is built and testable but remains gray until family review.
+- **Family Review Path 03** at `/place.html`: five connected place-value missions covering unit value, building numbers, base-ten trades, comparison, and delayed transfer. It includes whole-number and decimal depths and remains gray until family review.
 - **Little Math Lab prototypes** at `/labs.html`: six math themes and 18 interactive activity prototypes that can be reused as parts of future learning chains.
 
 ## Try it locally
@@ -31,7 +32,7 @@ Children and parents can choose meaningful milestone rewards. Learning records w
 
 ## Current scope
 
-The complete child-facing architecture is now visible as six learning worlds: Math Expedition, Reasoning Quest, Science Discovery, Engineering Studio, Technology & Coding, and Creative Design. Their 41 major branches and subskills are written into the adventure map. The official math TEKS index and top-to-bottom math framework are built. Pilot Path 01 is the first family-test-ready learning chain. Fraction Path 02 is built and waiting for family review. Most formal sessions have not yet been authored, reviewed, or family-tested and therefore appear gray. This is not an official curriculum or test simulator, and it does not promise score gains by itself.
+The complete child-facing architecture is now visible as six learning worlds: Math Expedition, Reasoning Quest, Science Discovery, Engineering Studio, Technology & Coding, and Creative Design. Their 41 major branches and subskills are written into the adventure map. The official math TEKS index and top-to-bottom math framework are built. Pilot Path 01 is the first family-test-ready learning chain. Fraction Path 02 and Place Value Path 03 are built and waiting for family review. Most formal sessions have not yet been authored, reviewed, or family-tested and therefore appear gray. This is not an official curriculum or test simulator, and it does not promise score gains by itself.
 
 ## Validation
 

@@ -1,11 +1,11 @@
-export const TRACKED_KEYS=['mathlab-pilot-v1','mathlab-fraction-v1','texas-math-lab-v1','mathlab-portal-rewards'];
+export const TRACKED_KEYS=['mathlab-pilot-v1','mathlab-fraction-v1','mathlab-place-v1','texas-math-lab-v1','mathlab-portal-rewards'];
 
 function json(value){try{return JSON.parse(value)}catch{return null}}
 function time(value){const n=typeof value==='number'?value:Date.parse(value||'');return Number.isFinite(n)?n:0}
 
 export function inferTimestamp(key,value){
   const data=json(value);if(!data)return 0;
-  if(key==='mathlab-pilot-v1'||key==='mathlab-fraction-v1')return Math.max(time(data.a?.updatedAt),time(data.b?.updatedAt));
+  if(key==='mathlab-pilot-v1'||key==='mathlab-fraction-v1'||key==='mathlab-place-v1')return Math.max(time(data.a?.updatedAt),time(data.b?.updatedAt));
   if(key==='texas-math-lab-v1'){
     const entries=Object.values(data.profiles||{}).flatMap(profile=>Object.entries(profile||{}).filter(([name])=>/^[a-z]+-[012]$/.test(name)).map(([,entry])=>entry));
     const meaningful=entries.some(entry=>entry&&(entry.attempts||entry.sessions||entry.errors||entry.independent||entry.supported||entry.note));
