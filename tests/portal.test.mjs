@@ -30,15 +30,18 @@ test('next path is built for review but is not presented as published',()=>{
   assert.match(html,/Preview Place Value Path 03/);
   assert.match(html,/Preview Addition Path 04/);
   assert.match(html,/Preview Patterns Path 05/);
+  assert.match(html,/Preview Geometry Path 06/);
   assert.match(data,/Fractions & Decimals[\s\S]*'review'/);
   assert.match(data,/Numbers & Place Value[\s\S]*'review'/);
   assert.match(data,/Addition & Subtraction[\s\S]*'review'/);
   assert.match(data,/Patterns & Algebra[\s\S]*'review'/);
+  assert.match(data,/Geometry & Space[\s\S]*'review'/);
   assert.match(js,/Built · waiting family review/);
   assert.match(js,/Open parent preview/);
   assert.match(js,/place\.html/);
   assert.match(js,/addition\.html/);
   assert.match(js,/patterns\.html/);
+  assert.match(js,/geometry\.html/);
 });
 
 test('the child adventure map exposes all six worlds and their branches',()=>{
