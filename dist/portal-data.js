@@ -7,7 +7,7 @@ export const LEARNING_WORLDS=[
     ['Patterns & Algebra',['Repeating and growing patterns','Operation properties','Meaning of the equal sign','Unknown values','Expressions and equations','Input-output rules','Tables, graphs and coordinates','Order of operations'],'review'],
     ['Geometry & Space',['2D and 3D attributes','Compose and decompose shapes','Symmetry and transformations','Lines and angles','Classify figures','Coordinate plane','Nets and viewpoints','Spatial rotation and hidden structure'],'review'],
     ['Measurement',['Length, weight and capacity','Time and temperature','Choose a useful unit','Estimate and measure','Unit conversions','Perimeter','Area','Volume and scale'],'review'],
-    ['Data & Probability',['Ask and collect data','Sort and organize','Picture and bar graphs','Dot and line plots','Stem-and-leaf and scatterplots','Compare and infer','Fairness and simple probability','Center and spread extensions']],
+    ['Data & Probability',['Ask and collect data','Sort and organize','Picture and bar graphs','Dot and line plots','Stem-and-leaf and scatterplots','Compare and infer','Fairness and simple probability','Center and spread extensions'],'review'],
     ['Modeling & Word Problems',['Understand the situation','Choose a representation','One and multi-step problems','Extra or missing information','Reverse problems','Compare strategies','Check reasonableness','Open problems with many answers']],
     ['Money & Decisions',['Coins and bills','Needs and wants','Earn, spend, save and give','Budget choices','Fixed and variable costs','Profit and comparison shopping','Taxes and take-home pay','Payment tools and financial records']]
   ]},
