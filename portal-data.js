@@ -8,7 +8,7 @@ export const LEARNING_WORLDS=[
     ['Geometry & Space',['2D and 3D attributes','Compose and decompose shapes','Symmetry and transformations','Lines and angles','Classify figures','Coordinate plane','Nets and viewpoints','Spatial rotation and hidden structure'],'review'],
     ['Measurement',['Length, weight and capacity','Time and temperature','Choose a useful unit','Estimate and measure','Unit conversions','Perimeter','Area','Volume and scale'],'review'],
     ['Data & Probability',['Ask and collect data','Sort and organize','Picture and bar graphs','Dot and line plots','Stem-and-leaf and scatterplots','Compare and infer','Fairness and simple probability','Center and spread extensions'],'review'],
-    ['Modeling & Word Problems',['Understand the situation','Choose a representation','One and multi-step problems','Extra or missing information','Reverse problems','Compare strategies','Check reasonableness','Open problems with many answers']],
+    ['Modeling & Word Problems',['Understand the situation','Choose a representation','One and multi-step problems','Extra or missing information','Reverse problems','Compare strategies','Check reasonableness','Open problems with many answers'],'review'],
     ['Money & Decisions',['Coins and bills','Needs and wants','Earn, spend, save and give','Budget choices','Fixed and variable costs','Profit and comparison shopping','Taxes and take-home pay','Payment tools and financial records']]
   ]},
   {id:'reasoning',icon:'◇',name:'Reasoning Quest',tagline:'Notice clues, test ideas, and explain why.',status:'planned',branches:[
