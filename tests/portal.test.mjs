@@ -37,6 +37,7 @@ test('next path is built for review but is not presented as published',()=>{
   assert.match(html,/Preview Money Path 10/);
   assert.match(html,/Preview Number Logic Path 11/);
   assert.match(html,/Preview Visual Patterns Path 12/);
+  assert.match(html,/Preview Spatial Thinking Path 13/);
   assert.match(data,/Fractions & Decimals[\s\S]*'review'/);
   assert.match(data,/Numbers & Place Value[\s\S]*'review'/);
   assert.match(data,/Addition & Subtraction[\s\S]*'review'/);
@@ -49,6 +50,7 @@ test('next path is built for review but is not presented as published',()=>{
   assert.match(data,/Reasoning Quest[\s\S]*'building'/);
   assert.match(data,/Quantitative Reasoning[\s\S]*'review'/);
   assert.match(data,/Visual Patterns[\s\S]*'review'/);
+  assert.match(data,/Spatial Thinking[\s\S]*'review'/);
   assert.match(js,/Built · waiting family review/);
   assert.match(js,/Open parent preview/);
   assert.match(js,/place\.html/);
@@ -61,6 +63,7 @@ test('next path is built for review but is not presented as published',()=>{
   assert.match(js,/money\.html/);
   assert.match(js,/numberlogic\.html/);
   assert.match(js,/visualpatterns\.html/);
+  assert.match(js,/spatial\.html/);
 });
 
 test('the child adventure map exposes all six worlds and their branches',()=>{

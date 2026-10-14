@@ -47,6 +47,7 @@ test('blank starter records are not mistaken for progress',()=>{
   assert.ok(TRACKED_KEYS.includes('mathlab-money-v1'));
   assert.ok(TRACKED_KEYS.includes('mathlab-numberlogic-v1'));
   assert.ok(TRACKED_KEYS.includes('mathlab-visualpatterns-v1'));
+  assert.ok(TRACKED_KEYS.includes('mathlab-spatial-v1'));
   assert.equal(inferTimestamp('mathlab-pilot-v1',JSON.stringify({a:{},b:{}})),0);
   assert.equal(inferTimestamp('mathlab-fraction-v1',JSON.stringify({a:{},b:{}})),0);
   assert.equal(inferTimestamp('mathlab-place-v1',JSON.stringify({a:{},b:{}})),0);
@@ -59,5 +60,6 @@ test('blank starter records are not mistaken for progress',()=>{
   assert.equal(inferTimestamp('mathlab-money-v1',JSON.stringify({a:{},b:{}})),0);
   assert.equal(inferTimestamp('mathlab-numberlogic-v1',JSON.stringify({a:{},b:{}})),0);
   assert.equal(inferTimestamp('mathlab-visualpatterns-v1',JSON.stringify({a:{},b:{}})),0);
+  assert.equal(inferTimestamp('mathlab-spatial-v1',JSON.stringify({a:{},b:{}})),0);
   assert.equal(inferTimestamp('texas-math-lab-v1',JSON.stringify({profiles:{a:{},b:{}}})),0);
 });
