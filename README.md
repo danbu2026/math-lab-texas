@@ -16,6 +16,7 @@ An original, dependency-free, installable web app for hands-on K–5 learning. T
 - **Ella Family Review Path 08** at `/datareason.html`: five connected data missions covering graph scales, differences, mode/range/median, evidence-limited conclusions, and delayed transfer. It remains gray until family review.
 - **Ella Family Review Path 09** at `/modeling.html`: five connected problem-solving missions covering relevant information, ordered multi-step plans, error diagnosis, reasonableness, and delayed transfer. It remains gray until family review.
 - **Ella Family Review Path 10** at `/money.html`: five connected money-decision missions covering needs and wants, balanced budgets, stated priorities and tradeoffs, gross and net income, exact budget repair, and delayed transfer. It remains gray until family review.
+- **Ella Family Review Path 11** at `/numberlogic.html`: five connected quantitative-reasoning missions covering multi-clue rule inference, forward and backward application, counterexamples, rule repair, and delayed transfer to a changed relationship. It remains gray until family review.
 - **Little Math Lab prototypes** at `/labs.html`: six math themes and 18 interactive activity prototypes that can be reused as parts of future learning chains.
 
 ## Try it locally
@@ -39,7 +40,7 @@ Children and parents can choose meaningful milestone rewards. Learning records w
 
 ## Current scope
 
-The complete child-facing architecture is now visible as six learning worlds: Math Expedition, Reasoning Quest, Science Discovery, Engineering Studio, Technology & Coding, and Creative Design. Their 41 major branches and subskills are written into the adventure map. The official math TEKS index and top-to-bottom math framework are built. Pilot Path 01 is the first family-test-ready learning chain. Fraction Path 02, Place Value Path 03, Addition Path 04, Patterns Path 05, Geometry Path 06, Measurement Path 07, Data Path 08, Modeling Path 09, and Money Path 10 are built and waiting for family review. Most formal sessions have not yet been authored, reviewed, or family-tested and therefore appear gray. This is not an official curriculum or test simulator, and it does not promise score gains by itself.
+The complete child-facing architecture is now visible as six learning worlds: Math Expedition, Reasoning Quest, Science Discovery, Engineering Studio, Technology & Coding, and Creative Design. Their 41 major branches and subskills are written into the adventure map. The official math TEKS index and top-to-bottom math framework are built. Pilot Path 01 is the first family-test-ready learning chain. Fraction Path 02, Place Value Path 03, Addition Path 04, Patterns Path 05, Geometry Path 06, Measurement Path 07, Data Path 08, Modeling Path 09, Money Path 10, and Number Logic Path 11 are built and waiting for family review. Most formal sessions have not yet been authored, reviewed, or family-tested and therefore appear gray. This is not an official curriculum or test simulator, and it does not promise score gains by itself.
 
 ## Validation
 

@@ -14,7 +14,7 @@ test('one child portal contains the full learning journey',()=>{
   for(const phrase of ['Your current learning path','All 287 K–5 math abilities','Credits &amp; family rewards','Parent area']) assert.match(html,new RegExp(phrase));
   assert.match(js,/TEKS_ROWS/);
   assert.match(js,/Showing.*Texas K–5 expectations/);
-  assert.match(html,/other worlds stay visible in gray/);
+  assert.match(html,/Unbuilt worlds stay visible in gray/);
 });
 
 test('parent sign-in keeps progress available across devices',()=>{
@@ -35,6 +35,7 @@ test('next path is built for review but is not presented as published',()=>{
   assert.match(html,/Preview Data Path 08/);
   assert.match(html,/Preview Modeling Path 09/);
   assert.match(html,/Preview Money Path 10/);
+  assert.match(html,/Preview Number Logic Path 11/);
   assert.match(data,/Fractions & Decimals[\s\S]*'review'/);
   assert.match(data,/Numbers & Place Value[\s\S]*'review'/);
   assert.match(data,/Addition & Subtraction[\s\S]*'review'/);
@@ -44,6 +45,8 @@ test('next path is built for review but is not presented as published',()=>{
   assert.match(data,/Data & Probability[\s\S]*'review'/);
   assert.match(data,/Modeling & Word Problems[\s\S]*'review'/);
   assert.match(data,/Money & Decisions[\s\S]*'review'/);
+  assert.match(data,/Reasoning Quest[\s\S]*'building'/);
+  assert.match(data,/Quantitative Reasoning[\s\S]*'review'/);
   assert.match(js,/Built · waiting family review/);
   assert.match(js,/Open parent preview/);
   assert.match(js,/place\.html/);
@@ -54,6 +57,7 @@ test('next path is built for review but is not presented as published',()=>{
   assert.match(js,/datareason\.html/);
   assert.match(js,/modeling\.html/);
   assert.match(js,/money\.html/);
+  assert.match(js,/numberlogic\.html/);
 });
 
 test('the child adventure map exposes all six worlds and their branches',()=>{
