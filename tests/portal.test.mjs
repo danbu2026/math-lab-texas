@@ -20,6 +20,12 @@ test('one child portal contains the full learning journey',()=>{
   assert.match(html,/Unbuilt worlds stay visible in gray/);
 });
 
+test('all three child tabs receive click handlers',()=>{
+  assert.match(js,/\$\$\('\[data-tab\]'\)\.forEach/);
+  assert.doesNotMatch(js,/(?<!\$)\$\('\[data-tab\]'\)\.forEach/);
+  for(const tab of ['journey','worldmap','rewards']) assert.match(html,new RegExp(`data-tab="${tab}"`));
+});
+
 test('parent sign-in keeps progress available across devices',()=>{
   assert.match(parentJs,/cloud-sync\.js/);
   assert.match(parent,/PARENT VIEW/);
@@ -100,6 +106,6 @@ test('portal supports two learners, one player, and unpublished states',()=>{
   assert.match(js,/aria-pressed/);
   assert.match(html,/My Map/);
   assert.match(html,/href="parent\.html"/);
-  assert.match(html,/portal\.css\?v=cloud1/);
-  assert.match(html,/portal\.js\?v=cloud1/);
+  assert.match(html,/portal\.css\?v=child4/);
+  assert.match(html,/portal\.js\?v=child4/);
 });

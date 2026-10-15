@@ -24,7 +24,8 @@
 - English-only shell, static fallback, old guide redirect, query-safe offline navigation, and modal background focus protection: PASS.
 - Unified child portal: one entry, six learning worlds, 41 branches, current path, complete 287-ability math map, two learner records, evidence-linked credits, editable reward ladder, gray unpublished states, and offline portal assets: PASS.
 - Child-focused interface checks: one clear child start, separate Parent View, larger learner control, hidden adult evidence drawer on every course, Level-based map wording, and offline coverage for all new interface files: PASS.
-- Automated test suite: **83/83 PASS**.
+- Child home tab behavior: Today, My Map, and Rewards each receive a click handler and activate exactly one matching page: PASS.
+- Automated test suite: **84/84 PASS**.
 
 ## Actual browser checks
 
@@ -70,6 +71,8 @@
 - Language & Logic Path 14 rendered and completed at 1024 × 768 in Chromium with no horizontal overflow, no page errors, and no visible control below 40px. The diagnostic required both a choice and its reason; a hint survived refresh; precise language, if-then reasoning, and all-clue elimination each required a separate proof; a partially completed Preview retained its wrong attempt, hint, and work only in its own session; after the delay was simulated, Challenge restarted from a blank answer stage, completed without help, marked transfer Independent, and left Mila untouched.
 
 ## Independent review
+
+The child-home My Map and Rewards repair received a separate independent review. The reviewer confirmed that all three tabs now receive handlers, each tab maps to exactly one page, versioned assets and offline cache v33 prevent the broken script from persisting, the focused navigation tests passed, the full 84-test suite passed, and validation passed. The result was **PASS** with no regression or publication blocker.
 
 The child/parent interface redesign received a separate independent review across the child home, all 14 learning paths, the Parent View drawer, and the separate parent page. The reviewer verified the larger learner control, child-sized actions, responsive layouts at desktop, iPad portrait, and narrow tablet widths, absence of whole-page horizontal overflow, drawer focus return and hidden-state behavior, reduced-motion support, and an actual answer-to-explanation interaction. The full 83-test suite and validator passed. The result was **PASS** with no publication blocker. Future refinements may add a short visible parent label on very narrow screens and a full focus trap with dialog semantics.
 

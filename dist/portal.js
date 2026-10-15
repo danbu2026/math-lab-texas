@@ -32,7 +32,7 @@ function showPage(id){$$('[data-page]').forEach(p=>p.classList.toggle('active',p
 function renderAll(){renderHero();renderSteps();renderRewards()}
 
 $('#learner').value=learner;$('#learner').onchange=e=>{learner=e.target.value;localStorage.setItem(learnerKey,learner);renderAll()};
-$('[data-tab]').forEach(b=>b.onclick=()=>showPage(b.dataset.tab));
+$$('[data-tab]').forEach(b=>b.onclick=()=>showPage(b.dataset.tab));
 if($('#gradeFilter'))$('#gradeFilter').onchange=renderLibrary;if($('#missionSearch'))$('#missionSearch').oninput=renderLibrary;
 if($('#saveRewards'))$('#saveRewards').onclick=()=>{const data={};$$('[data-reward]').forEach(i=>data[i.dataset.reward]=i.value.trim()||'Family reward');localStorage.setItem(rewardKey,JSON.stringify(data));$('#rewardSaved').textContent=' Saved on this device.';renderAll()};
 renderWorlds();renderWorldDetail();renderGradePath();renderLoop();if($('#missionLibrary'))renderLibrary();renderAll();
