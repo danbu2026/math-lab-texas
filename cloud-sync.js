@@ -22,11 +22,11 @@ function controls(){
   const host=document.querySelector('.top-actions,.header-tools,header');if(!host)return;
   if(!document.querySelector('[data-cloud-account]')){
     const wrap=document.createElement('div');wrap.className='cloud-controls';
-    wrap.innerHTML='<button class="outline cloud-account" type="button" data-cloud-account>Parent sign in</button><span class="sync-status" data-sync-status>This device only</span>';
+    wrap.innerHTML='<button class="outline cloud-account" type="button" data-cloud-account>Sign in to Family Account</button><span class="sync-status" data-sync-status>This device only</span>';
     host.append(wrap);
   }
   const button=document.querySelector('[data-cloud-account]');
-  button.textContent=user?`${(user.displayName||'Parent').split(' ')[0]} · Sign out`:'Parent sign in';
+  button.textContent=user?`Family: ${(user.displayName||'Parent').split(' ')[0]} · Sign out`:'Sign in to Family Account';
   button.onclick=async()=>{
     try{
       await sdkReady;

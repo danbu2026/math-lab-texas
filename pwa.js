@@ -8,12 +8,12 @@ const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
 let installPrompt;
 
 function copy() {
-  installButton.textContent = 'Install on iPad';
-  installTitle.textContent = 'Put Math Lab on the Home Screen';
+  installButton.textContent = isAppleTouch ? 'How to install on iPad' : 'Install App';
+  installTitle.textContent = isAppleTouch ? 'Put Math Lab on the iPad Home Screen' : 'Install Little Math Lab';
   closeInstall.setAttribute('aria-label', 'Close');
-  installBody.innerHTML = `<p class="install-lead">Open this page in <strong>Safari</strong>. It takes about 20 seconds.</p>
+  installBody.innerHTML = isAppleTouch ? `<p class="install-lead">Open this page in <strong>Safari</strong>. It takes about 20 seconds.</p>
        <ol class="install-steps"><li><span class="step-icon">1</span><div>Tap Safari’s <strong>Share</strong> button <span class="share-symbol" aria-label="Share">↥</span>.</div></li><li><span class="step-icon">2</span><div>Scroll and choose <strong>Add to Home Screen</strong>.</div></li><li><span class="step-icon">3</span><div>Tap <strong>Add</strong>. Open the Math Lab icon like any other app.</div></li></ol>
-       <p class="install-note">After the first online visit, the core activities can open without internet. Learning records work offline and sync after a parent signs in.</p>`;
+       <p class="install-note">After the first online visit, the core activities can open without internet. Learning records work offline and sync after a parent signs in.</p>` : `<p class="install-lead">Use your browser’s <strong>Install app</strong> button or install icon to open Little Math Lab in its own window.</p><p class="install-note">On an iPad, open this site in Safari, tap Share, choose <strong>Add to Home Screen</strong>, then tap Add.</p>`;
 }
 
 function openInstructions() {
