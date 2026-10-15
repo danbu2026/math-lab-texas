@@ -1,5 +1,5 @@
 
-import './cloud-sync.js';
+import './cloud-sync.js?v=family2';
 import{PILOT_CHAIN,createBlankLearner}from'./pilot-data.js';
 const pilotKey='mathlab-pilot-v1',learnerKey='mathlab-portal-learner',rewardKey='mathlab-portal-rewards';
 const milestones=[50,100,200,400,700,1000],defaults=['Choose a family reward','Pick the family movie','Choose Saturday breakfast','Plan a mini adventure','Choose a new book or game','Design a family celebration'];

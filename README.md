@@ -5,7 +5,7 @@ An original, dependency-free, installable web app for hands-on K–5 learning. T
 ## Current product surfaces
 
 - **Child Learning Home** at `/`: one clear daily start, accumulated learning credits, family reward progress, a six-world adventure map, and clear bright/gray publication states. Adult production details and the full standards library are kept out of the child view.
-- **Parent View** at `/parent.html`: progress, reward settings, reviewed course links, and the full blueprint in a separate, calmer management page.
+- **Parent View** at `/parent.html`: a Start Here project guide, purpose, ten-minute routine, learning benefits and limits, current build status, progress, reward settings, reviewed course links, and the full blueprint in a separate management page.
 - **Complete K–5 System Blueprint** at `/steam.html`: the product map, all 287 official K–5 TEKS student expectations, the session production board, personal paths, evidence rules, parent experience, rewards, and transparent build status.
 - **Pilot Path 01** at `/pilot.html`: five connected ten-minute missions for multiplication relationships, with three learning depths and separate concept, procedure, application, and explanation evidence.
 - **Family Review Path 02** at `/fraction.html`: five connected fraction missions covering equal shares, number-line position, equivalence, and delayed transfer. It is built and testable but remains gray until family review.

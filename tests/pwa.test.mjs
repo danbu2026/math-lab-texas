@@ -33,6 +33,9 @@ test('app metadata and install instructions are English-only',()=>{
   const pwa=fs.readFileSync('dist/pwa.js','utf8');
   assert.match(html,/<html lang="en">/);
   assert.equal(manifest.lang,'en');
-  assert.match(pwa,/Put Math Lab on the Home Screen/);
+  assert.match(pwa,/Put Math Lab on the iPad Home Screen/);
+  assert.match(pwa,/How to install on iPad/);
+  assert.match(pwa,/Install App/);
+  assert.match(pwa,/isAppleTouch \?/);
   assert.doesNotMatch(pwa,/requested === 'en'/);
 });

@@ -29,6 +29,10 @@
 
 ## Actual browser checks
 
+- Parent View opened at 768 × 1024 with a default Start Here guide explaining the purpose, ten-minute routine, learning model, Levels, rewards, intended benefits, current production counts, honest limits, and parent role; the page had no horizontal overflow.
+- The child home header opened at 768 × 1024 as one exact 76px row. Playing as, Ella/Mila, Install App, and Parent View filled the row from top to bottom; Parent View was centered and the previous unused lower white space was removed.
+- On a computer browser the install action displayed “Install App.” The iPad-specific branch displays “How to install on iPad” and explains Safari Share → Add to Home Screen → Add.
+- The cloud control now describes one “Family Account” instead of a second “Parent sign in.”
 - The redesigned child home opened at 768 × 1024 with a single large Continue action, readable learner selector, three child navigation choices, no horizontal overflow, and a separate Parent View link.
 - Language & Logic Path 14 opened at 1024 × 768 and 768 × 1024 with a 17px “Playing as” label, 19px learner name, 52px selector, large answer choices, no horizontal overflow, and no adult evidence controls in the child workspace.
 - Parent View opened as a focused drawer from the course page, moved keyboard focus to its close control, and contained learning evidence, depth, and family notes without covering the child screen until requested.
@@ -71,6 +75,8 @@
 - Language & Logic Path 14 rendered and completed at 1024 × 768 in Chromium with no horizontal overflow, no page errors, and no visible control below 40px. The diagnostic required both a choice and its reason; a hint survived refresh; precise language, if-then reasoning, and all-clue elimination each required a separate proof; a partially completed Preview retained its wrong attempt, hint, and work only in its own session; after the delay was simulated, Challenge restarted from a blank answer stage, completed without help, marked transfer Independent, and left Mila untouched.
 
 ## Independent review
+
+The Parent Start Here guide, full-height child header, device-specific install wording, and single Family Account wording received a separate independent review. At 768 × 1024, the reviewer verified no horizontal overflow, a precise 76px child toolbar with controls filling the full height, readable project guidance, accurate 287/14/1/13 build counts, honest benefit limitations, and the correct computer/iPad install branches. The 84-test suite and validator passed. The result was **PASS** with no publication blocker.
 
 The child-home My Map and Rewards repair received a separate independent review. The reviewer confirmed that all three tabs now receive handlers, each tab maps to exactly one page, versioned assets and offline cache v33 prevent the broken script from persisting, the focused navigation tests passed, the full 84-test suite passed, and validation passed. The result was **PASS** with no regression or publication blocker.
 
