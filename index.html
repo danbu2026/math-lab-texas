@@ -13,13 +13,13 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="portal.css?v=cloud1">
 </head>
-<body>
+<body class="child-home">
   <header class="topbar">
     <a class="brand" href="./" aria-label="Little STEAM Lab home"><span class="brandmark">S<sup>+</sup></span><span>Little STEAM Lab<small>TEXAS K–5 LEARNING ADVENTURE</small></span></a>
     <div class="top-actions">
-      <label class="learner-label">Learner <select id="learner"><option value="a">Ella</option><option value="b">Mila</option></select></label>
+      <label class="learner-label">Playing as <select id="learner"><option value="a">Ella</option><option value="b">Mila</option></select></label>
       <button id="installApp" class="outline" type="button">Install on iPad</button>
-      <button class="outline" data-go="parent" type="button">Parent Area</button>
+      <a class="outline" href="parent.html">Parent View</a>
     </div>
   </header>
 
@@ -27,9 +27,9 @@
     <section class="hero">
       <div>
         <p class="eyebrow">YOUR LEARNING ADVENTURE</p>
-        <h1>Learn one powerful idea today.</h1>
+        <h1>Ready for your next math quest?</h1>
         <p id="heroMessage">A short mission. A real discovery. Progress that stays with you.</p>
-        <a id="startMission" class="primary" href="pilot.html">Start today’s 10-minute mission <span>→</span></a>
+        <a id="startMission" class="primary" href="pilot.html">Continue Ella’s adventure <span>→</span></a>
       </div>
       <div class="score-card" aria-label="Learning credits">
         <span class="score-icon">★</span>
@@ -44,11 +44,9 @@
     </section>
 
     <nav class="tabs" aria-label="Learning center">
-      <button class="active" data-tab="journey">My Journey</button>
-      <button data-tab="worldmap">Adventure Map</button>
-      <button data-tab="missions">All Missions</button>
-      <button data-tab="rewards">Credits &amp; Rewards</button>
-      <button data-tab="parent">Parent Area</button>
+      <button class="active" data-tab="journey">Today</button>
+      <button data-tab="worldmap">My Map</button>
+      <button data-tab="rewards">Rewards</button>
     </nav>
 
     <section id="journey" class="page active" data-page>
@@ -65,15 +63,9 @@
       <div class="legend map-legend"><i class="ready-dot"></i> Family-test lesson ready <i class="planned-dot"></i> Designed but not published</div>
       <div id="worlds" class="world-grid"></div>
       <div id="worldDetail" class="world-detail" aria-live="polite"></div>
-      <section class="grade-road"><div class="section-heading"><div><p class="eyebrow">MATH ROAD · K–5</p><h2>Grade levels are guideposts, not locks</h2><p>A child can move forward, check an earlier gap, or study above school grade when evidence supports it.</p></div></div><div id="gradePath"></div></section>
+      <section class="grade-road"><div class="section-heading"><div><p class="eyebrow">MATH ADVENTURE LEVELS</p><h2>Levels are challenges, not age limits</h2><p>Move forward when the evidence is strong. Revisit an earlier skill whenever it helps unlock the next challenge.</p></div></div><div id="gradePath"></div></section>
     </section>
 
-    <section id="missions" class="page" data-page>
-      <div class="section-heading"><div><p class="eyebrow">COMPLETE MATH CURRICULUM</p><h2>All 287 K–5 math abilities</h2><p>Every Texas math expectation is represented. Gold pieces are connected to the playable pilot. Gray pieces are designed into the map but not yet published.</p></div></div>
-      <div class="filters"><label>Grade <select id="gradeFilter"><option value="all">All grades</option><option value="K">Kindergarten</option><option value="1">Grade 1</option><option value="2">Grade 2</option><option value="3">Grade 3</option><option value="4">Grade 4</option><option value="5">Grade 5</option></select></label><label>Search <input id="missionSearch" type="search" placeholder="fractions, geometry, patterns…"></label></div>
-      <p id="missionCount" class="count"></p>
-      <div id="missionLibrary" class="mission-library"></div>
-    </section>
 
     <section id="rewards" class="page" data-page>
       <div class="section-heading"><div><p class="eyebrow">EARN BY LEARNING</p><h2>Credits &amp; family rewards</h2><p>Each Pilot 01 mission awards its credits once after completion. Repeating clicks never creates extra credits.</p></div></div>
@@ -81,14 +73,6 @@
       <div class="rewards-layout"><article class="reward-ladder"><h2>My reward ladder</h2><div id="rewardLadder"></div></article><article class="why-card"><h2>What credits mean</h2><ul><li>One lesson awards its credits once.</li><li>Hints help learning, but independent work earns stronger evidence.</li><li>There is no timer, streak, ranking, or penalty.</li><li>The family chooses real rewards that fit the child.</li></ul></article></div>
     </section>
 
-    <section id="parent" class="page" data-page>
-      <div class="section-heading"><div><p class="eyebrow">GROWN-UPS</p><h2>Parent area</h2><p>See the full plan, set rewards, and review what is ready before giving it to a child.</p></div></div>
-      <div class="parent-grid">
-        <article><h3>Set family rewards</h3><p>Write a reward for each milestone. It syncs after a parent signs in.</p><form id="rewardForm"></form><button id="saveRewards" class="primary" type="button">Save rewards</button><span id="rewardSaved" role="status"></span></article>
-        <article><h3>Product &amp; curriculum</h3><p>The blueprint shows all 287 K–5 Texas expectations and the production status of each learning piece.</p><div class="parent-links"><a href="steam.html">Open complete system map →</a><a href="fraction.html">Preview Fraction Path 02 →</a><a href="place.html">Preview Place Value Path 03 →</a><a href="addition.html">Preview Addition Path 04 →</a><a href="patterns.html">Preview Patterns Path 05 →</a><a href="geometry.html">Preview Geometry Path 06 →</a><a href="measurement.html">Preview Measurement Path 07 →</a><a href="datareason.html">Preview Data Path 08 →</a><a href="modeling.html">Preview Modeling Path 09 →</a><a href="money.html">Preview Money Path 10 →</a><a href="numberlogic.html">Preview Number Logic Path 11 →</a><a href="visualpatterns.html">Preview Visual Patterns Path 12 →</a><a href="spatial.html">Preview Spatial Thinking Path 13 →</a><a href="logic.html">Preview Language & Logic Path 14 →</a><a href="guide-en.html">Read coverage guide →</a><a href="labs.html">Open 18 earlier math labs →</a></div></article>
-        <article><h3>What is live today</h3><p><strong>Pilot 01</strong> is the first complete learning path. All other lessons remain visibly gray until their teaching, practice, evidence, and review are finished.</p><p class="note">Parent Google sign-in keeps Ella and Mila’s learning records in one family account. Offline work stays on this device and syncs when internet returns. Memberships and payments are not published yet.</p></article>
-      </div>
-    </section>
   </main>
 
   <dialog id="installDialog"><div class="dialog-head"><h2 id="installTitle">Install on iPad</h2><button id="closeInstall" aria-label="Close">×</button></div><div id="installBody"></div></dialog>
