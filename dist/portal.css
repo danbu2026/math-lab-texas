@@ -12,3 +12,37 @@
 @media(max-width:1100px){.world p{font-size:17px}.branch h3{font-size:23px}.branch ul{font-size:18px}.tabs button{font-size:16px}.section-heading p,.map-hero p,.path-head p{font-size:17px;line-height:1.55}}
 .credit-rules.five{grid-template-columns:repeat(5,1fr)}@media(max-width:900px){.credit-rules.five{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.credit-rules.five{grid-template-columns:1fr}}
 .cloud-controls{display:flex;align-items:center;gap:8px}.cloud-account{white-space:nowrap}.sync-status{font-size:12px;color:var(--muted);white-space:nowrap}.sync-status[data-tone="ok"]{color:#14725f}.sync-status[data-tone="offline"]{color:#8a630b}.sync-status[data-tone="error"]{color:#a33b2d}@media(max-width:1100px){.topbar{height:auto;min-height:88px}.top-actions{flex-wrap:wrap;justify-content:flex-end}.cloud-controls{order:3;width:100%;justify-content:flex-end}}@media(max-width:760px){.top-actions .cloud-account{display:inline-flex}.cloud-controls{width:auto}.sync-status{display:none}}
+
+
+/* CHILD HOME V2 */
+.child-home{background:radial-gradient(circle at 8% 12%,#dff6ff 0 9%,transparent 22%),radial-gradient(circle at 92% 17%,#fff0b9 0 8%,transparent 20%),linear-gradient(155deg,#f9fdff,#fffaf0 55%,#f7f0ff);min-height:100vh}
+.child-home .topbar{height:76px;border-bottom:0;box-shadow:0 6px 24px rgba(7,56,66,.08)}
+.child-home .brandmark{background:linear-gradient(145deg,#0b6763,#7656c9);box-shadow:0 7px 16px rgba(68,68,150,.2)}
+.child-home main{max-width:1260px;padding-top:22px}
+.child-home .hero{grid-template-columns:minmax(0,1.55fr) minmax(260px,.65fr);grid-template-rows:auto auto;gap:14px;padding:34px;border:3px solid rgba(255,255,255,.85);background:linear-gradient(135deg,rgba(224,247,239,.95),rgba(255,244,199,.92));box-shadow:0 22px 55px rgba(33,79,85,.12);position:relative;overflow:hidden}
+.child-home .hero:after{content:"✦";position:absolute;right:33%;top:18px;font-size:64px;color:rgba(241,185,74,.45);transform:rotate(12deg)}
+.child-home .hero>div:first-child{grid-row:1/3;align-self:center;position:relative;z-index:1}
+.child-home .hero h1{max-width:680px;font-size:clamp(38px,5vw,68px);color:#103f4d}
+.child-home .hero p{font-size:18px;line-height:1.55}
+.child-home .hero .primary{min-height:64px;padding:0 28px;border-radius:20px;background:linear-gradient(135deg,#0d716b,#296f9f);font-size:19px;box-shadow:0 8px 0 #0a5059}
+.child-home .score-card,.child-home .reward-card{border:2px solid #fff;box-shadow:0 10px 28px rgba(30,68,74,.1)}
+.child-home .score-card{padding:18px}.child-home .score-icon{filter:drop-shadow(0 3px 0 #c98b1b)}
+.child-home .reward-card{padding:18px}.child-home .reward-card h2{margin:12px 0 9px}
+.child-home .tabs{max-width:820px;margin:22px auto;padding:7px;border-radius:22px;background:rgba(221,235,232,.9);box-shadow:0 8px 20px rgba(31,77,78,.06)}
+.child-home .tabs button{flex:1;min-height:56px;border-radius:17px;font-size:16px}
+.child-home .tabs button:before{display:block;font-size:20px;margin-right:7px}.child-home .tabs button:nth-child(1):before{content:"🚀"}.child-home .tabs button:nth-child(2):before{content:"🗺️"}.child-home .tabs button:nth-child(3):before{content:"🧩"}.child-home .tabs button:nth-child(4):before{content:"⭐"}
+.child-home .tabs button{display:flex;align-items:center;justify-content:center}
+.child-home .tabs button.active{box-shadow:0 5px 13px rgba(31,77,78,.13)}
+.child-home .section-heading .legend{display:none}
+.child-home .current-path{border:3px solid #ffe08a;border-radius:30px;padding:30px;background:linear-gradient(145deg,#fff,#fffaf0);box-shadow:0 18px 44px rgba(64,76,44,.1)}
+.child-home .path-head h2{font-size:34px}.child-home .path-head p{font-size:17px;line-height:1.55}
+.child-home .mission-steps{gap:14px}.child-home .mission-step{position:relative;min-height:130px;border:0;border-radius:20px;padding:18px;background:#ecefed}
+.child-home .mission-step.ready{background:#fff2c9;box-shadow:0 7px 0 #ebc65d}.child-home .mission-step.done{background:#e8f6b7;box-shadow:0 7px 0 #a4cb59}
+.child-home .mission-step b{font-size:15px}.child-home .mission-step span{font-size:14px;line-height:1.4}
+.child-home .mission-loop{border-radius:30px;background:linear-gradient(145deg,#124d5c,#473f86)}
+.child-home .world{border-radius:26px}.child-home .world.building:nth-child(1){background:linear-gradient(145deg,#fff5c9,#e8f7df)}.child-home .world.building:nth-child(2){background:linear-gradient(145deg,#e7f3ff,#f1eaff)}
+@media(max-width:900px){.child-home .hero{grid-template-columns:1fr 1fr}.child-home .hero>div:first-child{grid-column:1/-1;grid-row:auto}.child-home .hero:after{right:8%}.child-home .mission-steps{grid-template-columns:1fr 1fr}.child-home .tabs button{min-width:150px}}
+@media(max-width:620px){.child-home .hero{grid-template-columns:1fr;padding:23px}.child-home .score-card,.child-home .reward-card{grid-column:auto}.child-home .hero h1{font-size:39px}.child-home .tabs{justify-content:flex-start}.child-home .mission-steps{grid-template-columns:1fr}.child-home .top-actions .outline:not([href]){display:none}}
+
+/* CHILD IDENTITY SIZE V2 */
+.child-home .learner-label{font-size:17px;font-weight:850}.child-home .learner-label select{min-height:52px;font-size:19px;border:2px solid #bdd2cd}.child-home .cloud-controls{display:none!important}

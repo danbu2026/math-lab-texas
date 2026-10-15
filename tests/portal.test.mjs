@@ -8,37 +8,28 @@ const js=fs.readFileSync('dist/portal.js','utf8');
 const css=fs.readFileSync('dist/portal.css','utf8');
 const data=fs.readFileSync('dist/portal-data.js','utf8');
 const cloud=fs.readFileSync('dist/cloud-sync.js','utf8');
+const parent=fs.readFileSync('dist/parent.html','utf8');
+const parentJs=fs.readFileSync('dist/parent.js','utf8');
 
 test('one child portal contains the full learning journey',()=>{
-  for(const id of ['journey','worldmap','missions','rewards','parent']) assert.match(html,new RegExp(`id="${id}"`));
-  for(const phrase of ['Your current learning path','All 287 K–5 math abilities','Credits &amp; family rewards','Parent area']) assert.match(html,new RegExp(phrase));
+  for(const id of ['journey','worldmap','rewards']) assert.match(html,new RegExp(`id="${id}"`));
+  for(const phrase of ['Your current learning path','Credits &amp; family rewards']) assert.match(html,new RegExp(phrase));
+  for(const id of ['progress','rewards','courses']) assert.match(parent,new RegExp(`id="${id}"`));
   assert.match(js,/TEKS_ROWS/);
-  assert.match(js,/Showing.*Texas K–5 expectations/);
+  assert.match(parent,/Full Blueprint/);
   assert.match(html,/Unbuilt worlds stay visible in gray/);
 });
 
 test('parent sign-in keeps progress available across devices',()=>{
-  assert.match(js,/cloud-sync\.js/);
-  assert.match(html,/Parent Google sign-in/);
+  assert.match(parentJs,/cloud-sync\.js/);
+  assert.match(parent,/PARENT VIEW/);
   assert.match(cloud,/signInWithPopup/);
   assert.match(cloud,/families',user\.uid,'state','progress/);
   assert.match(cloud,/Offline · saved here/);
 });
 
 test('next path is built for review but is not presented as published',()=>{
-  assert.match(html,/Preview Fraction Path 02/);
-  assert.match(html,/Preview Place Value Path 03/);
-  assert.match(html,/Preview Addition Path 04/);
-  assert.match(html,/Preview Patterns Path 05/);
-  assert.match(html,/Preview Geometry Path 06/);
-  assert.match(html,/Preview Measurement Path 07/);
-  assert.match(html,/Preview Data Path 08/);
-  assert.match(html,/Preview Modeling Path 09/);
-  assert.match(html,/Preview Money Path 10/);
-  assert.match(html,/Preview Number Logic Path 11/);
-  assert.match(html,/Preview Visual Patterns Path 12/);
-  assert.match(html,/Preview Spatial Thinking Path 13/);
-  assert.match(html,/Preview Language & Logic Path 14/);
+  for(const label of ['Fractions','Place Value','Addition & Subtraction','Patterns & Algebra','Geometry & Space','Measurement','Data Reasoning','Mathematical Modeling','Money & Decisions','Number Logic','Visual Patterns','Spatial Thinking','Language & Logic']) assert.match(parentJs,new RegExp(label.replace(/[&]/g,'&')));
   assert.match(data,/Fractions & Decimals[\s\S]*'review'/);
   assert.match(data,/Numbers & Place Value[\s\S]*'review'/);
   assert.match(data,/Addition & Subtraction[\s\S]*'review'/);
@@ -99,7 +90,7 @@ test('only the 16 actually built pilot pieces are bright',()=>{
 test('portal supports two learners, one player, and unpublished states',()=>{
   assert.match(html,/Ella/);assert.match(html,/Mila/);
   assert.match(html,/href="pilot\.html"/);
-  assert.match(html,/href="labs\.html"/);
+  assert.match(parent,/href="labs\.html"/);
   assert.match(js,/PILOT_PIECES/);
   assert.match(css,/\.world\{[^}]*background:var\(--gray\)/);
   assert.match(css,/@media\(max-width:760px\)/);
@@ -107,7 +98,8 @@ test('portal supports two learners, one player, and unpublished states',()=>{
   assert.match(css,/\.branch ul\{columns:1;font-size:17px/);
   assert.match(js,/scrollIntoView/);
   assert.match(js,/aria-pressed/);
-  assert.match(html,/Adventure Map/);
+  assert.match(html,/My Map/);
+  assert.match(html,/href="parent\.html"/);
   assert.match(html,/portal\.css\?v=cloud1/);
   assert.match(html,/portal\.js\?v=cloud1/);
 });

@@ -4,7 +4,8 @@ An original, dependency-free, installable web app for hands-on K–5 learning. T
 
 ## Current product surfaces
 
-- **Child Learning Home** at `/`: one unified entry with today's mission, accumulated learning credits, family reward progress, a six-world adventure map, 41 major branches, the complete math ability library, and clear bright/gray publication states.
+- **Child Learning Home** at `/`: one clear daily start, accumulated learning credits, family reward progress, a six-world adventure map, and clear bright/gray publication states. Adult production details and the full standards library are kept out of the child view.
+- **Parent View** at `/parent.html`: progress, reward settings, reviewed course links, and the full blueprint in a separate, calmer management page.
 - **Complete K–5 System Blueprint** at `/steam.html`: the product map, all 287 official K–5 TEKS student expectations, the session production board, personal paths, evidence rules, parent experience, rewards, and transparent build status.
 - **Pilot Path 01** at `/pilot.html`: five connected ten-minute missions for multiplication relationships, with three learning depths and separate concept, procedure, application, and explanation evidence.
 - **Family Review Path 02** at `/fraction.html`: five connected fraction missions covering equal shares, number-line position, equivalence, and delayed transfer. It is built and testable but remains gray until family review.
@@ -39,7 +40,7 @@ The system is organized by learning ability instead of a fixed number of repeate
 
 Each daily experience is designed for about ten minutes. A learner can begin near the current ability level, move backward only when evidence reveals a prerequisite gap, and move ahead after independent performance returns in a changed problem after time has passed.
 
-Children and parents can choose meaningful milestone rewards. Learning records work offline and sync to one family account after parent Google sign-in. The system does not use rankings or streak pressure.
+Children and parents can choose meaningful milestone rewards. Learning records work offline and sync to one family account after parent Google sign-in. The system does not use rankings or streak pressure. Course pages use a child-focused layout with large answers and one current task; learning evidence, depth controls, and family notes open only through Parent View.
 
 ## Current scope
 
@@ -52,4 +53,4 @@ The complete child-facing architecture is now visible as six learning worlds: Ma
 
 ## Known limits
 
-The current build has not yet been tested on a physical iPad with Safari or in a formal child learning study. Google family sign-in and cloud storage are deployed, but the final two-device recovery test still requires completing one real parent sign-in. The daily recommendation engine, full parent dashboard, membership, and payments are future work.
+The current build has not yet been tested on a physical iPad with Safari or in a formal child learning study. Google family sign-in and cloud storage are deployed, but the final two-device recovery test still requires completing one real parent sign-in. Family email/password accounts, child PIN profiles, the daily recommendation engine, membership, and payments are future work.
