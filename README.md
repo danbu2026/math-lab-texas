@@ -54,3 +54,7 @@ The complete child-facing architecture is now visible as six learning worlds: Ma
 ## Known limits
 
 The current build has not yet been tested on a physical iPad with Safari or in a formal child learning study. Google family sign-in and cloud storage are deployed, but the final two-device recovery test still requires completing one real parent sign-in. Family email/password accounts, child PIN profiles, the daily recommendation engine, membership, and payments are future work.
+
+## Child experience V3
+
+The child home now opens as a clear quest screen with one primary action, large iPad controls, visible credits and family reward progress, and an original learning guide named Nova. The course pages use a quest map, a strong current-mission marker, and one large work area. At iPad portrait width the side map becomes a horizontal mission strip so the activity keeps the full screen width. Parent notes and reset controls stay inside Parent View.

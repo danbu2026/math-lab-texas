@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Nova the learning guide</title><desc id="desc">A friendly original star-shaped learning guide holding a small compass.</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#39b8a7"/><stop offset="1" stop-color="#6650bd"/></linearGradient><filter id="s" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#153c53" flood-opacity=".2"/></filter></defs>
+  <ellipse cx="121" cy="215" rx="69" ry="12" fill="#123f45" opacity=".12"/>
+  <path d="M121 18l25 44 49-6-23 44 35 35-48 10-6 49-42-25-40 28-9-48-49-7 32-37-26-42 50 2z" fill="url(#g)" stroke="#153c53" stroke-width="7" stroke-linejoin="round" filter="url(#s)"/>
+  <path d="M73 91c19-21 75-27 99 0v49c-23 28-78 29-101 0z" fill="#fff8de" stroke="#153c53" stroke-width="6"/>
+  <circle cx="101" cy="111" r="7" fill="#153c53"/><circle cx="145" cy="111" r="7" fill="#153c53"/>
+  <path d="M103 134c11 9 27 9 38 0" fill="none" stroke="#153c53" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="180" cy="171" r="27" fill="#ffd45b" stroke="#153c53" stroke-width="6"/><path d="M180 153l7 13 14 4-13 7-5 14-7-13-15-4 14-7z" fill="#fff" stroke="#153c53" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M73 169l-25 25M161 181l17 15" stroke="#153c53" stroke-width="9" stroke-linecap="round"/>
+</svg>

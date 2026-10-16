@@ -106,3 +106,13 @@ Language & Logic Path 14 received a separate independent review of every answer 
 - At 768 × 1024, the three new information groups stack into one readable column, use 17px body text, and have no horizontal overflow.
 - Automated tests: **84/84 PASS**. Validator: **PASS**.
 - Independent Parent View audit: **PASS**, with no publication blocker.
+## Child experience V3 verification
+
+- Automated checks: 84 of 84 passed.
+- Static validation: JavaScript syntax, local links, manifest icons, and offline asset references passed.
+- iPad landscape check: 1024 × 768, no page-level horizontal overflow; visible primary controls were at least 46 px tall.
+- iPad portrait check: 768 × 1024, no page-level horizontal overflow; the mission rail changed to a horizontal quest strip and answer choices remained 64 px tall.
+- Interaction check: Today, My Map, Rewards, and Start Mission responded; the start action opened the course page.
+- Regression found and fixed: the active mission label overlapped long titles, and the Pilot reset button appeared in the child rail. The overlap was removed and reset was moved into Parent View.
+- Reduced motion: Nova animation stops when the device requests reduced motion.
+- Offline: the original Nova SVG and updated child assets are included in service-worker cache v44.

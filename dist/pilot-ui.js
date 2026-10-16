@@ -28,7 +28,7 @@ if(panel&&rail&&nav&&workspace){
   backdrop.setAttribute('aria-label','Close parent view');
   document.body.append(backdrop);
   const track=document.querySelector('#trackCard');
-  const reset=document.querySelector('#resetPath');
+  const reset=document.querySelector('#resetPath,#resetPilot');
   const family=panel.querySelector('.family-check');
   if(track&&family){const title=document.createElement('h3');title.textContent='Learning level';family.before(title,track)}
   if(reset&&family)family.append(reset);
@@ -38,7 +38,7 @@ if(panel&&rail&&nav&&workspace){
   function updateProgress(){
     const steps=[...nav.querySelectorAll('.mission-button')];
     const active=Math.max(0,steps.findIndex(x=>x.classList.contains('active')));
-    progress.innerHTML='<strong>Step '+(active+1)+' of '+steps.length+'</strong><span>'+steps.map((_,i)=>'<i class="'+(i<active?'done ':i===active?'active ':'')+'"></i>').join('')+'</span>';
+    progress.innerHTML='<strong>Mission '+(active+1)+' of '+steps.length+'</strong><span>'+steps.map((_,i)=>'<i class="'+(i<active?'done ':i===active?'active ':'')+'"></i>').join('')+'</span>';
   }
   new MutationObserver(updateProgress).observe(nav,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
   function setParent(open){

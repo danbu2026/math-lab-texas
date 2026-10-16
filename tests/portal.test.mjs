@@ -108,6 +108,6 @@ test('portal supports two learners, one player, and unpublished states',()=>{
   assert.match(js,/aria-pressed/);
   assert.match(html,/My Map/);
   assert.match(html,/href="parent\.html"/);
-  assert.match(html,/portal\.css\?v=child5/);
+  assert.match(html,/portal\.css\?v=child6/);
   assert.match(html,/portal\.js\?v=child4/);
 });

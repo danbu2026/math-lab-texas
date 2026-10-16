@@ -11,7 +11,7 @@
   <link rel="icon" href="icon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="portal.css?v=child5">
+  <link rel="stylesheet" href="portal.css?v=child6">
 </head>
 <body class="child-home">
   <header class="topbar">
@@ -25,11 +25,15 @@
 
   <main>
     <section class="hero">
-      <div>
-        <p class="eyebrow">YOUR LEARNING ADVENTURE</p>
-        <h1>Ready for your next math quest?</h1>
-        <p id="heroMessage">A short mission. A real discovery. Progress that stays with you.</p>
-        <a id="startMission" class="primary" href="pilot.html">Continue Ella’s adventure <span>→</span></a>
+      <div class="hero-quest">
+        <div class="hero-copy">
+          <p class="quest-label"><span>1</span> TODAY'S QUEST</p>
+          <h1>Ready for your next math quest?</h1>
+          <p id="heroMessage">A short mission. A real discovery. Progress that stays with you.</p>
+          <a id="startMission" class="primary" href="pilot.html">Continue Ella’s adventure <span>→</span></a>
+          <ul class="quest-rules" aria-label="How to learn"><li>Try an idea</li><li>Notice what changes</li><li>Explain why</li></ul>
+        </div>
+        <figure class="quest-companion"><img src="spark-guide.svg" alt=""><figcaption><strong>Nova's learning tip</strong><span>Try it. Notice it. Explain it.</span></figcaption></figure>
       </div>
       <div class="score-card" aria-label="Learning credits">
         <span class="score-icon">★</span>
