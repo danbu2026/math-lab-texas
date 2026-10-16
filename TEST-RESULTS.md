@@ -1,4 +1,4 @@
-# Test Results · Updated October 15, 2026
+# Test Results · Updated October 16, 2026
 
 ## Automated checks
 
@@ -20,12 +20,13 @@
 - Visual Patterns Path 12 structure checks: diagnostic–attribute classification–multi-attribute transformation–two-direction matrix–Fresh sequence, three depth choices, unique rule matches, exact shape/fill/count/direction changes, isolated Preview/Challenge sessions, natural direction labels, strict delayed evidence, and two learner records: PASS.
 - Spatial Thinking Path 13 structure checks: diagnostic–mental rotation–ordered front/right-side views–multi-constraint model choice–evidence sufficiency–Fresh sequence, three depth choices, exact quarter-turns, unique matching choice, exhaustive proof that the same clues may fit unshown structures, explicit front/back/left/right order, isolated Preview/Challenge sessions, different Preview/Challenge answer positions for rotations and models, strict delayed evidence, and two learner records: PASS.
 - Language & Logic Path 14 structure checks: diagnostic answer plus reason, precise category language, if-then forward reasoning, all-clue elimination with proof, child-readable necessary-versus-sufficient reasoning, isolated Preview/Challenge sessions, strict delayed evidence, and two learner records: PASS.
+- Division & Remainders Path 15 structure checks: diagnostic–model–remainder–three-context decision–Fresh sequence, three depth choices, exact quotient/remainder identities, varied answer positions, round-up/ignore/report decisions, natural dynamic English, strict delayed transfer evidence, and two learner records: PASS.
 - Family cloud merge checks: newer cloud data downloads, newer device data uploads, blank devices do not replace meaningful records, all review-path records are included, and simultaneous updates for Ella and Mila merge without losing either child: PASS.
 - English-only shell, static fallback, old guide redirect, query-safe offline navigation, and modal background focus protection: PASS.
 - Unified child portal: one entry, six learning worlds, 41 branches, current path, complete 287-ability math map, two learner records, evidence-linked credits, editable reward ladder, gray unpublished states, and offline portal assets: PASS.
 - Child-focused interface checks: one clear child start, separate Parent View, larger learner control, hidden adult evidence drawer on every course, Level-based map wording, and offline coverage for all new interface files: PASS.
 - Child home tab behavior: Today, My Map, and Rewards each receive a click handler and activate exactly one matching page: PASS.
-- Automated test suite: **84/84 PASS**.
+- Automated test suite: **91/91 PASS**.
 
 ## Actual browser checks
 
@@ -73,6 +74,7 @@
 - Visual Patterns Path 12 rendered and completed at 1024 × 768 in Chromium with no horizontal overflow and no visible action control below 40px. The diagnostic selected Architect depth; the learner classified by required attributes, followed an explicit arrow-to-triangle transformation, and solved a matrix from both across and down routes; a hint survived refresh and kept transformation evidence at Learning; natural right/down/left/up labels matched the SVG directions; a partial Preview remained isolated while the delayed challenge restarted with a new grid; Ella and Mila remained separate and switching learners did not change Ella’s timestamp.
 - Spatial Thinking Path 13 rendered and completed at 1024 × 768 in Chromium with no horizontal overflow, no page errors, and no visible action control below 40px. The diagnostic selected Architect depth; an asymmetric pattern rotated without flipping; a front-view answer survived into the right-side step after refresh; the child had to read front left-to-right and right side front-to-back; the model task required both silhouettes, cube total, and a separate evidence-sufficiency conclusion; family Preview remained separate and returned to the Fresh gate; Ella and Mila remained separate.
 - Language & Logic Path 14 rendered and completed at 1024 × 768 in Chromium with no horizontal overflow, no page errors, and no visible control below 40px. The diagnostic required both a choice and its reason; a hint survived refresh; precise language, if-then reasoning, and all-clue elimination each required a separate proof; a partially completed Preview retained its wrong attempt, hint, and work only in its own session; after the delay was simulated, Challenge restarted from a blank answer stage, completed without help, marked transfer Independent, and left Mila untouched.
+- Division & Remainders Path 15 rendered and completed through the Fresh family preview. Mission 1 completion unlocked Mission 2; Architect Build placed its correct answer third; Mission 4 required all three real remainder decisions before Fresh unlocked; Preview kept Fresh transfer unknown. At 1024 × 768 and 768 × 1024 there was no page horizontal overflow, visible touch controls were at least 44px, and the three decision cards stacked into one clear column in portrait.
 
 ## Independent review
 
@@ -87,6 +89,8 @@ An independent agent previously reviewed the complete framework, unified child p
 Spatial Thinking Path 13 received a separate independent review of mental rotation, ordered viewpoints, hidden-stack constraints, evidence sufficiency, exhaustive non-uniqueness checks, delayed evidence, answer-position leakage, two-learner persistence, sync/offline integration, and iPad usability. The reviews first found overclaimed uniqueness, contradictory front/back display order, unstyled mission navigation, and identical Preview/Challenge answer positions. The course now teaches the limit of the evidence, uses a consistent front-to-back map, restores designed navigation states, and forces changed answer positions. The final re-review result was **PASS** with no remaining findings. Spatial Thinking Path 13 still awaits family review.
 
 Language & Logic Path 14 received a separate independent review of every answer and explanation, category wording, forward if-then reasoning, all-clue elimination, necessary-versus-sufficient language, evidence honesty, session isolation, two-learner persistence, offline integration, and iPad usability. The first review found order-dependent wording, a diagnostic without explanation evidence, an unstated necessary-versus-sufficient distinction, and insufficient browser proof of Preview/Challenge isolation. All four issues were corrected. The strengthened browser flow preserves partial Preview work while restarting the delayed Challenge from a blank answer stage. The final re-review result was **PASS** with no remaining findings. Language & Logic Path 14 still awaits family review.
+
+Division & Remainders Path 15 received a separate independent review of every quotient and remainder, answer-position bias, mission unlocking, three context decisions, delayed transfer evidence, two-learner state, dynamic English, sync/offline integration, and iPad usability. The first review found fixed answer positions, a locked Mission 2, incomplete remainder teaching, incorrect Fresh evidence accounting, fixed Ella wording, and three dynamic-English issues. All findings were corrected and regression-tested. The final re-review result was **PASS** with 91/91 automated checks, validate PASS, and no remaining blocker. Path 15 remains gray until family review.
 
 ## Current limits
 
