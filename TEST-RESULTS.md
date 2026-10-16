@@ -96,3 +96,13 @@ Language & Logic Path 14 received a separate independent review of every answer 
 - The framework is complete enough to show scope, but most ten-minute sessions still need authoring, review, and family testing.
 - Cloud sync code, security rules, and the public login domain are deployed. A real parent login followed by a second-device recovery test remains outstanding.
 - Learning outcomes have not been established through a child study.
+
+## Parent learning-foundation release
+
+- Parent View now explains six complementary learning principles: concrete-to-visual-to-symbolic representation, evidence-based mastery, productive struggle, transfer, spaced retrieval through Fresh Checks, and short focused practice.
+- It separates Texas TEKS content, Iowa/ITBS-informed independent academic application, and CogAT-informed reasoning. It explicitly identifies Iowa/ITBS as achievement assessment and CogAT as reasoning-abilities assessment.
+- It explains AI as a curriculum-design and quality-review assistant today; automatic recommendations and live tutoring remain clearly labeled as planned.
+- It states that the work is original, does not copy protected test or commercial-course content, does not predict placement or scores, and does not guarantee outcomes.
+- At 768 × 1024, the three new information groups stack into one readable column, use 17px body text, and have no horizontal overflow.
+- Automated tests: **84/84 PASS**. Validator: **PASS**.
+- Independent Parent View audit: **PASS**, with no publication blocker.
