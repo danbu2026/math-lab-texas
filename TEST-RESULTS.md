@@ -1,4 +1,4 @@
-# Test Results · Updated October 16, 2026
+# Test Results · Updated October 21, 2026
 
 ## Automated checks
 
@@ -22,12 +22,13 @@
 - Language & Logic Path 14 structure checks: diagnostic answer plus reason, precise category language, if-then forward reasoning, all-clue elimination with proof, child-readable necessary-versus-sufficient reasoning, isolated Preview/Challenge sessions, strict delayed evidence, and two learner records: PASS.
 - Division & Remainders Path 15 structure checks: diagnostic–model–remainder–three-context decision–Fresh sequence, three depth choices, exact quotient/remainder identities, varied answer positions, round-up/ignore/report decisions, natural dynamic English, strict delayed transfer evidence, and two learner records: PASS.
 - Multiply by Breaking Apart Path 16 structure checks: diagnostic–place-value decomposition–partial products–efficient transformation–error repair–Fresh sequence, three depth choices, exact products and estimates, varied answer positions, explicit Preview completion without transfer evidence, strict delayed transfer evidence, and two learner records: PASS.
+- Factor Detective Path 17 structure checks: diagnostic–complete factor pairs–prime/composite classification–systematic divisor search–counterexample repair–Fresh sequence, three depth choices, explicit 1 and 2 special cases, exact search boundaries, isolated Preview/Challenge sessions, honest independent-versus-learning feedback, disabled diagnostic double taps, gray unpublished status, and two learner records: PASS.
 - Family cloud merge checks: newer cloud data downloads, newer device data uploads, blank devices do not replace meaningful records, all review-path records are included, and simultaneous updates for Ella and Mila merge without losing either child: PASS.
 - English-only shell, static fallback, old guide redirect, query-safe offline navigation, and modal background focus protection: PASS.
 - Unified child portal: one entry, six learning worlds, 41 branches, current path, complete 287-ability math map, two learner records, evidence-linked credits, editable reward ladder, gray unpublished states, and offline portal assets: PASS.
 - Child-focused interface checks: one clear child start, separate Parent View, larger learner control, hidden adult evidence drawer on every course, Level-based map wording, and offline coverage for all new interface files: PASS.
 - Child home tab behavior: Today, My Map, and Rewards each receive a click handler and activate exactly one matching page: PASS.
-- Automated test suite: **95/95 PASS**.
+- Automated test suite: **101/101 PASS**.
 
 ## Actual browser checks
 
@@ -95,6 +96,8 @@ Language & Logic Path 14 received a separate independent review of every answer 
 Division & Remainders Path 15 received a separate independent review of every quotient and remainder, answer-position bias, mission unlocking, three context decisions, delayed transfer evidence, two-learner state, dynamic English, sync/offline integration, and iPad usability. The first review found fixed answer positions, a locked Mission 2, incomplete remainder teaching, incorrect Fresh evidence accounting, fixed Ella wording, and three dynamic-English issues. All findings were corrected and regression-tested. The final re-review result was **PASS** with 91/91 automated checks, validate PASS, and no remaining blocker. Path 15 remains gray until family review.
 
 Multiply by Breaking Apart Path 16 received a separate independent review of all products, place-value decompositions, partial products, efficient transformations, estimation, error diagnosis, delayed evidence, answer-position variation, two-learner state, sync/offline integration, system counts, accessibility, and iPad usability. The first review found a mathematically valid distractor that was marked wrong, an error-repair task that revealed the diagnosis before the child reasoned, misleading claims about what estimation can prove, and an unlabeled depth selector. The course now asks for a unique digit-value decomposition, shows the student’s actual partial-product work, requires the child to identify the exact error before repairing the product, explains the limits of estimation, and gives the depth selector an accessible name. The final independent re-review result was **PASS** with 95/95 automated checks, validate PASS, no horizontal overflow at iPad sizes, and no remaining blocker. Path 16 remains gray until family review.
+
+Factor Detective Path 17 received a separate independent review of every factor pair, prime/composite classification, systematic search, special-number rule, counterexample, delayed evidence, two-learner state, sync/offline integration, gray release status, and touch usability. The first review found that the portal made the course look published, 1 and 2 were not taught consistently, prepared proof sentences did not demonstrate a complete divisor search, assisted Fresh work received an “independently” message, and rapid diagnostic double taps could distort placement. All five issues were corrected and given regression tests. The final independent re-review result was **PASS** with 101/101 automated checks and validate PASS. Path 17 remains gray until family review.
 
 ## Current limits
 
