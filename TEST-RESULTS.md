@@ -110,7 +110,7 @@ Path 19 also completed real local and public-browser flows through Architect dep
 ## Current limits
 
 - Browser checks used Chromium; a physical iPad/Safari test is still required.
-- The current 18 math activities remain prototypes. They are not complete learning chains by themselves.
+- The current 20 math activities remain prototypes. They are not complete learning chains by themselves.
 - Of 287 official K–5 expectations, 12 are connected to the first pilot plan and 275 remain gray and unpublished.
 - The framework is complete enough to show scope, but most ten-minute sessions still need authoring, review, and family testing.
 - Cloud sync code, security rules, and the public login domain are deployed. A real parent login followed by a second-device recovery test remains outstanding.
@@ -135,4 +135,7 @@ Path 19 also completed real local and public-browser flows through Architect dep
 - Regression found and fixed: the active mission label overlapped long titles, and the Pilot reset button appeared in the child rail. The overlap was removed and reset was moved into Parent View.
 - Reduced motion: Nova animation stops when the device requests reduced motion.
 - Offline: the original Nova SVG and updated child assets are included in service-worker cache v44.
+Fraction Addition Sense Path 20 received a separate independent review of every shared-unit conversion, addition and subtraction result, story interpretation, add-the-bottoms misconception, reasonableness check, delayed evidence, two-learner state, sync/offline integration, Parent View integration, gray release status, and iPad usability. The first review found that the Strategist subtraction story allowed two reasonable interpretations. The story now states that 1/4 of the container's full capacity was removed, making 5/6 - 1/4 = 7/12 the unique model, and a regression test protects that wording. The final independent re-review result was **PASS**. Focused checks passed 7/7, the full suite passed 120/120, and static validation passed.
+
+Path 20 completed a real local-browser flow through Architect depth. The learner renamed 3/4 and 2/5 as twentieths before subtracting, solved and explained a fraction story, diagnosed why subtracting both denominators destroys the unit, repaired 7/8 - 1/3 as 13/24, and checked the answer against one-half. The family Preview solved 5/6 + 3/4 as 1 7/12 and explicitly left Fresh transfer unknown. Switching from Ella to Mila opened a separate untouched record. At 1024 x 768 and 768 x 1024 there was no horizontal overflow and no visible action control below 40px. Path 20 remains gray until family review.
 
