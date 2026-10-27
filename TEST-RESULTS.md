@@ -1,4 +1,19 @@
-# Test Results · Updated October 21, 2026
+# Test Results · Updated October 26, 2026
+
+## Level 1–2 guided review road
+
+- Built 24 units and 120 short guided-review quests: 11 Level 1 units / 55 quests and 13 Level 2 units / 65 quests. These map every Grade 1 and Grade 2 content expectation to guided selection; they do not yet prove independent construction, creation, or spoken explanation.
+- Verified the complete Grade 1 and Grade 2 Texas math content-expectation index against the project’s official TEKS source data. Every content expectation is assigned to specific authored mission evidence. Mathematical process standards guide the three-step routine, but this review road does not claim separate mastery evidence for them.
+- Every quest contains a valid prompt, one unique answer, a visual or hands-on thinking aid, two plausible distractors, a mathematical explanation, hints, attempts, and a record of whether hints or correction were used.
+- Board taps are optional practice and are never stored as mastery evidence. Visual tools include counters, exact place-value models, number lines, coins, clocks, rulers, exact-category graphs, money choices, 2D shapes, and separately named 3D solids.
+- Ella and Mila have separate progress, work sessions, attempts, hints, completion evidence, and family notes. The foundation record is included in family cloud synchronization.
+- The family-review build stays gray, labels itself as review content, and awards no credits before family approval.
+- Security regression: a family note containing HTML-like text displayed literally in Parent View and created no injected element.
+- Timing regression: switching units during answer/completion feedback left the new unit untouched; delayed work did not render into the new context.
+- iPad landscape check at 1024 × 768: 18px body text, 58px answer controls, two-column map/workspace, and no page-level horizontal overflow.
+- iPad portrait check at 768 × 1024: 17px body text, one-column workspace, two-column unit map, and no page-level horizontal overflow.
+- Focused foundation checks: **15/15 PASS**. Full automated suite: **135/135 PASS**. Static validator: **PASS**.
+- Independent final re-review: **PASS** after verifying proportional number lines, real SVG shape/solid diagrams, corrected Grade 1–2 standard mappings, honest guided-review evidence language, state safety, separate Ella/Mila records, sync/offline integration, and the no-credit gray review status.
 
 ## Automated checks
 

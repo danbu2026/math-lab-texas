@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075e59">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Little STEAM Lab">
+<title>Level 1 & 2 Math Adventure</title>
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="foundations.css?v=4">
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="./"><span class="mark">S<sup>+</sup></span><span>Little STEAM Lab<small>FOUNDATION MATH ADVENTURE</small></span></a>
+<div class="top-actions"><label>Playing as <select id="learner"><option value="a">Ella</option><option value="b">Mila</option></select></label><a class="home-btn" href="./">Home</a></div>
+</header>
+<div class="review-banner"><strong>Family review edition</strong><span>All lessons work now. They stay gray and award no credits until your family approves them.</span></div>
+<main>
+<section class="course-hero">
+<div><p class="eyebrow">LEVEL 1–2 GUIDED REVIEW ROAD</p><h1>Choose a level. Finish one quest at a time.</h1><p>Every quest follows the same rhythm: notice, build, solve, explain, and try something new.</p></div>
+<div class="hero-count"><strong>120</strong><span>5–10 minute quests</span></div>
+</section>
+<nav id="levelTabs" class="level-tabs" aria-label="Choose a level"></nav>
+<section class="progress-strip" aria-label="Course progress"><div><strong id="levelProgress">0 of 55 quests complete</strong><span id="saveStatus">Saved on this device</span></div><div class="bar"><span id="progressFill"></span></div></section>
+<section class="workspace">
+<aside class="map-panel">
+<div class="map-head"><p class="eyebrow">YOUR ADVENTURE MAP</p><h2 id="mapTitle">Level 1</h2><p id="mapSubtitle"></p></div>
+<div id="unitMap" class="unit-map"></div>
+</aside>
+<section class="quest-panel">
+<div id="questEmpty" class="empty-card" hidden><div class="big-icon">✓</div><h2>Level complete!</h2><p>You finished every quest in this level. Your family can review your learning notes.</p></div>
+<div id="questContent">
+<div class="quest-top"><div><p id="questNumber" class="eyebrow"></p><h2 id="questTitle"></h2><p id="questGoal"></p></div><span id="timeBadge" class="time-badge">5–10 MIN</span></div>
+<div id="phaseRail" class="phase-rail"></div>
+<div id="activity" class="activity" aria-live="polite"></div>
+<div id="feedback" class="feedback" aria-live="polite"></div>
+<div class="quest-actions"><button id="hintBtn" class="secondary" type="button">Give me one hint</button><button id="resetMission" class="quiet" type="button">Restart this quest</button></div>
+</div>
+</section>
+</section>
+<section class="family-note"><div><p class="eyebrow">FAMILY NOTE</p><h2>What did you notice?</h2><p>Write one short note about what helped or confused the learner.</p></div><textarea id="familyNotes" rows="3" placeholder="Example: The number-line picture helped. The wording in Quest 3 was hard."></textarea></section>
+</main>
+<script type="module" src="foundations.js?v=4"></script>
+</body>
+</html>

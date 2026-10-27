@@ -71,3 +71,5 @@
 @media(max-width:780px){.child-home .topbar{position:relative}.child-home .hero{grid-template-columns:1fr 1fr;min-height:0;padding:24px}.child-home .hero-quest{grid-column:1/-1;grid-row:auto;grid-template-columns:minmax(0,1fr) 180px}.child-home .score-card,.child-home .reward-card{grid-column:auto}.child-home .mission-steps{grid-template-columns:1fr 1fr}.child-home .tabs{position:sticky;top:0}.child-home .current-path:before{display:none}}
 @media(max-width:590px){.child-home .hero{grid-template-columns:1fr}.child-home .hero-quest{display:block}.quest-companion{display:none}.child-home .score-card,.child-home .reward-card{grid-column:1}.child-home .mission-steps{grid-template-columns:1fr}.quest-rules{margin-top:18px}.child-home .tabs button{min-width:135px}}
 @media(prefers-reduced-motion:reduce){.quest-companion img{animation:none}}
+
+.foundation-road{background:#edf0ef!important;border:2px dashed #9eaaa8!important;box-shadow:none!important}.foundation-road .primary{background:#65777a!important}
