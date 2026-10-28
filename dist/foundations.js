@@ -29,6 +29,27 @@ function shapeGraphic(label,solid=false){
  const solids={sphere:'<circle cx="50" cy="50" r="34"/><ellipse cx="50" cy="50" rx="34" ry="12" class="detail"/>',cone:'<path d="M50 10 L88 80 L12 80 Z"/><ellipse cx="50" cy="80" rx="38" ry="10" class="detail"/>',cylinder:'<rect x="20" y="22" width="60" height="58"/><ellipse cx="50" cy="22" rx="30" ry="10"/><ellipse cx="50" cy="80" rx="30" ry="10" class="detail"/>','rectangular prism':'<path d="M15 30 L62 18 L88 35 L42 49 Z M15 30 L15 72 L42 88 L42 49 M42 49 L88 35 L88 76 L42 88"/>',cube:'<path d="M18 32 L55 16 L84 34 L47 51 Z M18 32 L18 70 L47 87 L47 51 M47 51 L84 34 L84 72 L47 87"/>','triangular prism':'<path d="M18 72 L18 28 L52 50 Z M52 50 L82 30 L82 73 L18 72 M18 28 L48 12 L82 30"/>'};
  const art=(solid?solids:shapes)[label]||shapes[label]||'<rect x="15" y="25" width="70" height="50"/>';return '<button class="math-piece diagram-piece" type="button" aria-label="'+esc(label)+'"><svg viewBox="0 0 100 100" aria-hidden="true">'+art+'</svg><small>'+esc(label)+'</small></button>';
 }
+function extendedShapeGraphic(label){
+ const extra={parallelogram:'<polygon points="28,18 90,18 72,82 10,82"/>',trapezoid:'<polygon points="30,18 70,18 90,82 10,82"/>','irregular quadrilateral':'<polygon points="18,12 88,30 68,90 8,68"/>'};
+ const art=extra[label];if(!art)return shapeGraphic(label);
+ return '<button class="math-piece diagram-piece" type="button" aria-label="'+esc(label)+'"><svg viewBox="0 0 100 100" aria-hidden="true">'+art+'</svg><small>'+esc(label)+'</small></button>';
+}
+function placeGraphic(v){
+ const places=[['hundred-thousand',v.hundredThousands,'hundred-thousands'],['ten-thousand',v.tenThousands,'ten-thousands'],['thousand',v.thousands,'thousands'],['hundred',v.hundreds,'hundreds'],['ten',v.tens,'tens'],['one',v.ones,'ones']].filter(([,value])=>value!==undefined);
+ return '<div class="place-board exact place-'+places.length+'">'+places.map(([cls,value,label])=>'<span class="'+cls+'">'+(value||0)+' '+label+'</span>').join('')+'</div>'+(v.note?'<p class="visual-note">'+esc(v.note)+'</p>':'');
+}
+function fractionBar(v){return '<div class="fraction-bar" style="--parts:'+v.total+'" aria-label="'+v.shaded+' of '+v.total+' equal parts">'+Array.from({length:v.total},(_,i)=>'<button class="math-piece '+(i<v.shaded?'filled':'')+'" type="button" aria-label="part '+(i+1)+'"></button>').join('')+'</div>'}
+function fractionLine(v){return '<div class="fraction-line" aria-label="'+v.numerator+' out of '+v.denominator+' intervals from zero">'+Array.from({length:v.denominator+1},(_,i)=>'<button class="math-piece '+(i===v.numerator?'marked':'')+'" type="button"><i></i><span>'+i+'/'+v.denominator+'</span></button>').join('')+'</div>'}
+function arrayGraphic(v){return '<div class="array-board" style="--rows:'+v.rows+';--cols:'+v.cols+'" aria-label="'+v.rows+' rows of '+v.cols+'">'+Array.from({length:v.rows*v.cols},()=>'<button class="math-piece" type="button"></button>').join('')+'</div>'}
+function compositeAreaGraphic(v){
+ const [[w1,h1],[w2,h2]]=v.rects,scale=18,width=(w1+w2)*scale,height=Math.max(h1,h2)*scale,y2=(Math.max(h1,h2)-h2)*scale;
+ return '<svg class="composite-area" viewBox="0 0 '+width+' '+height+'" role="img" aria-label="Connected composite figure split into '+w1+' by '+h1+' and '+w2+' by '+h2+' rectangles"><rect x="0" y="0" width="'+(w1*scale)+'" height="'+(h1*scale)+'"/><rect x="'+(w1*scale)+'" y="'+y2+'" width="'+(w2*scale)+'" height="'+(h2*scale)+'"/><line x1="'+(w1*scale)+'" y1="'+y2+'" x2="'+(w1*scale)+'" y2="'+height+'"/><text x="'+(w1*scale/2)+'" y="'+(height/2)+'">'+w1+' × '+h1+'</text><text x="'+((w1+w2/2)*scale)+'" y="'+(y2+h2*scale/2)+'">'+w2+' × '+h2+'</text></svg>';
+}
+function pointGridGraphic(v){
+ const lookup=new Map(v.points.map(([x,y,label])=>[x+','+y,label]));
+ return '<div class="point-grid" aria-label="Tappable four by four point grid">'+Array.from({length:16},(_,i)=>{const x=i%4+1,y=Math.floor(i/4)+1,label=lookup.get(x+','+y)||'';return '<button class="math-piece '+(label?'named':'')+'" type="button" aria-label="point '+x+','+y+(label?' '+label:'')+'">'+label+'</button>'}).join('')+'</div>';
+}
+function moneyGraphic(v){return '<div class="money-collection">'+v.items.map(([label,count,cents])=>'<button class="math-piece" type="button"><strong>'+count+' × '+esc(label)+'</strong><small>'+cents+'¢ each</small></button>').join('')+'</div>'}
 function unitCompleted(ui){return level().units[ui].cases.every((_,mi)=>state.completed[missionId(ui,mi)]?.complete)}
 function levelDoneCount(){return level().units.reduce((n,u,ui)=>n+u.cases.filter((_,mi)=>state.completed[missionId(ui,mi)]?.complete).length,0)}
 function nextIncompleteInUnit(ui){const index=level().units[ui].cases.findIndex((_,mi)=>!state.completed[missionId(ui,mi)]?.complete);return index<0?4:index}
@@ -52,10 +73,20 @@ function visualBoard(id,index,c){
  const v=c.visual||null,piece=(label,cls='')=>'<button class="math-piece '+cls+'" type="button">'+esc(label)+'</button>';let body='';
  if(v?.type==='dots')body='<div class="dot-board grouped">'+v.groups.map((count,g)=>'<span class="dot-group" aria-label="group '+(g+1)+'">'+Array.from({length:count},(_,i)=>'<button class="math-piece dot" type="button" aria-label="dot '+(i+1)+' in group '+(g+1)+'"></button>').join('')+'</span>').join('')+'</div>';
  else if(v?.type==='groupSets')body='<div class="group-sets">'+v.sets.map((set,s)=>'<div><strong>Set '+(s+1)+'</strong>'+set.map((count,g)=>'<span class="mini-group" aria-label="group of '+count+'">'+count+'</span>').join('')+'</div>').join('')+'</div>';
- else if(v?.type==='place')body='<div class="place-board exact"><span class="thousand">'+(v.thousands||0)+' thousands</span><span class="hundred">'+(v.hundreds||0)+' hundreds</span><span class="ten">'+(v.tens||0)+' tens</span><button class="math-piece one">'+(v.ones||0)+' ones</button></div>'+(v.note?'<p class="visual-note">'+esc(v.note)+'</p>':'');
+ else if(v?.type==='place')body=placeGraphic(v);
  else if(v?.type==='numberLine'){const values=[...new Set([v.min,...v.points,v.max])].sort((a,b)=>a-b);body='<div class="number-line proportional">'+values.map(value=>{const percent=(value-v.min)/(v.max-v.min)*100;return '<button class="math-piece tick" type="button" style="left:'+percent+'%" data-value="'+value+'" data-position="'+percent+'"><i></i><span>'+value+'</span></button>'}).join('')+'</div>'}
- else if(v?.type==='graph')body='<div class="graph-board">'+v.values.map((value,i)=>'<button class="math-piece graph-bar" type="button" style="height:'+Math.max(20,Math.min(100,value*10))+'%"><span>'+esc(v.labels[i])+': '+value+'</span></button>').join('')+'</div>';
- else if(v?.type==='shapes'||v?.type==='solids')body='<div class="shape-board authored">'+v.items.map(label=>shapeGraphic(label,v.type==='solids')).join('')+'</div>';
+ else if(v?.type==='fractionBar')body=fractionBar(v);
+ else if(v?.type==='fractionLine')body=fractionLine(v);
+ else if(v?.type==='array')body=arrayGraphic(v);
+ else if(v?.type==='pairs')body='<div class="pair-table"><strong>Input</strong><strong>Output</strong>'+v.pairs.map(pair=>'<button class="math-piece" type="button">'+pair[0]+'</button><button class="math-piece" type="button">'+pair[1]+'</button>').join('')+'</div>';
+ else if(v?.type==='areaRects')body=compositeAreaGraphic(v);
+ else if(v?.type==='pointGrid')body=pointGridGraphic(v);
+ else if(v?.type==='money')body=moneyGraphic(v);
+ else if(v?.type==='timeIntervals')body='<div class="time-intervals">'+v.intervals.map(value=>'<button class="math-piece" type="button">'+value+' min</button>').join('<span>+</span>')+'<span>=</span><strong>'+v.intervals.reduce((sum,value)=>sum+value,0)+' min</strong></div>';
+ else if(v?.type==='scaleRead')body='<div class="measurement-read scale-read"><div class="dial">'+v.value+' '+esc(v.unit)+'</div><strong>WEIGHT SCALE</strong></div>';
+ else if(v?.type==='capacityRead')body='<div class="measurement-read capacity-read" style="--fill:'+(v.value/v.max*100)+'%"><div class="pitcher"><span>'+v.max+' '+esc(v.unit)+'</span><i></i><b>'+v.value+' '+esc(v.unit)+'</b></div><strong>MARKED CONTAINER</strong></div>';
+ else if(v?.type==='graph'){const max=Math.max(...v.values);body=(v.scale?'<p class="graph-scale">Scale: each grid step = '+v.scale+'</p>':'')+'<div class="graph-board scaled" style="--steps:'+Math.ceil(max/(v.scale||1))+'">'+v.values.map((value,i)=>'<button class="math-piece graph-bar" type="button" style="height:'+(value/max*100)+'%" data-value="'+value+'"><span>'+esc(v.labels[i])+': '+value+'</span></button>').join('')+'</div>'}
+ else if(v?.type==='shapes'||v?.type==='solids')body='<div class="shape-board authored">'+v.items.map(label=>v.type==='solids'?shapeGraphic(label,true):extendedShapeGraphic(label)).join('')+'</div>';
  else if(/count|addsub|stories|groups|facts/.test(id))body='<div class="dot-board" aria-label="scratch counters">'+Array.from({length:10},(_,i)=>'<button class="math-piece dot" type="button" aria-label="scratch counter '+(i+1)+'"></button>').join('')+'</div>';
  else if(/build|place/.test(id))body='<div class="place-board blank"><span class="thousand">thousands</span><span class="hundred">hundreds</span><span class="ten">tens</span><button class="math-piece one">ones</button></div>';
  else if(/compare|length/.test(id))body='<div class="number-line blank"><button class="math-piece tick"><i></i><span>start</span></button><button class="math-piece tick"><i></i><span>mark</span></button><button class="math-piece tick"><i></i><span>end</span></button></div>';

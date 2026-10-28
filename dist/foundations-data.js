@@ -1,3 +1,5 @@
+import {LEVEL3} from './foundations-level3-data.js';
+
 export const PHASES=[
   {id:'check',label:'Quick Check',verb:'Show what you notice'},
   {id:'build',label:'Build It',verb:'Use a model'},
@@ -33,7 +35,7 @@ const CASE_STANDARDS={
 'l2-money2':[['2.11D'],['2.11E'],['2.11F'],['2.11F'],['2.11D','2.11E']]
 };
 const unit=(id,title,icon,color,standards,goal,wrongModels,wrongReasons,cases)=>({id,title,icon,color,standards,goal,wrongModels,wrongReasons,cases:cases.map((item,index)=>({...item,standards:CASE_STANDARDS[id][index]}))});
-export const LEVELS=[
+const CORE_LEVELS=[
 {id:'level1',number:1,title:'Number Explorer',subtitle:'See quantities, build meaning, and explain simple choices.',units:[
 unit('l1-count','Quick Looks & Counting','●','#f9b83f',['1.2A','1.5A','1.5B'],'Count with meaning to 120.','Count only the biggest group|Guess from the space'.split('|'),'Counting must match one object to one number.|The last count word tells how many altogether.'.split('|'),[
 q('Quick look: how many dots are on the structured card?',7,6,8,'See five dots together, then two more.','A group of five and a group of two make 7 without counting every dot.',{type:'dots',groups:[5,2]}),
@@ -207,13 +209,24 @@ q('You can buy a game now or save for a bike. What is the strongest decision ste
 ])
 ]}];
 
+export const LEVELS=[...CORE_LEVELS,LEVEL3];
+
 export function visualFacts(visual){
  if(!visual)return null;
- if(visual.type==='place')return{type:'place',value:(visual.thousands||0)*1000+(visual.hundreds||0)*100+(visual.tens||0)*10+(visual.ones||0)};
- if(visual.type==='graph')return{type:'graph',categories:visual.labels.map((label,index)=>({label,value:visual.values[index]}))};
+ if(visual.type==='place')return{type:'place',value:(visual.hundredThousands||0)*100000+(visual.tenThousands||0)*10000+(visual.thousands||0)*1000+(visual.hundreds||0)*100+(visual.tens||0)*10+(visual.ones||0)};
+ if(visual.type==='graph')return{type:'graph',categories:visual.labels.map((label,index)=>({label,value:visual.values[index]})),...(visual.scale?{scale:visual.scale}:{})};
  if(visual.type==='dots')return{type:'dots',total:visual.groups.reduce((sum,value)=>sum+value,0)};
  if(visual.type==='groupSets')return{type:'groupSets',totals:visual.sets.map(set=>set.reduce((sum,value)=>sum+value,0))};
  if(visual.type==='numberLine')return{type:'numberLine',min:visual.min,max:visual.max,points:visual.points.map(value=>({value,percent:(value-visual.min)/(visual.max-visual.min)*100}))};
+ if(visual.type==='fractionBar')return{type:'fractionBar',total:visual.total,shaded:visual.shaded,value:visual.shaded/visual.total};
+ if(visual.type==='fractionLine')return{type:'fractionLine',denominator:visual.denominator,numerator:visual.numerator,value:visual.numerator/visual.denominator};
+ if(visual.type==='array')return{type:'array',rows:visual.rows,cols:visual.cols,total:visual.rows*visual.cols};
+ if(visual.type==='pairs')return{type:'pairs',pairs:visual.pairs.map(pair=>[...pair])};
+ if(visual.type==='areaRects')return{type:'areaRects',areas:visual.rects.map(([width,height])=>width*height),total:visual.rects.reduce((sum,[width,height])=>sum+width*height,0)};
+ if(visual.type==='money')return{type:'money',totalCents:visual.items.reduce((sum,[,count,cents])=>sum+count*cents,0)};
+ if(visual.type==='timeIntervals')return{type:'timeIntervals',totalMinutes:visual.intervals.reduce((sum,value)=>sum+value,0)};
+ if(visual.type==='scaleRead'||visual.type==='capacityRead')return{type:visual.type,value:visual.value,unit:visual.unit};
+ if(visual.type==='pointGrid')return{type:'pointGrid',points:visual.points.map(point=>[...point])};
  if(visual.type==='shapes'||visual.type==='solids')return{type:visual.type,items:[...visual.items]};
  return{type:visual.type};
 }

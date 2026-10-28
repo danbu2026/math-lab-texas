@@ -1,19 +1,19 @@
-# Test Results · Updated October 26, 2026
+# Test Results · Updated October 27, 2026
 
-## Level 1–2 guided review road
+## Level 1–3 guided review road
 
-- Built 24 units and 120 short guided-review quests: 11 Level 1 units / 55 quests and 13 Level 2 units / 65 quests. These map every Grade 1 and Grade 2 content expectation to guided selection; they do not yet prove independent construction, creation, or spoken explanation.
-- Verified the complete Grade 1 and Grade 2 Texas math content-expectation index against the project’s official TEKS source data. Every content expectation is assigned to specific authored mission evidence. Mathematical process standards guide the three-step routine, but this review road does not claim separate mastery evidence for them.
+- Built 37 units and 185 short guided-review quests: 11 Level 1 units / 55 quests, 13 Level 2 units / 65 quests, and 13 Level 3 units / 65 quests. These map every Grade 1, Grade 2, and Grade 3 content expectation to guided selection; they do not yet prove independent construction, creation, or spoken explanation.
+- Verified the complete Grade 1, Grade 2, and Grade 3 Texas math content-expectation index against the project’s official TEKS source data. Every content expectation is assigned to specific authored mission evidence. Mathematical process standards guide the three-step routine, but this review road does not claim separate mastery evidence for them.
 - Every quest contains a valid prompt, one unique answer, a visual or hands-on thinking aid, two plausible distractors, a mathematical explanation, hints, attempts, and a record of whether hints or correction were used.
-- Board taps are optional practice and are never stored as mastery evidence. Visual tools include counters, exact place-value models, number lines, coins, clocks, rulers, exact-category graphs, money choices, 2D shapes, and separately named 3D solids.
+- Board taps are optional practice and are never stored as mastery evidence. Visual tools include counters, exact place-value models, number lines, fraction bars, arrays, mixed coin-and-bill collections, scaled graphs, connected composite figures, point grids, clocks, timelines, scales, marked capacity containers, 2D shapes, and separately named 3D solids.
 - Ella and Mila have separate progress, work sessions, attempts, hints, completion evidence, and family notes. The foundation record is included in family cloud synchronization.
 - The family-review build stays gray, labels itself as review content, and awards no credits before family approval.
 - Security regression: a family note containing HTML-like text displayed literally in Parent View and created no injected element.
 - Timing regression: switching units during answer/completion feedback left the new unit untouched; delayed work did not render into the new context.
 - iPad landscape check at 1024 × 768: 18px body text, 58px answer controls, two-column map/workspace, and no page-level horizontal overflow.
 - iPad portrait check at 768 × 1024: 17px body text, one-column workspace, two-column unit map, and no page-level horizontal overflow.
-- Focused foundation checks: **15/15 PASS**. Full automated suite: **135/135 PASS**. Static validator: **PASS**.
-- Independent final re-review: **PASS** after verifying proportional number lines, real SVG shape/solid diagrams, corrected Grade 1–2 standard mappings, honest guided-review evidence language, state safety, separate Ella/Mila records, sync/offline integration, and the no-credit gray review status.
+- Focused foundation checks: **17/17 PASS**. Full automated suite: **137/137 PASS**. Static validator: **PASS**.
+- Independent final re-review: **PASS**. The reviewer verified all 65 Level 3 quests, all Grade 3 non-process TEKS mappings, mathematical answers and distractors, scaled graphs, mixed money, point-grid drawing, connected composite area, time, weight, capacity, child readability, no-credit gray review status, Ella/Mila separation, sync, and offline wiring. No release blocker remains.
 
 ## Automated checks
 
@@ -43,10 +43,14 @@
 - Unified child portal: one entry, six learning worlds, 41 branches, current path, complete 287-ability math map, two learner records, evidence-linked credits, editable reward ladder, gray unpublished states, and offline portal assets: PASS.
 - Child-focused interface checks: one clear child start, separate Parent View, larger learner control, hidden adult evidence drawer on every course, Level-based map wording, and offline coverage for all new interface files: PASS.
 - Child home tab behavior: Today, My Map, and Rewards each receive a click handler and activate exactly one matching page: PASS.
-- Automated test suite: **101/101 PASS**.
+- Automated test suite: **137/137 PASS**.
 
 ## Actual browser checks
 
+- Level 3 money opened with the exact authored collection (3 quarters, 2 dimes, and 4 pennies); the old generic finance placeholder was absent after the cache-version repair.
+- The Level 3 composite-area mission rendered one connected L-shaped SVG, two labeled rectangles, and one visible split line. The page had no horizontal overflow.
+- The Level 3 measurement sequence rendered 35 + 25 = 60 on a time-interval model, 4 kg on a weight scale, and 2 L inside a marked 3 L container. None of these missions fell back to the generic ruler.
+- The Level 3 scaled graph preserved 12, 8, 4, and 6 as different proportional bar heights and displayed the scale of 2.
 - Parent View opened at 768 × 1024 with a default Start Here guide explaining the purpose, ten-minute routine, learning model, Levels, rewards, intended benefits, current production counts, honest limits, and parent role; the page had no horizontal overflow.
 - The child home header opened at 768 × 1024 as one exact 76px row. Playing as, Ella/Mila, Install App, and Parent View filled the row from top to bottom; Parent View was centered and the previous unused lower white space was removed.
 - On a computer browser the install action displayed “Install App.” The iPad-specific branch displays “How to install on iPad” and explains Safari Share → Add to Home Screen → Add.
