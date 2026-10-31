@@ -1,0 +1,86 @@
+.coordinate-model{
+  background:#fff;
+  background-image:none;
+  background-size:auto;
+}
+
+.hierarchy-overlap{
+  position:relative;
+  min-height:230px;
+  margin-top:10px;
+}
+
+.hierarchy-set{
+  position:absolute;
+  top:12px;
+  width:62%;
+  height:180px;
+  display:flex;
+  justify-content:center;
+  padding-top:18px;
+  border:4px solid #0b6763;
+  border-radius:42%;
+  background:rgba(99,183,232,.24);
+  font-weight:900;
+}
+
+.rectangle-set{left:2%}
+.rhombus-set{right:2%;background:rgba(255,200,77,.28)}
+
+.hierarchy-intersection{
+  position:absolute;
+  left:50%;
+  top:90px;
+  transform:translateX(-50%);
+  z-index:2;
+  display:grid;
+  place-items:center;
+  min-width:105px;
+  min-height:72px;
+  padding:8px;
+  border:3px solid #164d52;
+  border-radius:18px;
+  background:#fff;
+  font-weight:900;
+}
+
+.hierarchy-intersection small{display:block;color:#60777b}
+
+@media(max-width:620px){
+  .hierarchy-overlap{min-height:205px}
+  .hierarchy-set{height:155px;font-size:.84rem}
+  .hierarchy-intersection{top:78px;min-width:88px}
+}
+
+.fraction-decompose{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fraction-decompose>div{min-width:110px}.fraction-decompose>b{font-size:1.5rem}
+.fraction-decompose>strong{font-size:.9rem}
+
+.rectangle-formula{display:grid;grid-template-columns:36px auto;grid-template-areas:"blank top" "right grid" "note note";gap:6px;width:min(100%,430px);align-items:center;text-align:center;font-weight:900}
+.rectangle-formula .top{grid-area:top}.rectangle-formula .right{grid-area:right}
+.rectangle-formula>div{grid-area:grid;display:grid;grid-template-columns:repeat(var(--cols),1fr);border:4px solid #164d52;background:#fff}
+.rectangle-formula i{aspect-ratio:1;border:1px solid #8fa6a2;background:#dff4ec}
+.rectangle-formula.perimeter>div{outline:6px solid #f28a5b;outline-offset:2px}
+.rectangle-formula p{grid-area:note;margin:10px 0 0}
+
+.geometry-terms{width:min(100%,720px);min-height:190px;background:#fff9de;border-radius:18px}
+.geometry-terms line{stroke:#164d52;stroke-width:5;stroke-linecap:round}.geometry-terms path,.geometry-terms circle{fill:#164d52}.geometry-terms text{font-size:16px;font-weight:900;fill:#063a43}
+
+.symmetry-model{display:grid;gap:12px;justify-items:center}.symmetry-rectangle{position:relative;width:min(90%,420px);height:190px;border:5px solid #164d52;background:#fff9de}
+.symmetry-line{position:absolute;border:0;border-radius:0;background:#f28a5b;padding:0;min-width:0;min-height:0}
+.symmetry-line.vertical{left:calc(50% - 3px);top:0;width:6px;height:100%}.symmetry-line.horizontal{left:0;top:calc(50% - 3px);width:100%;height:6px}
+.symmetry-line.selected{background:#0b6763;box-shadow:0 0 0 5px #dff4ec}
+
+.angle-circle circle{fill:#fff;stroke:#164d52;stroke-width:4}.angle-circle .angle-sector{fill:#ffc84d;stroke:#936e11;stroke-width:2}
+.degree-circle line,.angle-protractor .protractor-tick{stroke:#60777b;stroke-width:1.5}.angle-protractor .protractor-arc{fill:none;stroke:#164d52;stroke-width:4}.angle-protractor .angle-ray{stroke:#f05c4f;stroke-width:5}
+.angle-protractor .protractor-tick.minor{stroke-width:.65}.angle-protractor .protractor-tick.major{stroke-width:1.8}.angle-protractor .draw-ray{stroke:#f05c4f;stroke-width:5;stroke-linecap:round}
+.angle-protractor .protractor-label{font-size:6px;fill:#60777b;text-anchor:middle}.angle-marks{display:flex;gap:10px;flex-wrap:wrap}.angle-marks button{min-height:54px;border:3px solid #0b6763;border-radius:14px;background:#fff;padding:8px 14px;font:inherit;font-weight:900}.angle-marks .target{background:#fff0b8}
+.angle-draw-control{display:grid;gap:10px;width:min(100%,520px);padding:12px;border:3px solid #0b6763;border-radius:16px;background:#fff}.angle-draw-control label{display:grid;gap:8px;font-weight:900}.angle-draw-range{width:100%;min-height:48px;accent-color:#f05c4f}.angle-draw-control output{font-size:1.2rem;font-weight:900;color:#075e59}
+
+.measurement-set{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:10px;width:min(100%,620px)}.measurement-set button{min-height:88px;display:grid;gap:6px;text-align:left;border:3px solid #0b6763;border-radius:14px;background:#fff;padding:12px;font:inherit}.measurement-set strong,.measurement-set span{display:block}
+.raw-data{display:flex;gap:10px;flex-wrap:wrap}.raw-data button{min-width:66px;min-height:66px;border:3px solid #0b6763;border-radius:50%;background:#fff0b8;font:inherit;font-weight:900}
+
+@media(max-width:620px){
+  .fraction-decompose{gap:6px}.fraction-decompose>div{min-width:78px}
+  .geometry-terms{min-height:145px}.measurement-set{grid-template-columns:1fr}
+}

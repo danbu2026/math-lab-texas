@@ -4,17 +4,16 @@ import fs from 'node:fs';
 import {LEVELS,PHASES,blankFoundationsLearner,levelMissionId,shuffledChoices,visualFacts} from '../dist/foundations-data.js';
 import {TEKS_ROWS} from '../dist/teks-k5.js';
 
-test('Levels 1 through 3 form a 37-unit, 185-mission guided review road',()=>{
- assert.deepEqual(LEVELS.map(l=>l.units.length),[11,13,13]);
- assert.deepEqual(LEVELS.map(l=>l.units.reduce((n,u)=>n+u.cases.length,0)),[55,65,65]);
+test('Levels 1 through 5 form a 63-unit, 315-mission guided review road',()=>{
+ assert.deepEqual(LEVELS.map(l=>l.units.length),[11,13,13,13,13]);
+ assert.deepEqual(LEVELS.map(l=>l.units.reduce((n,u)=>n+u.cases.length,0)),[55,65,65,65,65]);
  assert.equal(PHASES.length,5);
  for(const l of LEVELS)for(const u of l.units)assert.equal(u.cases.length,5,u.id);
 });
 
-test('every Texas Grade 1, Grade 2, and Grade 3 content expectation is mapped once to guided review',()=>{
+test('every Texas Grade 1 through Grade 5 content expectation is mapped once to guided review',()=>{
  for(const l of LEVELS){
-  const processPattern=new RegExp('^'+l.number+'\\.1[A-G]$');
-  const expected=TEKS_ROWS.filter(r=>r.grade===String(l.number)&&!processPattern.test(r.id)).map(r=>r.id).sort();
+  const expected=TEKS_ROWS.filter(r=>r.grade===String(l.number)&&r.sectionNumber!==1).map(r=>r.id).sort();
   const actual=l.units.flatMap(u=>u.standards).sort();
   assert.deepEqual(actual,expected,'coverage mismatch in '+l.id);
   assert.equal(new Set(actual).size,actual.length,'duplicate standard in '+l.id);
@@ -58,10 +57,10 @@ test('the unified course is child-readable, review-honest, synced, and offline',
  const sw=fs.readFileSync('dist/sw.js','utf8');
  const home=fs.readFileSync('dist/index.html','utf8');
  const parent=fs.readFileSync('dist/parent.js','utf8');
- assert.match(html,/185/);assert.match(html,/Family review edition/);assert.match(html,/Ella/);assert.match(html,/Mila/);
+ assert.match(html,/315/);assert.match(html,/Family review edition/);assert.match(html,/Ella/);assert.match(html,/Mila/);
  assert.match(js,/mathlab-foundations-v1/);assert.match(js,/no credits are awarded/i);assert.match(js,/attempts===0&&hints===0/);
  assert.match(css,/font-size:18px/);assert.match(css,/@media\(max-width:900px\)/);assert.match(css,/min-height:58px/);assert.match(css,/prefers-reduced-motion/);
- for(const f of ['foundations.html','foundations.css','foundations-data.js','foundations-level3-data.js','foundations.js'])assert.match(sw,new RegExp(f.replace('.','\\.')));
+ for(const f of ['foundations.html','foundations.css','foundations-review-fixes.css','foundations-data.js','foundations-level3-data.js','foundations-level4-data.js','foundations-level5-data.js','foundations.js'])assert.match(sw,new RegExp(f.replace('.','\\.')));
  assert.match(sync,/mathlab-foundations-v1/);assert.match(home,/foundations\.html/);assert.match(parent,/foundations\.html/);
 });
 
@@ -169,6 +168,86 @@ test('Level 3 authored answers preserve the intended mathematics and decisions',
   'l3-finance':['Skills and knowledge can make labor more valuable','The price may rise','Enjoy it now, but have less money for a planned goal','The borrower must repay the lender, usually with interest','Earn $20, spend $6, save $8 for college, repay $4 of credit, and give $2']
  };
  for(const [id,answers] of Object.entries(expected))assert.deepEqual(byId.get(id),answers,id);
+});
+
+test('Level 4 authored answers preserve the intended mathematics and decisions',()=>{
+ const byId=new Map(LEVELS.find(l=>l.id==='level4').units.map(u=>[u.id,u.cases.map(c=>c.answer)]));
+ const expected={
+  'l4-place':['10','400,000,000 + 7,000,000 + 200,000 + 5,000 + 10 + 9','89,765,432 < 98,756,432 < 98,765,432','700000','350,008,002'],
+  'l4-decimals':['0.37','0.45 < 0.50 < 0.54','72/100','0.6','0.8'],
+  'l4-fraction-meaning':['1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4','3/8 + 2/8 + 1/8','3/4 and 6/8','8','4 × 3 = 6 × 2'],
+  'l4-fraction-ops':['5/6 > 3/4','7/8','1','Yes; 5/8 is above 1/2 and adding 1/4 stays below 1','7/10'],
+  'l4-addsub':['11285','$33.65','9000','500','$46.45; about $47'],
+  'l4-multiply':['4700','20×10, 20×4, 3×10, 3×4','19248','1702','225 square meters'],
+  'l4-division':['1,248 ÷ 6 = n','468','4','12 each with 1 sticker left','273 × 8 = 2,184'],
+  'l4-algebra':['240 - 85 + 60 = n','40 - (4 × 7) = c','32','3 × position + 1','18 × 24 - 36'],
+  'l4-area':['P = 2l + 2w','A = s × s','38 m; 84 square meters','8','169 square centimeters'],
+  'l4-geometry':['A point; B line; C line segment; D ray; E angle','vertical and horizontal','obtuse triangle','It has exactly one pair of parallel sides','perpendicular lines'],
+  'l4-angles':['1/4','A full turn is divided into 360 equal angle units','68°','Draw one ray, center a protractor at the vertex, mark 125°, then draw the second ray','85°'],
+  'l4-measure-data':['1 kilometer is larger than 1 meter','24','3 m + 125 cm = 425 cm; 2 h 15 min + 45 min = 3 h; 2 kg 500 g + 750 g = 3,250 g; $12.50 + $7.75 = $20.25','2 | 1 4 4 and 3 | 0','1'],
+  'l4-finance':['Monthly rent','$53','A savings account is accessible and may earn interest; a longer-term option may pay more but restrict access','$6 spending, $10 college saving, $4 sharing','Keep money safe and connect savers with borrowers']
+ };
+ for(const [id,answers] of Object.entries(expected))assert.deepEqual(byId.get(id),answers,id);
+});
+
+test('Level 5 authored answers preserve the intended mathematics and decisions',()=>{
+ const byId=new Map(LEVELS.find(l=>l.id==='level5').units.map(u=>[u.id,u.cases.map(c=>c.answer)]));
+ const expected={
+  'l5-decimals':['6 + 4/10 + 7/1000','3.852','0.506 < 0.509 < 0.560','7.85','2.399 < 2.40'],
+  'l5-whole-ops':['about 12,000','15322','144','7,740; about 8,000','119; about 120'],
+  'l5-decimal-ops':['(1 × 0.6) + (0.4 × 0.6)','$9.40','Split 63 tenths into 3 equal groups','4.05','$7.35'],
+  'l5-fraction-add':['1 5/12','7/12','6.25','4.55','4 5/12 miles'],
+  'l5-fraction-multdiv':['12','12','Split one third into 4 equal parts, each 1/12','18','1/20'],
+  'l5-prime-model':['29','3 × 17 = 51','(360 - 85) ÷ 5 = s','4 × 48 - 35 = n','37 is prime; 6 × 28 + 12 = 180'],
+  'l5-patterns':['(6,24)','19','A is additive; B is multiplicative','y = 5x','8 is greater than 6'],
+  'l5-expressions':['Find 8 - 3 before multiplying by 6','7 + 2','17','30','6 + [3 × (14 - 2)]'],
+  'l5-volume':['V = l × w × h, V = Bh, and for a cube V = s × s × s','The volume of a 1 by 1 by 1 cube','120 cubic units','40 square units; 240 cubic units','Floor area 108 square units; box volume 24 cubic units'],
+  'l5-hierarchy':['Every square is a rectangle, but not every rectangle is a square','Quadrilaterals → parallelograms → rhombuses','square','trapezoid','Squares inside rectangles and rhombuses, both inside parallelograms'],
+  'l5-coordinate':['84','(0,0)','Move 4 units along x, then 7 units parallel to y','(3,7)','8 miles'],
+  'l5-data':['A dot plot with two dots at 1.5 and one each at 2.0 and 2.5','31, 34, 38','All five points (1,2), (3,4), (5,5), (7,8), (9,9)','16','The variables have a positive association in this sample'],
+  'l5-finance':['Income tax is based on earnings; payroll tax is withheld from wages for programs; sales tax is charged on purchases; property tax is based on owned property','$415','Check: written record but slower; credit: buyer protection but borrowed debt; debit: direct account use but overdraft risk; electronic payment: fast but needs security','Columns for date, description, payment method, money in, money out, and running balance','$650 needs, $250 saving, $200 wants, $100 giving']
+ };
+ for(const [id,answers] of Object.entries(expected))assert.deepEqual(byId.get(id),answers,id);
+});
+
+test('Level 4 and 5 visual models preserve exact authored quantities',()=>{
+ const byId=new Map(LEVELS.flatMap(l=>l.units.map(u=>[u.id,u])));
+ assert.deepEqual(visualFacts(byId.get('l4-decimals').cases[0].visual),{type:'decimalGrid',hundredths:37,value:.37});
+ assert.deepEqual(visualFacts(byId.get('l4-angles').cases[4].visual),{type:'angle',degrees:140,split:55});
+ assert.deepEqual(visualFacts(byId.get('l4-finance').cases[3].visual),{type:'budget',income:20,total:20});
+ assert.deepEqual(visualFacts(byId.get('l5-decimal-ops').cases[0].visual),{type:'decimalArea',width:1.4,height:.6,product:.84});
+ assert.deepEqual(visualFacts(byId.get('l5-decimal-ops').cases[2].visual),{type:'decimalShare',tenths:63,groups:3,each:21});
+ assert.ok(byId.get('l5-fraction-add').cases.every(c=>c.visual),'every unlike-fraction quest needs a matching visual');
+ assert.ok(byId.get('l5-fraction-multdiv').cases.every(c=>c.visual),'every fraction multiplication/division quest needs a matching visual');
+ assert.deepEqual(visualFacts(byId.get('l5-fraction-multdiv').cases[0].visual),{type:'fractionOfSet',total:20,groups:5,take:3,taken:12});
+ assert.deepEqual(visualFacts(byId.get('l5-fraction-multdiv').cases[2].visual),{type:'fractionDivision',wholeParts:3,activeParts:1,splitEach:4,totalPieces:12});
+ assert.deepEqual(visualFacts(byId.get('l5-volume').cases[2].visual),{type:'volume',length:8,width:5,height:3,total:120});
+ assert.deepEqual(visualFacts(byId.get('l5-coordinate').cases[3].visual),{type:'coordinate',points:[[3,7,'A']]});
+ assert.deepEqual(visualFacts(byId.get('l5-hierarchy').cases[4].visual),{type:'hierarchy',groups:['Quadrilaterals','Parallelograms','Rectangles + Rhombuses','Squares']});
+ assert.deepEqual(visualFacts(byId.get('l5-finance').cases[4].visual),{type:'budget',income:1200,total:1200});
+});
+
+test('Level 4 reviewer repairs provide the visual evidence named by the standards',()=>{
+ const level=LEVELS.find(l=>l.id==='level4'),byId=new Map(level.units.map(u=>[u.id,u])),js=fs.readFileSync('dist/foundations.js','utf8'),fixes=fs.readFileSync('dist/foundations-review-fixes.css','utf8');
+ const decimalLine=visualFacts(byId.get('l4-decimals').cases[1].visual);assert.deepEqual(decimalLine.points.map(p=>p.value),[.45,.5,.54]);assert.ok(decimalLine.points.every((p,i)=>Math.abs(p.percent-[25,50,70][i])<1e-9));
+ assert.equal(byId.get('l4-fraction-meaning').cases[1].visual.type,'fractionDecompose');
+ assert.ok(byId.get('l4-area').cases.slice(0,2).every(c=>c.visual?.type==='rectangleFormula'));
+ assert.equal(byId.get('l4-geometry').cases[0].visual.type,'geometryTerms');assert.equal(byId.get('l4-geometry').cases[1].visual.type,'symmetry');
+ assert.deepEqual(byId.get('l4-angles').cases.slice(0,4).map(c=>c.visual.mode),['sector','degreeCircle','protractor','draw']);
+ assert.deepEqual(byId.get('l4-measure-data').cases[2].visual.items.map(x=>x[0]),['Length','Time','Mass','Money']);
+ assert.equal(byId.get('l4-measure-data').cases[3].visual.type,'rawData');
+ for(const name of ['fractionDecomposeGraphic','rectangleFormulaGraphic','geometryTermsGraphic','symmetryGraphic','measurementSetGraphic','rawDataGraphic','angle-protractor','hierarchy-overlap'])assert.match(js+fixes,new RegExp(name));
+ assert.match(js,/length:181/);assert.match(js,/angle-draw-range/);assert.match(js,/draw-ray/);assert.doesNotMatch(js,/125° target/);
+});
+
+test('Level 5 reviewer repairs use truthful coordinate, fraction, hierarchy, volume, data, and finance models',()=>{
+ const js=fs.readFileSync('dist/foundations.js','utf8'),data=fs.readFileSync('dist/foundations-level5-data.js','utf8'),css=fs.readFileSync('dist/foundations.css','utf8'),fixes=fs.readFileSync('dist/foundations-review-fixes.css','utf8');
+ for(const phrase of ['coordinateGraphic','grid-line','tick-label','fractionOperationGraphic','fractionOfSetGraphic','fractionDivisionGraphic','decimalShareGraphic','hierarchyGraphic','volume-layers'])assert.match(js+css,new RegExp(phrase));
+ assert.doesNotMatch(data,/parallelogram is a trapezoid/i);
+ for(const phrase of ['Income tax is based on earnings','payroll tax is withheld','Check: written record','electronic payment: fast','Columns for date, description, payment method','V = Bh','V = s × s × s'])assert.match(data,new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'));
+ assert.deepEqual(LEVELS.find(l=>l.id==='level5').units.find(u=>u.id==='l5-data').cases[4].standards,['5.9C']);
+ assert.match(fixes,/\.coordinate-model\{[\s\S]*background-image:none/);
+ assert.match(js,/hierarchy-overlap/);assert.match(js,/rectangle-set/);assert.match(js,/rhombus-set/);assert.match(js,/hierarchy-intersection/);
 });
 
 test('board taps are practice only and cannot be stored as mastery evidence',()=>{

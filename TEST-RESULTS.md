@@ -1,9 +1,9 @@
-# Test Results · Updated October 27, 2026
+# Test Results · Updated October 31, 2026
 
-## Level 1–3 guided review road
+## Level 1–5 guided review road
 
-- Built 37 units and 185 short guided-review quests: 11 Level 1 units / 55 quests, 13 Level 2 units / 65 quests, and 13 Level 3 units / 65 quests. These map every Grade 1, Grade 2, and Grade 3 content expectation to guided selection; they do not yet prove independent construction, creation, or spoken explanation.
-- Verified the complete Grade 1, Grade 2, and Grade 3 Texas math content-expectation index against the project’s official TEKS source data. Every content expectation is assigned to specific authored mission evidence. Mathematical process standards guide the three-step routine, but this review road does not claim separate mastery evidence for them.
+- Built 63 units and 315 short guided-review quests: 11 Level 1 units / 55 quests and 13 units / 65 quests in each of Levels 2–5. These map every Grade 1 through Grade 5 content expectation to guided selection; they do not yet prove independent construction, creation, or spoken explanation.
+- Verified the complete Grade 1 through Grade 5 Texas math content-expectation index against the project’s official TEKS source data. Every content expectation is assigned to specific authored mission evidence. Mathematical process standards guide the three-step routine, but this review road does not claim separate mastery evidence for them.
 - Every quest contains a valid prompt, one unique answer, a visual or hands-on thinking aid, two plausible distractors, a mathematical explanation, hints, attempts, and a record of whether hints or correction were used.
 - Board taps are optional practice and are never stored as mastery evidence. Visual tools include counters, exact place-value models, number lines, fraction bars, arrays, mixed coin-and-bill collections, scaled graphs, connected composite figures, point grids, clocks, timelines, scales, marked capacity containers, 2D shapes, and separately named 3D solids.
 - Ella and Mila have separate progress, work sessions, attempts, hints, completion evidence, and family notes. The foundation record is included in family cloud synchronization.
@@ -12,8 +12,10 @@
 - Timing regression: switching units during answer/completion feedback left the new unit untouched; delayed work did not render into the new context.
 - iPad landscape check at 1024 × 768: 18px body text, 58px answer controls, two-column map/workspace, and no page-level horizontal overflow.
 - iPad portrait check at 768 × 1024: 17px body text, one-column workspace, two-column unit map, and no page-level horizontal overflow.
-- Focused foundation checks: **17/17 PASS**. Full automated suite: **137/137 PASS**. Static validator: **PASS**.
-- Independent final re-review: **PASS**. The reviewer verified all 65 Level 3 quests, all Grade 3 non-process TEKS mappings, mathematical answers and distractors, scaled graphs, mixed money, point-grid drawing, connected composite area, time, weight, capacity, child readability, no-credit gray review status, Ella/Mila separation, sync, and offline wiring. No release blocker remains.
+- Focused foundation checks: **22/22 PASS**. Full automated suite: **142/142 PASS**. Static validator: **PASS**. Formatting check: **PASS** (Windows line-ending notices only).
+- Independent Level 4 review: **PASS** after repairs to decimal and fraction models, perimeter/area development, geometry and symmetry, one-degree protractor measurement, draggable angle construction, mixed measurement operations, and raw-data representation.
+- Independent Level 5 review: **PASS** after repairs to decimal and fraction models, decimal sharing, unit-cube volume, proportional coordinate grids, overlapping shape hierarchies, paired data, and financial literacy coverage.
+- Browser QA confirmed 181 one-degree protractor marks with no printed answer, a working 0–180° draggable ray, a coordinate plane with only true scaled grid lines, an overlapping rectangle/rhombus organizer, and no page-level horizontal overflow.
 
 ## Automated checks
 
