@@ -1,4 +1,6 @@
 import {LEVEL3} from './foundations-level3-data.js';
+import {LEVEL4} from './foundations-level4-data.js';
+import {LEVEL5} from './foundations-level5-data.js';
 
 export const PHASES=[
   {id:'check',label:'Quick Check',verb:'Show what you notice'},
@@ -209,11 +211,12 @@ q('You can buy a game now or save for a bike. What is the strongest decision ste
 ])
 ]}];
 
-export const LEVELS=[...CORE_LEVELS,LEVEL3];
+export const LEVELS=[...CORE_LEVELS,LEVEL3,LEVEL4,LEVEL5];
 
 export function visualFacts(visual){
  if(!visual)return null;
- if(visual.type==='place')return{type:'place',value:(visual.hundredThousands||0)*100000+(visual.tenThousands||0)*10000+(visual.thousands||0)*1000+(visual.hundreds||0)*100+(visual.tens||0)*10+(visual.ones||0)};
+ if(visual.type==='place')return{type:'place',value:(visual.hundredMillions||0)*100000000+(visual.tenMillions||0)*10000000+(visual.millions||0)*1000000+(visual.hundredThousands||0)*100000+(visual.tenThousands||0)*10000+(visual.thousands||0)*1000+(visual.hundreds||0)*100+(visual.tens||0)*10+(visual.ones||0)};
+ if(visual.type==='placeCompare')return{type:'placeCompare',values:[...visual.values]};
  if(visual.type==='graph')return{type:'graph',categories:visual.labels.map((label,index)=>({label,value:visual.values[index]})),...(visual.scale?{scale:visual.scale}:{})};
  if(visual.type==='dots')return{type:'dots',total:visual.groups.reduce((sum,value)=>sum+value,0)};
  if(visual.type==='groupSets')return{type:'groupSets',totals:visual.sets.map(set=>set.reduce((sum,value)=>sum+value,0))};
@@ -227,6 +230,19 @@ export function visualFacts(visual){
  if(visual.type==='timeIntervals')return{type:'timeIntervals',totalMinutes:visual.intervals.reduce((sum,value)=>sum+value,0)};
  if(visual.type==='scaleRead'||visual.type==='capacityRead')return{type:visual.type,value:visual.value,unit:visual.unit};
  if(visual.type==='pointGrid')return{type:'pointGrid',points:visual.points.map(point=>[...point])};
+ if(visual.type==='decimalGrid')return{type:'decimalGrid',hundredths:visual.hundredths,value:visual.hundredths/100};
+ if(visual.type==='decimalArea')return{type:'decimalArea',width:visual.width,height:visual.height,product:visual.width*visual.height};
+ if(visual.type==='decimalShare')return{type:'decimalShare',tenths:visual.tenths,groups:visual.groups,each:visual.tenths/visual.groups};
+ if(visual.type==='fractionOperation')return{type:'fractionOperation',denominator:visual.denominator,left:visual.left,right:visual.right,operator:visual.operator};
+ if(visual.type==='fractionOfSet')return{type:'fractionOfSet',total:visual.total,groups:visual.groups,take:visual.take,taken:visual.total/visual.groups*visual.take};
+ if(visual.type==='fractionDivision')return{type:'fractionDivision',wholeParts:visual.wholeParts,activeParts:visual.activeParts,splitEach:visual.splitEach,totalPieces:visual.wholeParts*visual.splitEach};
+ if(visual.type==='angle')return{type:'angle',degrees:visual.degrees,...(visual.split?{split:visual.split}:{})};
+ if(visual.type==='stemLeaf')return{type:'stemLeaf',rows:visual.rows.map(([stem,leaves])=>[stem,[...leaves]])};
+ if(visual.type==='dotPlot')return{type:'dotPlot',values:[...visual.values],min:Math.min(...visual.values),max:Math.max(...visual.values)};
+ if(visual.type==='budget')return{type:'budget',income:visual.income,total:visual.items.reduce((sum,[,value])=>sum+value,0)};
+ if(visual.type==='coordinate'||visual.type==='scatter')return{type:visual.type,points:visual.points.map(point=>[...point])};
+ if(visual.type==='volume')return{type:'volume',length:visual.length,width:visual.width,height:visual.height,total:visual.length*visual.width*visual.height};
+ if(visual.type==='hierarchy')return{type:'hierarchy',groups:[...visual.groups]};
  if(visual.type==='shapes'||visual.type==='solids')return{type:visual.type,items:[...visual.items]};
  return{type:visual.type};
 }
