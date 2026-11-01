@@ -1,4 +1,4 @@
-import './cloud-sync.js';
+import './cloud-sync.js?v=family3';
 import {TEKS_ROWS} from './teks-k5.js';
 import {PILOT_CHAIN,createBlankLearner} from './pilot-data.js';
 import {LEARNING_WORLDS,GRADE_PATH,MISSION_LOOP,PILOT_PIECES} from './portal-data.js';
@@ -9,6 +9,8 @@ const milestones=[50,100,200,400,700,1000];
 const defaults=['Choose a family reward','Pick the family movie','Choose Saturday breakfast','Plan a mini adventure','Choose a new book or game','Design a family celebration'];
 const creditByMission={'starting-point':10,'equal-groups':20,'split-array':20,'fact-family':20,'fresh-transfer':30};
 let learner=localStorage.getItem(learnerKey)||'a';
+const learnerName=id=>window.MathLabFamily?.learnerName(id)||(id==='a'?'Learner 1':'Learner 2');
+function applyPersonalNames(){const select=$('#learner');if(select){select.querySelector('option[value="a"]').textContent=learnerName('a');select.querySelector('option[value="b"]').textContent=learnerName('b')}const start=$('#startMission');if(start&&completedCount()<5)start.innerHTML=`${completedCount()?'Continue':'Start'} ${learnerName(learner)}’s adventure <span>→</span>`}
 
 function safeRead(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
 function pilotState(){const all=safeRead(pilotKey,{a:createBlankLearner(),b:createBlankLearner()});return all[learner]||createBlankLearner()}
@@ -29,11 +31,12 @@ function renderSteps(){const state=pilotState();$('#missionSteps').innerHTML=PIL
 function renderLibrary(){const grade=$('#gradeFilter').value,q=$('#missionSearch').value.trim().toLowerCase();const rows=TEKS_ROWS.filter(r=>(grade==='all'||r.grade===grade)&&(!q||`${r.id} ${r.knowledgeAndSkills} ${r.studentExpectation}`.toLowerCase().includes(q)));$('#missionCount').textContent=`Showing ${rows.length} of ${TEKS_ROWS.length} Texas K–5 expectations`;$('#missionLibrary').innerHTML=rows.length?rows.map(r=>`<article class="standard-card"><h3>Grade ${r.grade} · ${r.id}</h3><p>${r.studentExpectation}</p><div class="pieces">${['Check','Learn','Apply','Fresh check'].map(piece=>`<span class="piece ${(PILOT_PIECES[r.id]||[]).includes(piece)?'live':''}">${piece}</span>`).join('')}</div></article>`).join(''):'<p class="empty">No matching mission pieces yet.</p>'}
 function renderRewards(){const total=earned();if($('#rewardLadder'))$('#rewardLadder').innerHTML=rewards().map(r=>`<div class="ladder-row ${total>=r.credits?'unlocked':''}"><strong>${r.credits} ★</strong><span>${r.name}</span><span class="badge">${total>=r.credits?'Unlocked':'Locked'}</span></div>`).join('');if($('#rewardForm'))$('#rewardForm').innerHTML=rewards().map(r=>`<label class="reward-input"><strong>${r.credits} ★</strong><input data-reward="${r.credits}" value="${r.name.replaceAll('&','&amp;').replaceAll('"','&quot;')}" maxlength="60"></label>`).join('')}
 function showPage(id){$$('[data-page]').forEach(p=>p.classList.toggle('active',p.id===id));$$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'})}
-function renderAll(){renderHero();renderSteps();renderRewards()}
+function renderAll(){renderHero();renderSteps();renderRewards();applyPersonalNames()}
 
 $('#learner').value=learner;$('#learner').onchange=e=>{learner=e.target.value;localStorage.setItem(learnerKey,learner);renderAll()};
 $$('[data-tab]').forEach(b=>b.onclick=()=>showPage(b.dataset.tab));
 if($('#gradeFilter'))$('#gradeFilter').onchange=renderLibrary;if($('#missionSearch'))$('#missionSearch').oninput=renderLibrary;
 if($('#saveRewards'))$('#saveRewards').onclick=()=>{const data={};$$('[data-reward]').forEach(i=>data[i.dataset.reward]=i.value.trim()||'Family reward');localStorage.setItem(rewardKey,JSON.stringify(data));$('#rewardSaved').textContent=' Saved on this device.';renderAll()};
 renderWorlds();renderWorldDetail();renderGradePath();renderLoop();if($('#missionLibrary'))renderLibrary();renderAll();
+window.addEventListener('mathlab-family-profile',renderAll);
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));

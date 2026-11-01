@@ -45,7 +45,7 @@
 @media(max-width:620px){.child-home .hero{grid-template-columns:1fr;padding:23px}.child-home .score-card,.child-home .reward-card{grid-column:auto}.child-home .hero h1{font-size:39px}.child-home .tabs{justify-content:flex-start}.child-home .mission-steps{grid-template-columns:1fr}.child-home .top-actions .outline:not([href]){display:none}}
 
 /* CHILD IDENTITY SIZE V2 */
-.child-home .learner-label{font-size:17px;font-weight:850}.child-home .learner-label select{min-height:52px;font-size:19px;border:2px solid #bdd2cd}.child-home .cloud-controls{display:none!important}
+.child-home .learner-label{font-size:17px;font-weight:850}.child-home .learner-label select{min-height:52px;font-size:19px;border:2px solid #bdd2cd}.child-home .cloud-controls{display:flex!important;height:76px;order:0;width:auto}.child-home .cloud-account{height:76px;min-height:76px;border-radius:0;border-top:0;border-bottom:0;padding:0 16px}.child-home .sync-status{display:none}
 .child-home .topbar{height:76px!important;min-height:76px!important;padding-top:0;padding-bottom:0}.child-home .top-actions{height:76px;align-self:stretch;flex-wrap:nowrap!important;gap:0}.child-home .learner-label{height:76px;display:flex;align-items:center;gap:7px;padding:0 12px}.child-home .top-actions>.outline{height:76px;min-height:76px;display:flex;align-items:center;justify-content:center;padding:0 18px;border-top:0;border-bottom:0;border-radius:0;text-align:center}.child-home .top-actions>.outline:last-child{border-right:0}@media(max-width:900px) and (min-width:761px){.child-home .brand>span:last-child{display:none}.child-home .topbar{padding-left:16px;padding-right:0}.child-home .top-actions>.outline{padding-left:15px;padding-right:15px}}
 
 /* CHILD HOME V3 · QUEST-FIRST IPAD EXPERIENCE */

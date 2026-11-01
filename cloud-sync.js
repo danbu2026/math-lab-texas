@@ -1,94 +1,58 @@
 import{TRACKED_KEYS,inferTimestamp,mergeItems}from'./sync-model.js';
 
 const firebaseConfig={apiKey:'AIzaSyCyCVjwLxanaRy17ueRxi8X3gGd1JqoJLo',authDomain:'little-steam-lab-family-sync.firebaseapp.com',projectId:'little-steam-lab-family-sync',storageBucket:'little-steam-lab-family-sync.firebasestorage.app',messagingSenderId:'547576570653',appId:'1:547576570653:web:f27294ca5e04c6899ab7f4'};
-const META_KEY='mathlab-cloud-meta-v1';
+const META_KEY='mathlab-cloud-meta-v1',PROFILE_KEY='mathlab-family-profile-v1';
 const nativeSet=Storage.prototype.setItem;
-let user=null,auth=null,db=null,unsubscribe=null,trackingReady=false,suppress=false,pushTimer=null;
-let GoogleAuthProvider,signInWithPopup,signOut,doc,getDoc,setDoc,onSnapshot,serverTimestamp;
+let user=null,auth=null,db=null,unsubscribe=null,trackingReady=false,suppress=false,pushTimer=null,familyProfile=readProfile(),pendingProfile=null;
+let GoogleAuthProvider,signInWithPopup,signOut,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail,updateProfile,doc,getDoc,setDoc,onSnapshot,serverTimestamp;
 
 function readMeta(){try{return JSON.parse(localStorage.getItem(META_KEY))||{}}catch{return{}}}
 function writeMeta(meta){nativeSet.call(localStorage,META_KEY,JSON.stringify(meta))}
-function localItems(){
-  const meta=readMeta(),items={};
-  for(const key of TRACKED_KEYS){
-    const value=localStorage.getItem(key);if(value===null)continue;
-    const updatedAt=Number(meta[key]||inferTimestamp(key,value));
-    if(updatedAt>0)items[key]={value,updatedAt};
-  }
-  return items;
-}
-function setStatus(text,tone=''){document.querySelectorAll('[data-sync-status]').forEach(el=>{el.textContent=text;el.dataset.tone=tone})}
-function controls(){
-  const host=document.querySelector('.top-actions,.header-tools,header');if(!host)return;
-  if(!document.querySelector('[data-cloud-account]')){
-    const wrap=document.createElement('div');wrap.className='cloud-controls';
-    wrap.innerHTML='<button class="outline cloud-account" type="button" data-cloud-account>Sign in to Family Account</button><span class="sync-status" data-sync-status>This device only</span>';
-    host.append(wrap);
-  }
-  const button=document.querySelector('[data-cloud-account]');
-  button.textContent=user?`Family: ${(user.displayName||'Parent').split(' ')[0]} · Sign out`:'Sign in to Family Account';
-  button.onclick=async()=>{
-    try{
-      await sdkReady;
-      if(!auth)throw new Error('auth-unavailable');
-      if(user)await signOut(auth);else await signInWithPopup(auth,new GoogleAuthProvider());
-    }catch(error){setStatus(error?.code==='auth/popup-closed-by-user'?'Sign-in canceled':navigator.onLine?'Could not sign in':'Offline · saved here',navigator.onLine?'error':'offline')}
-  };
-}
-function applyRemote(items,keys){
-  if(!keys.length)return false;const meta=readMeta();suppress=true;
-  for(const key of keys){const item=items[key];if(!item)continue;nativeSet.call(localStorage,key,item.value);meta[key]=Number(item.updatedAt||0)}
-  writeMeta(meta);suppress=false;return true;
-}
-async function push(){
-  if(!user||!db)return;clearTimeout(pushTimer);
-  setStatus(navigator.onLine?'Syncing…':'Offline · saved here',navigator.onLine?'':'offline');if(!navigator.onLine)return;
-  try{await setDoc(doc(db,'families',user.uid,'state','progress'),{schema:1,items:localItems(),serverUpdatedAt:serverTimestamp()});setStatus('Cloud synced','ok')}
-  catch{setStatus('Offline · will sync','offline')}
-}
-function queuePush(){clearTimeout(pushTimer);pushTimer=setTimeout(push,700)}
-async function reconcile(){
-  const ref=doc(db,'families',user.uid,'state','progress');setStatus('Syncing…');
-  try{
-    const snap=await getDoc(ref),remote=snap.exists()?(snap.data().items||{}):{},local=localItems(),result=mergeItems(local,remote);
-    const changed=applyRemote(result.merged,result.download);
-    if(!snap.exists()||result.upload.length)await setDoc(ref,{schema:1,items:result.merged,serverUpdatedAt:serverTimestamp()});
-    setStatus('Cloud synced','ok');
-    if(changed)window.dispatchEvent(new CustomEvent('mathlab-cloud-updated'));
-    unsubscribe=onSnapshot(ref,next=>{
-      if(!next.exists())return;
-      const current=localItems(),incoming=next.data().items||{},merged=mergeItems(current,incoming);
-      if(applyRemote(merged.merged,merged.download))window.dispatchEvent(new CustomEvent('mathlab-cloud-updated'));
-      if(merged.upload.length)queuePush();
-    });
-  }catch{setStatus('Offline · will sync','offline')}
-  trackingReady=true;
-}
+function cleanName(value,fallback){return String(value||'').trim().replace(/\s+/g,' ').slice(0,30)||fallback}
+function defaultProfile(){return{schema:1,familyName:'My Family',parentName:'Parent',children:{a:{name:'Learner 1'},b:{name:'Learner 2'}},updatedAt:Date.now()}}
+function normalizeProfile(value={}){const base=defaultProfile();return{...base,...value,familyName:cleanName(value.familyName,base.familyName),parentName:cleanName(value.parentName,base.parentName),children:{a:{name:cleanName(value.children?.a?.name,base.children.a.name)},b:{name:cleanName(value.children?.b?.name,base.children.b.name)}},updatedAt:Number(value.updatedAt||Date.now())}}
+function readProfile(){try{return normalizeProfile(JSON.parse(localStorage.getItem(PROFILE_KEY))||{})}catch{return defaultProfile()}}
+function saveProfileLocal(value){familyProfile=normalizeProfile(value);nativeSet.call(localStorage,PROFILE_KEY,JSON.stringify(familyProfile));applyFamilyNames();return familyProfile}
+function learnerName(id){return familyProfile.children?.[id]?.name||(id==='a'?'Learner 1':'Learner 2')}
+window.MathLabFamily={learnerName,get profile(){return familyProfile},get user(){return user},openAccount:()=>openAccount()};
 
-Storage.prototype.setItem=function(key,value){
-  nativeSet.call(this,key,value);
-  if(this!==localStorage||suppress||!trackingReady||!TRACKED_KEYS.includes(key))return;
-  const meta=readMeta();meta[key]=Date.now();writeMeta(meta);queuePush();
-};
+function applyFamilyNames(){
+  document.querySelectorAll('select').forEach(select=>{const a=select.querySelector('option[value="a"]'),b=select.querySelector('option[value="b"]');if(a)a.textContent=learnerName('a');if(b)b.textContent=learnerName('b')});
+  document.querySelectorAll('[data-family-child="a"]').forEach(el=>el.textContent=learnerName('a'));
+  document.querySelectorAll('[data-family-child="b"]').forEach(el=>el.textContent=learnerName('b'));
+  window.dispatchEvent(new CustomEvent('mathlab-family-profile',{detail:familyProfile}));
+}
+function localItems(){const meta=readMeta(),items={};for(const key of TRACKED_KEYS){const value=localStorage.getItem(key);if(value===null)continue;const updatedAt=Number(meta[key]||inferTimestamp(key,value));if(updatedAt>0)items[key]={value,updatedAt}}return items}
+function setStatus(text,tone=''){document.querySelectorAll('[data-sync-status]').forEach(el=>{el.textContent=text;el.dataset.tone=tone})}
+function accountLabel(){return user?`${familyProfile.familyName} · Account`:'Family Sign In'}
+function controls(){const host=document.querySelector('.top-actions,.header-tools,header');if(!host)return;if(!document.querySelector('[data-cloud-account]')){const wrap=document.createElement('div');wrap.className='cloud-controls';wrap.innerHTML='<button class="outline cloud-account" type="button" data-cloud-account>Family Sign In</button><span class="sync-status" data-sync-status>This device only</span>';host.append(wrap)}const button=document.querySelector('[data-cloud-account]');button.textContent=accountLabel();button.onclick=openAccount}
+function accountShell(){
+  if(document.querySelector('#familyAccountDialog'))return;
+  const style=document.createElement('style');style.textContent=`.family-account-dialog{border:0;border-radius:24px;padding:0;width:min(92vw,560px);max-height:88vh;box-shadow:0 24px 80px #073b3a55}.family-account-dialog::backdrop{background:#072f2e99}.family-account-card{padding:26px;background:#fff;color:#123}.family-account-head{display:flex;align-items:start;justify-content:space-between;gap:16px}.family-account-head h2{font-size:clamp(1.55rem,4vw,2rem);margin:0}.family-account-close{border:0;background:#edf5f2;border-radius:50%;width:46px;height:46px;font-size:1.6rem}.family-account-note{color:#506b72;line-height:1.5}.family-account-form{display:grid;gap:14px}.family-account-form label{display:grid;gap:6px;font-weight:800}.family-account-form input{font:inherit;font-size:1rem;padding:13px 14px;border:2px solid #c7d9d7;border-radius:12px;min-height:50px}.family-account-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}.family-account-actions button{min-height:50px;padding:11px 18px;border-radius:12px;font:inherit;font-weight:900;border:2px solid #0b6763;background:#fff;color:#0b5754}.family-account-actions .primary{background:#0b6763;color:#fff}.family-account-error{min-height:24px;color:#a33;font-weight:700}.family-account-success{color:#08704f;font-weight:800}.guardian-check{display:flex!important;grid-template-columns:auto 1fr!important;align-items:start;font-weight:600!important}.guardian-check input{min-height:auto;width:22px;height:22px}.cloud-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.sync-status{font-size:.78rem;color:#587077}.sync-status[data-tone=ok]{color:#08704f}.sync-status[data-tone=error]{color:#a33}@media(max-width:760px){.family-account-card{padding:20px}.cloud-controls{width:100%}.cloud-account{width:100%}.sync-status{width:100%;text-align:center}}`;
+  document.head.append(style);
+  const dialog=document.createElement('dialog');dialog.id='familyAccountDialog';dialog.className='family-account-dialog';dialog.innerHTML='<div class="family-account-card"><div class="family-account-head"><div><p class="eyebrow">FAMILY ACCOUNT</p><h2 id="familyAccountTitle">Sign in</h2></div><button class="family-account-close" type="button" aria-label="Close">×</button></div><div id="familyAccountBody"></div></div>';
+  document.body.append(dialog);dialog.querySelector('.family-account-close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+}
+function messageFor(error){const code=error?.code||'';if(code.includes('email-already-in-use'))return'This email already has an account. Please sign in.';if(code.includes('invalid-credential')||code.includes('wrong-password')||code.includes('user-not-found'))return'The email or password did not match.';if(code.includes('weak-password'))return'Use a password with at least 6 characters.';if(code.includes('invalid-email'))return'Enter a valid parent email address.';if(code.includes('operation-not-allowed'))return'Email registration must be enabled in the family database before public testing.';if(code.includes('popup-closed'))return'Google sign-in was canceled.';return navigator.onLine?'We could not complete that request. Please try again.':'You are offline. Reconnect to sign in.'}
+function loginView(){const body=document.querySelector('#familyAccountBody');document.querySelector('#familyAccountTitle').textContent='Welcome back';body.innerHTML='<p class="family-account-note">A parent signs in once. Every child in the family keeps a separate learning record on every device.</p><form class="family-account-form" id="familyLoginForm"><label>Parent email<input name="email" type="email" autocomplete="email" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><div class="family-account-error" role="alert"></div><div class="family-account-actions"><button class="primary" type="submit">Sign in</button><button type="button" data-create>Create family account</button><button type="button" data-google>Continue with Google</button><button type="button" data-reset>Forgot password</button></div></form>';const form=body.querySelector('form');form.onsubmit=async e=>{e.preventDefault();const error=form.querySelector('.family-account-error');error.textContent='Signing in…';try{await sdkReady;await signInWithEmailAndPassword(auth,form.email.value.trim(),form.password.value);document.querySelector('#familyAccountDialog').close()}catch(ex){error.textContent=messageFor(ex)}};body.querySelector('[data-create]').onclick=createView;body.querySelector('[data-google]').onclick=googleSignIn;body.querySelector('[data-reset]').onclick=resetView}
+function createView(){const body=document.querySelector('#familyAccountBody');document.querySelector('#familyAccountTitle').textContent='Create your family account';body.innerHTML='<p class="family-account-note">The parent owns the account. Children use first names or nicknames only—no child email is needed.</p><form class="family-account-form" id="familyCreateForm"><label>Parent name<input name="parentName" maxlength="30" autocomplete="name" required></label><label>Family name<input name="familyName" maxlength="30" placeholder="Example: Lee Family" required></label><label>Parent email<input name="email" type="email" autocomplete="email" required></label><label>Password<input name="password" type="password" minlength="6" autocomplete="new-password" required></label><label>First child name or nickname<input name="childA" maxlength="30" required></label><label>Second child name or nickname (optional)<input name="childB" maxlength="30"></label><label class="guardian-check"><input name="guardian" type="checkbox" required><span>I am the parent or legal guardian and I agree to manage these children’s learning records.</span></label><div class="family-account-error" role="alert"></div><div class="family-account-actions"><button class="primary" type="submit">Create family account</button><button type="button" data-back>Back to sign in</button></div></form>';const form=body.querySelector('form');form.onsubmit=async e=>{e.preventDefault();const error=form.querySelector('.family-account-error');error.textContent='Creating your account…';pendingProfile=normalizeProfile({familyName:form.familyName.value,parentName:form.parentName.value,children:{a:{name:form.childA.value},b:{name:form.childB.value||'Learner 2'}}});try{await sdkReady;const result=await createUserWithEmailAndPassword(auth,form.email.value.trim(),form.password.value);await updateProfile(result.user,{displayName:pendingProfile.parentName});await saveRemoteProfile(pendingProfile);document.querySelector('#familyAccountDialog').close()}catch(ex){pendingProfile=null;error.textContent=messageFor(ex)}};body.querySelector('[data-back]').onclick=loginView}
+function resetView(){const body=document.querySelector('#familyAccountBody');document.querySelector('#familyAccountTitle').textContent='Reset your password';body.innerHTML='<p class="family-account-note">Enter the parent email. We will send a secure password-reset link.</p><form class="family-account-form"><label>Parent email<input name="email" type="email" autocomplete="email" required></label><div class="family-account-error" role="alert"></div><div class="family-account-actions"><button class="primary" type="submit">Send reset email</button><button type="button" data-back>Back</button></div></form>';const form=body.querySelector('form');form.onsubmit=async e=>{e.preventDefault();const status=form.querySelector('.family-account-error');try{await sdkReady;await sendPasswordResetEmail(auth,form.email.value.trim());status.className='family-account-success';status.textContent='Reset email sent. Check your inbox.'}catch(ex){status.textContent=messageFor(ex)}};body.querySelector('[data-back]').onclick=loginView}
+function accountView(){const body=document.querySelector('#familyAccountBody');document.querySelector('#familyAccountTitle').textContent=familyProfile.familyName;body.innerHTML=`<p class="family-account-note">Signed in as <strong>${escapeHtml(user?.email||'parent')}</strong>. Learning records sync across your family’s devices.</p><form class="family-account-form"><label>Family name<input name="familyName" maxlength="30" value="${escapeAttr(familyProfile.familyName)}" required></label><label>First child<input name="childA" maxlength="30" value="${escapeAttr(learnerName('a'))}" required></label><label>Second child<input name="childB" maxlength="30" value="${escapeAttr(learnerName('b'))}" required></label><div class="family-account-error" role="alert"></div><div class="family-account-actions"><button class="primary" type="submit">Save family profiles</button><button type="button" data-signout>Sign out</button></div></form>`;const form=body.querySelector('form');form.onsubmit=async e=>{e.preventDefault();const status=form.querySelector('.family-account-error');try{const next=normalizeProfile({...familyProfile,familyName:form.familyName.value,children:{a:{name:form.childA.value},b:{name:form.childB.value}},updatedAt:Date.now()});await saveRemoteProfile(next);status.className='family-account-success';status.textContent='Family profiles saved.';controls()}catch(ex){status.textContent=messageFor(ex)}};body.querySelector('[data-signout]').onclick=async()=>{await signOut(auth);document.querySelector('#familyAccountDialog').close()}}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function escapeAttr(value){return escapeHtml(value)}
+function openAccount(){accountShell();user?accountView():loginView();document.querySelector('#familyAccountDialog').showModal()}
+async function googleSignIn(){const status=document.querySelector('.family-account-error');try{status.textContent='Opening Google sign-in…';await sdkReady;await signInWithPopup(auth,new GoogleAuthProvider());document.querySelector('#familyAccountDialog').close()}catch(ex){status.textContent=messageFor(ex)}}
+async function loadRemoteProfile(){if(!user||!db)return;const ref=doc(db,'families',user.uid,'state','profile'),snap=await getDoc(ref);if(snap.exists())saveProfileLocal(snap.data());else await saveRemoteProfile(pendingProfile||normalizeProfile({familyName:user.displayName?`${user.displayName.split(' ')[0]} Family`:'My Family',parentName:user.displayName||'Parent'}));pendingProfile=null;controls()}
+async function saveRemoteProfile(value){if(!user||!db)throw new Error('not-signed-in');const next=saveProfileLocal({...value,updatedAt:Date.now()});await setDoc(doc(db,'families',user.uid,'state','profile'),next);return next}
+function applyRemote(items,keys){if(!keys.length)return false;const meta=readMeta();suppress=true;for(const key of keys){const item=items[key];if(!item)continue;nativeSet.call(localStorage,key,item.value);meta[key]=Number(item.updatedAt||0)}writeMeta(meta);suppress=false;return true}
+async function push(){if(!user||!db)return;clearTimeout(pushTimer);setStatus(navigator.onLine?'Syncing…':'Offline · saved here',navigator.onLine?'':'offline');if(!navigator.onLine)return;try{await setDoc(doc(db,'families',user.uid,'state','progress'),{schema:1,items:localItems(),serverUpdatedAt:serverTimestamp()});setStatus('Cloud synced','ok')}catch{setStatus('Offline · will sync','offline')}}
+function queuePush(){clearTimeout(pushTimer);pushTimer=setTimeout(push,700)}
+async function reconcile(){const ref=doc(db,'families',user.uid,'state','progress');setStatus('Syncing…');try{const snap=await getDoc(ref),remote=snap.exists()?(snap.data().items||{}):{},local=localItems(),result=mergeItems(local,remote);const changed=applyRemote(result.merged,result.download);if(!snap.exists()||result.upload.length)await setDoc(ref,{schema:1,items:result.merged,serverUpdatedAt:serverTimestamp()});setStatus('Cloud synced','ok');if(changed)window.dispatchEvent(new CustomEvent('mathlab-cloud-updated'));unsubscribe=onSnapshot(ref,next=>{if(!next.exists())return;const current=localItems(),incoming=next.data().items||{},merged=mergeItems(current,incoming);if(applyRemote(merged.merged,merged.download))window.dispatchEvent(new CustomEvent('mathlab-cloud-updated'));if(merged.upload.length)queuePush()})}catch{setStatus('Offline · will sync','offline')}trackingReady=true}
+
+Storage.prototype.setItem=function(key,value){nativeSet.call(this,key,value);if(this!==localStorage||suppress||!trackingReady||!TRACKED_KEYS.includes(key))return;const meta=readMeta();meta[key]=Date.now();writeMeta(meta);queuePush()};
 window.addEventListener('online',()=>user?push():setStatus('This device only'));
 window.addEventListener('offline',()=>setStatus('Offline · saved here','offline'));
 window.addEventListener('mathlab-cloud-updated',()=>setTimeout(()=>location.reload(),80),{once:true});
 
-controls();
-const sdkReady=(async()=>{
-  try{
-    const[appModule,authModule,firestoreModule]=await Promise.all([
-      import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js'),
-      import('https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js'),
-      import('https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js')
-    ]);
-    ({GoogleAuthProvider,signInWithPopup,signOut}=authModule);
-    ({doc,getDoc,setDoc,onSnapshot,serverTimestamp}=firestoreModule);
-    const app=appModule.initializeApp(firebaseConfig);
-    auth=authModule.getAuth(app);db=firestoreModule.getFirestore(app);
-    authModule.onAuthStateChanged(auth,async current=>{
-      if(unsubscribe){unsubscribe();unsubscribe=null}user=current;controls();
-      if(user)await reconcile();else{trackingReady=true;setStatus('This device only')}
-    });
-  }catch{trackingReady=true;setStatus(navigator.onLine?'Sync unavailable':'Offline · saved here',navigator.onLine?'error':'offline')}
-})();
+accountShell();controls();applyFamilyNames();
+const sdkReady=(async()=>{try{const[appModule,authModule,firestoreModule]=await Promise.all([import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js'),import('https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js'),import('https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js')]);({GoogleAuthProvider,signInWithPopup,signOut,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail,updateProfile}=authModule);({doc,getDoc,setDoc,onSnapshot,serverTimestamp}=firestoreModule);const app=appModule.initializeApp(firebaseConfig);auth=authModule.getAuth(app);db=firestoreModule.getFirestore(app);authModule.onAuthStateChanged(auth,async current=>{if(unsubscribe){unsubscribe();unsubscribe=null}user=current;controls();if(user){try{await loadRemoteProfile()}catch{setStatus('Profile sync unavailable','error')}await reconcile()}else{trackingReady=true;setStatus('This device only');applyFamilyNames()}})}catch{trackingReady=true;setStatus(navigator.onLine?'Sync unavailable':'Offline · saved here',navigator.onLine?'error':'offline')}})();
