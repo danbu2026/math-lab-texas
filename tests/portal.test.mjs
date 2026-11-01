@@ -30,9 +30,15 @@ test('parent sign-in keeps progress available across devices',()=>{
   assert.match(parentJs,/cloud-sync\.js/);
   assert.match(parent,/PARENT VIEW/);
   assert.match(cloud,/signInWithPopup/);
-  assert.match(cloud,/Sign in to Family Account/);
+  assert.match(cloud,/createUserWithEmailAndPassword/);
+  assert.match(cloud,/signInWithEmailAndPassword/);
+  assert.match(cloud,/sendPasswordResetEmail/);
+  assert.match(cloud,/Create family account/);
+  assert.match(cloud,/parent or legal guardian/);
+  assert.match(cloud,/Family Sign In/);
   assert.doesNotMatch(cloud,/Parent sign in/);
   assert.match(cloud,/families',user\.uid,'state','progress/);
+  assert.match(cloud,/families',user\.uid,'state','profile/);
   assert.match(cloud,/Offline · saved here/);
 });
 
@@ -108,6 +114,6 @@ test('portal supports two learners, one player, and unpublished states',()=>{
   assert.match(js,/aria-pressed/);
   assert.match(html,/My Map/);
   assert.match(html,/href="parent\.html"/);
-  assert.match(html,/portal\.css\?v=child6/);
-  assert.match(html,/portal\.js\?v=child4/);
+  assert.match(html,/portal\.css\?v=family3/);
+  assert.match(html,/portal\.js\?v=family3/);
 });

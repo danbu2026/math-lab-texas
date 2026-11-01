@@ -47,7 +47,7 @@ The system is organized by learning ability instead of a fixed number of repeate
 
 Each daily experience is designed for about ten minutes. A learner can begin near the current ability level, move backward only when evidence reveals a prerequisite gap, and move ahead after independent performance returns in a changed problem after time has passed.
 
-Children and parents can choose meaningful milestone rewards. Learning records work offline and sync to one family account after parent Google sign-in. The system does not use rankings or streak pressure. Course pages use a child-focused layout with large answers and one current task; learning evidence, depth controls, and family notes open only through Parent View.
+Children and parents can choose meaningful milestone rewards. A parent can create a family account with an email and password, sign in with Google, or request a password-reset email. Each account currently supports two named child profiles, and learning records work offline before syncing to that family's cloud record. The system does not use rankings or streak pressure. Course pages use a child-focused layout with large answers and one current task; learning evidence, depth controls, and family notes open only through Parent View.
 
 ## Current scope
 
@@ -60,7 +60,16 @@ The complete child-facing architecture is now visible as six learning worlds: Ma
 
 ## Known limits
 
-The current build has been checked at iPad portrait and landscape dimensions in Chromium, but it has not yet been tested on a physical iPad with Safari or in a formal child learning study. Google family sign-in and cloud storage are deployed, but the final two-device recovery test still requires completing one real parent sign-in. Family email/password accounts, child PIN profiles, the daily recommendation engine, membership, and payments are future work.
+The current build has been checked at iPad portrait and landscape dimensions in Chromium, but it has not yet been tested on a physical iPad with Safari or in a formal child learning study. Google sign-in, parent email/password registration, password reset, two named child profiles, and cloud progress storage are implemented. Email registration availability was checked without creating a test account. Before inviting outside families, one real family must still complete registration, two-device recovery, password reset, Firestore rule review, data deletion, and physical-iPad Safari tests. Child PIN profiles, the daily recommendation engine, membership, and payments remain future work.
+
+## Family account model
+
+- The parent is the account holder; children do not provide email addresses.
+- Each family receives an isolated Firebase Authentication user ID and an isolated Firestore family record.
+- The current release supports two child names or nicknames, mapped to the two existing learner records.
+- Passwords are handled by Firebase Authentication and are never stored in this repository or in browser learning records.
+- Course progress stays usable offline and reconciles with the signed-in family record after the device reconnects.
+- Public launch still requires verified Firestore access rules, privacy and deletion flows, and a real two-device acceptance test.
 
 ## Child experience V3
 
